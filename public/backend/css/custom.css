@@ -23,3 +23,56 @@ a.imgfileAnchor img {
     height: 100px;
     margin-bottom: 20px;
 }
+
+body.bg-gradient-primary {
+    background-color: #f4f7fa !important;
+    background-image: none !important;
+    background-size: cover;
+  }
+
+  body.bg-gradient-primary {
+    height: 100vh;
+}
+
+body.bg-gradient-primary .container {
+    height: 100%;
+}
+
+.row.justify-content-center.login {
+    height: 100vh;
+    align-items: center;
+}
+
+
+.bg-gradient-primary.login ,  
+.bg-gradient-primary.login .container{
+    height: 100vh;
+}
+
+
+#accordionSidebar {
+    background-color: #313541;
+}
+
+a.sidebar-brand.d-flex.align-items-center.justify-content-center {
+    background-color: #8b0000;
+}
+
+
+
+div#registerDiv {
+    background-color: #213159;
+    padding: 10px 20px;
+}
+
+div#registerDiv a {
+    color: white !important;
+    font-weight: bold !important;
+    font-size: 17px !important;
+}
+
+.mylogin {
+    font-size: 18px !important;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
