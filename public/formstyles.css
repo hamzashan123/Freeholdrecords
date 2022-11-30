@@ -1,0 +1,271 @@
+#form360,#updateform  {
+    text-align: center;
+    position: relative;
+    margin-top: 20px;
+  }
+  
+  #form360 fieldset ,#updateform fieldset{
+    background: white;
+    border: 0 none;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding-bottom: 20px;
+    position: relative;
+  }
+  
+  .form-card {
+    text-align: left;
+  }
+  
+  #form360 fieldset:not(:first-of-type),  #updateform fieldset:not(:first-of-type){
+    display: none;
+  }
+  
+  #form360 input, #updateform input,
+  #form360 textarea , #updateform textarea {
+    padding: 8px 15px 8px 15px;
+    border: 1px solid #ccc;
+    border-radius: 0px;
+    margin-bottom: 25px;
+    margin-top: 2px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: montserrat;
+    color: #2c3e50;
+    background-color: #eceff1;
+    font-size: 16px;
+    letter-spacing: 1px;
+  }
+  
+  #form360 input:focus, #updateform input:focus
+  #form360 textarea:focus , #updateform textarea:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border: 1px solid #2e82c7;
+    outline-width: 0;
+  }
+  
+  #form360 .action-button , #updateform .action-button {
+    width: 100px;
+    background: #2e82c7;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 0px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 0px 10px 5px;
+    float: right;
+  }
+  
+  #form360 .action-button:hover,#updateform .action-button:hover,
+  #form360 .action-button:focus , #updateform .action-button:focus {
+    background-color: #2e82c7cf;
+  }
+  
+  #form360 .action-button-previous , #updateform .action-button-previous {
+    width: 100px;
+    background: #616161;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 0px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px 10px 0px;
+    float: right;
+  }
+  
+  #form360 .action-button-previous:hover, #updateform .action-button-previous:hover,
+  #form360 .action-button-previous:focus , #updateform .action-button-previous:focus {
+    background-color: #000000;
+  }
+  
+  .card {
+    z-index: 0;
+    /*border: none;*/
+    position: relative;
+  }
+  
+  .fs-title {
+    font-size: 25px;
+    color: #2e82c7;
+    margin-bottom: 15px;
+    font-weight: normal;
+    text-align: left;
+  }
+  
+  .purple-text {
+    color: #2e82c7;
+    font-weight: normal;
+  }
+  
+  .steps {
+    font-size: 25px;
+    color: gray;
+    margin-bottom: 10px;
+    font-weight: normal;
+    text-align: right;
+  }
+  
+  .fieldlabels {
+    color: gray;
+    text-align: left;
+  }
+  
+  #progressbar {
+    margin-bottom: 30px;
+    overflow: hidden;
+    color: lightgrey;
+    display: none;
+  }
+  
+  #progressbar .active {
+    color: #2e82c7;
+  }
+  
+  #progressbar li {
+    list-style-type: none;
+    font-size: 15px;
+    width: 25%;
+    float: left;
+    position: relative;
+    font-weight: 400;
+  }
+   ul#progressbar li:before {
+    font-family: FontAwesome;
+    content: '\f007';
+  }
+  
+ 
+  
+  #progressbar li:before {
+    width: 50px;
+    height: 50px;
+    line-height: 45px;
+    display: block;
+    font-size: 20px;
+    color: #ffffff;
+    background: lightgray;
+    border-radius: 50%;
+    margin: 0 auto 10px auto;
+    padding: 2px;
+  }
+  
+  #progressbar li:after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: lightgray;
+    position: absolute;
+    left: 0;
+    top: 25px;
+    z-index: -1;
+  }
+  
+  #progressbar li.active:before,
+  #progressbar li.active:after {
+    background: #2e82c7;
+  }
+  
+  .progress {
+    height: 20px;
+  }
+  
+  .progress-bar {
+    background-color: #2e82c7;
+  }
+  
+  .fit-image {
+    width: 100%;
+    object-fit: cover;
+  }
+  
+  .box-shadow {
+    box-shadow: 2px 2px 2px 11px rgb(0 0 0 / 6%);
+  }
+  
+  .padding-20 {
+    padding: 20px;
+  }
+  
+  table {
+    width: 100%;
+  }
+  
+  table tr td {
+    border: 2px solid lightgrey;
+  }
+  
+  table tr td select {
+    border: none !important;
+  }
+  
+  table tr td input {
+    margin-bottom: 0px !important;
+    border: none !important;
+    background: white !important;
+  }
+  
+  table tr td:nth-child(1) {
+    width: 40%;
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 20px;
+  }
+  
+  .mt-20 {
+    margin-top: 20px;
+  }
+  
+  img.logo {
+    height: 150px;
+    width: auto;
+    object-fit: contain;
+    border-radius: 88px;
+  }
+  
+  #p_info_phone,
+  #p_info_phone_australia,
+  #p_info_whatsapp,
+  .numberfixed {
+    left: 25%;
+  }
+  
+  #errorView {
+    text-align: center;
+    color: red;
+    font-weight: bold;
+  }
+  
+  #errorViewEmail {
+    text-align: center;
+    color: red;
+    font-weight: bold;
+  }
+  .container.loggedin img.docpdf, .container.loggedin img.docimg {
+      display: block;
+      width: auto;
+      height: 120px;
+      margin-bottom: 20px;
+  }
+  .container.loggedin a.save.action-button {display: none;}
+  a.update.action-button {
+      display: none;
+  }
+  
+  .loggedin a.update.action-button  {
+      display: block;
+  }
+  .dateerror {
+      border: 2px solid red !important;
+  }
+  
+  td.addBorder {
+      border-color: red !important;
+  }
+  

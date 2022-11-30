@@ -1,0 +1,25 @@
+.img-profile {
+    height: 4rem;
+    width: 4rem
+}
+.rounded-circle {
+    border-radius: 50%
+}
+.col-12 {
+    flex: 0 0 100%;
+    margin-top: 16px;
+    max-width: 100%;
+}
+input[type='tel'] {
+    left: 0;
+    padding-left: 70px !important;
+}
+.iti.iti--allow-dropdown {
+    display: block;
+  }
+
+
+a.imgfileAnchor img {
+    height: 100px;
+    margin-bottom: 20px;
+}
