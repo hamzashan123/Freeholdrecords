@@ -27,7 +27,7 @@
 
     @if(Auth::user()->hasRole('admin'))
     <li class="nav-item active ">
-        <a class="nav-link" href="{{route('admin.forms.index')}}">
+        <a class="nav-link" href="{{route('admin.users.index')}}">
             <i class="fas fa-users fa-2x text-gray-300"></i>
             <span>Users </span></a>
     </li>

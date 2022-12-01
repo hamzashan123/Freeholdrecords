@@ -30,24 +30,9 @@ class UserController extends Controller
     public function index(): View
     {
         //$this->authorize('access_user');
-        $me = Auth::user();
+            $me = Auth::user();
 
-        $data = ConsultantUser::where('consultant_id' ,$me->id);
-        $customers = $data->pluck('client_id');
-        $myusers = User::whereIn('id',$customers)->get();
         
-        if(Auth::user()->hasRole('consultant')){
-            $users = User::whereIn('id',$customers)->where('id' ,'!=' , auth()->user()->id)->with('roles')
-            ->when(\request()->keyword != null, function ($query) {
-                $query->search(\request()->keyword);
-            })
-            ->when(\request()->status != null, function ($query) {
-                $query->whereStatus(\request()->status);
-            })
-            ->orderBy(\request()->sortBy ?? 'id', \request()->orderBy ?? 'desc')
-            ->paginate(\request()->limitBy ?? 10); 
-        }
-        if(Auth::user()->hasRole('admin')){
             $users = User::where('id' ,'!=' , auth()->user()->id)->with('roles')
             ->when(\request()->keyword != null, function ($query) {
                 $query->search(\request()->keyword);
@@ -57,9 +42,7 @@ class UserController extends Controller
             })
             ->orderBy(\request()->sortBy ?? 'id', \request()->orderBy ?? 'desc')
             ->paginate(\request()->limitBy ?? 10);
-        }
-            
-       //dd($users);   
+           
         return view('backend.users.index', compact('users'));
     }
 
