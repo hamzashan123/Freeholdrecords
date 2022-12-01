@@ -105,7 +105,7 @@ class UserController extends Controller
        
 
         return redirect()->route('admin.users.index')->with([
-            'message' => 'Created successfully',
+            'message' => 'User created successfully',
             'alert-type' => 'success'
         ]);
     }
@@ -148,7 +148,6 @@ class UserController extends Controller
             'email_verified_at' => now(),
             'password' => bcrypt($request->password),
             'phone' => $request->phone,
-            'status' => $request->status,
             'receive_email' => true,
             'user_image' => $userImage ?? NULL,
         ]);
