@@ -61,14 +61,15 @@ class UserController extends Controller
         if ($request->hasFile('user_image')) {
             $userImage = $this->imageService->storeUserImages($request->username, $request->user_image);
         }
-
+        $username = $request->first_name.$request->last_name . uniqid();
+        $password = bcrypt($request->password);
         $user = User::create([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
-            'username' => $request->first_name.$request->last_name . uniqid(),
+            'username' => $username,
             'email' => $request->email,
             'email_verified_at' => now(),
-            'password' => bcrypt($request->password),
+            'password' => $password,
             'phone' => $request->phone,
             'status' => true,
             'receive_email' => true,
@@ -79,8 +80,8 @@ class UserController extends Controller
         $user->assignRole('user');
         $adminData = [
             'admin' => true,
-            'username' => $request->username,
-            'password' => $request->password,
+            'username' => $username,
+            'password' => $password,
             'email' => $request->email,
             'usertype' => 'user',
             'messagetype' => "New User has been registered."
@@ -91,9 +92,9 @@ class UserController extends Controller
 
         $userData = [
             'admin' => false,
-            'username' => $request->username,
+            'username' => $username,
             'email' => $request->email,
-            'password' => $request->password,
+            'password' => $password,
             'usertype' => 'user',
             'messagetype' => ' Welcome to FreeHold Records LLC 
             You can now login at the link below <a href="' . url('admin') . '">Login now</a> and see your dashboard.'
