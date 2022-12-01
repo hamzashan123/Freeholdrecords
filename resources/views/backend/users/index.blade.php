@@ -7,14 +7,14 @@
         <h6 class="m-0 font-weight-bold text-primary">
             Add New User
         </h6>
-        <div class="ml-auto">
+        <!-- <div class="ml-auto">
             <a href="{{ route('admin.users.index') }}" class="btn btn-primary">
                 <span class="icon text-white-50">
                     <i class="fa fa-home"></i>
                 </span>
                 <span class="text">Back to Users</span>
             </a>
-        </div>
+        </div> -->
     </div>
     <div class="card-body">
         <form method="POST" action="{{ route('admin.users.store') }}" enctype="multipart/form-data">
@@ -61,7 +61,7 @@
 
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">
-                    {{ __('Add User') }}
+                    <i class="fa fa-plus-circle" aria-hidden="true"></i> {{ __('Add User') }}
                 </button>
             </div>
         </form>
