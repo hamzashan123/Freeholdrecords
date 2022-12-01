@@ -5,14 +5,14 @@
 <div class="card shadow mb-4">
     <div class="card-header py-3 d-flex">
         <h6 class="m-0 font-weight-bold text-primary">
-            Create Clients
+            Add New User
         </h6>
         <div class="ml-auto">
             <a href="{{ route('admin.users.index') }}" class="btn btn-primary">
                 <span class="icon text-white-50">
                     <i class="fa fa-home"></i>
                 </span>
-                <span class="text">Back to clients</span>
+                <span class="text">Back to Users</span>
             </a>
         </div>
     </div>
@@ -61,7 +61,7 @@
 
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">
-                    {{ __('Register') }}
+                    {{ __('Add User') }}
                 </button>
             </div>
         </form>

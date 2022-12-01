@@ -270,3 +270,20 @@ a.sidebar-brand.d-flex.align-items-center.justify-content-center {
 .btn-group.btn-group-sm a.btn-danger {
     color: darkred;
 }
+
+.card-header:first-child {
+    display: flex;
+    align-items: center;
+}
+
+a.btn.btn-primary {
+    border-radius: 0px;
+}
+
+.btn.btn-primary:hover {
+    border-color: transparent;
+}
+
+.btn.btn-primary {
+    font-weight: bold;
+}
