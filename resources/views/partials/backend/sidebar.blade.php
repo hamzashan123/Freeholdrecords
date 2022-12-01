@@ -35,6 +35,15 @@
 
     <hr class="sidebar-divider">
 
+    <li class="nav-item  ">
+        <a class="nav-link" href="{{route('admin.form360.index')}}">
+            <i class="fas fa-clock fa-2x text-gray-300"></i>
+            <span>Order</span></a>
+    </li>
+
+
+    <hr class="sidebar-divider">
+
     <li class="nav-item ">
         <a class="nav-link" href="{{route('admin.account_setting')}}">
             <i class="fas fa-user-cog fa-2x text-gray-300"></i>
@@ -42,13 +51,7 @@
     </li>
 
 
-    <hr class="sidebar-divider">
 
-    <li class="nav-item  ">
-        <a class="nav-link" href="{{route('admin.form360.index')}}">
-            <i class="fas fa-clock fa-2x text-gray-300"></i>
-            <span>Order</span></a>
-    </li>
 
 
     @if(Auth::user()->hasRole('admin'))
