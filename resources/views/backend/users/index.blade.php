@@ -7,14 +7,6 @@
         <h6 class="m-0 font-weight-bold text-primary">
             Add New User
         </h6>
-        <!-- <div class="ml-auto">
-            <a href="{{ route('admin.users.index') }}" class="btn btn-primary">
-                <span class="icon text-white-50">
-                    <i class="fa fa-home"></i>
-                </span>
-                <span class="text">Back to Users</span>
-            </a>
-        </div> -->
     </div>
     <div class="card-body">
         <form method="POST" action="{{ route('admin.users.store') }}" enctype="multipart/form-data">
@@ -32,7 +24,7 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label for="last_name" class="text-small text-uppercase">{{ __('Last Name') }}</label>
-                        <input id="last_name" type="text" class="form-control form-control" name="last_name" value="{{ old('last_name') }}" placeholder="First Name">
+                        <input id="last_name" type="text" class="form-control form-control" name="last_name" value="{{ old('last_name') }}" placeholder="Last Name">
                         @error('last_name')<span class="text-danger">{{ $message }}</span>@enderror
                     </div>
 
@@ -49,7 +41,7 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label for="phone" class="text-small text-uppercase">{{ __('Phone') }}</label>
-                        <input id="phone" type="tel" class="form-control form-control" name="email" value="{{ old('phone') }}" placeholder="Phone Number">
+                        <input id="phone" type="tel" class="form-control form-control" name="phone" value="{{ old('phone') }}" placeholder="Phone Number">
                         @error('phone')<span class="text-danger">{{ $message }}</span>@enderror
                     </div>
                 </div>
