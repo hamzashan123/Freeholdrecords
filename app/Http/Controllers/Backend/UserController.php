@@ -65,42 +65,12 @@ class UserController extends Controller
         $user = User::create([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
-            'username' => $request->username,
-            'surname' => $request->surname,
+            'username' => $request->first_name.$request->last_name,
             'email' => $request->email,
             'email_verified_at' => now(),
             'password' => bcrypt($request->password),
             'phone' => $request->phone,
-            'whatsapp' => $request->whatsapp ?? NULL,
-            'location' => $request->location ?? NULL,
-            'visa_expiry' => $request->visa_expiry ?? NULL,
             'status' => $request->status,
-            'application_status' => $request->application_status,
-            'matter' => $request->matter ?? NULL,
-            //for 1st 
-            'currency' => $request->currency,
-            'amount' => $request->amount,
-            'client_paid' => $request->client_paid,
-            'client_amount' => $request->client_amount,
-            'onthe' => $request->onthe,
-            'for' => $request->for,
-            //for 2nd
-            'currency2' => $request->currency2,
-            'amount2' => $request->amount2,
-            'client_paid2' => $request->client_paid2,
-            'client_amount2' => $request->client_amount2,
-            'onthe2' => $request->onthe2,
-            'for2' => $request->for2,
-            //for 3rd
-            'currency3' => $request->currency3,
-            'amount3' => $request->amount3,
-            'client_paid3' => $request->client_paid3,
-            'client_amount3' => $request->client_amount3,
-            'onthe3' => $request->onthe3,
-            'for3' => $request->for3,
-            
-            'immigiration' => $request->immigiration,
-            'admin_comments'=> $request->admin_comments ?? NULL,
             'receive_email' => true,
             'user_image' => $userImage ?? NULL,
         ]);
@@ -113,12 +83,11 @@ class UserController extends Controller
             'surname' => $request->surname,
             'email' => $request->email,
             'usertype' => 'user',
-            'messagetype' => " The User has been correctly activated and 
-             successfully add into the online system."
+            'messagetype' => "New User has been registered."
            
         ];
         
-        Mail::to(env('ADMINEMAIL','riccardo@australialegal.it'))->send(new RegisterUser($adminData));
+        Mail::to('hamzashan123@gmail.com')->send(new RegisterUser($adminData));
 
         $userData = [
             'admin' => false,
@@ -126,8 +95,8 @@ class UserController extends Controller
             'surname' => $request->surname,
             'email' => $request->email,
             'usertype' => 'user',
-            'messagetype' => 'Welcome to Auslegal Info/Docs System Your email and profile have been successfully registered on the Aus Legal Info/Docs System. 
-            You can now login at the link below <a href="' . url('admin') . '">Login now</a> and fill out the forms required on your dashboard.'
+            'messagetype' => ' Welcome to FreeHold Records LLC 
+            You can now login at the link below <a href="' . url('admin') . '">Login now</a> and see your dashboard.'
            
         ];
 

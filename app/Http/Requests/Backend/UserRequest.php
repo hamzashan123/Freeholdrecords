@@ -28,7 +28,7 @@ class UserRequest extends FormRequest
             {
                 return [
                     'first_name' => ['required', 'max:255'],
-                    //'last_name' => ['required', 'max:255'],
+                    'last_name' => ['required', 'max:255'],
                     'username' => ['required', 'max:255', 'unique:users'],
                     'email' => ['required', 'email', 'max:255', 'unique:users'],
                     'phone' => ['required', 'string', 'max:255', 'unique:users'],
@@ -44,7 +44,7 @@ class UserRequest extends FormRequest
             {
                 return [
                     'first_name' => ['required', 'max:255'],
-                    //'last_name' => ['required', 'max:255'],
+                    'last_name' => ['required', 'max:255'],
                     'username' => ['required', 'max:255', 'unique:users,username,'.$this->route()->user->id],
                     'email' => ['required', 'max:255', 'unique:users,email,'.$this->route()->user->id],
                     'phone' => ['required', 'string', 'max:255', 'unique:users,phone,'.$this->route()->user->id],
