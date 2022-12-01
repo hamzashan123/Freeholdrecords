@@ -96,10 +96,14 @@
                     </td>
                     <td>
 
-                        <!-- {{ $user->status }} -->
+                        
                         <div class="activeInactive">
                             <label class="switch">
-                                <input type="checkbox" id="togBtn">
+                                @if($user->status == 'Active')
+                                <input type="checkbox" id="togBtn"  checked>
+                                @else 
+                                <input type="checkbox" id="togBtn"  >
+                                @endif 
                                 <div class="slider round"></div>
                             </label>
                         </div>

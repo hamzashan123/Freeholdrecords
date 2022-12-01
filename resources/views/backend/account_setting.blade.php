@@ -15,69 +15,55 @@
                 @csrf
                 @method('PATCH')
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-4">
                         <div class="form-group">
                             <label for="first_name">First Name</label>
                             <input class="form-control" id="first_name" type="text" name="first_name" value="{{ old('first_name', auth()->user()->first_name) }}">
                             @error('first_name')<span class="text-danger">{{ $message }}</span>@enderror
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-4">
                         <div class="form-group">
-                            <label for="surname" class="">{{ __('Sur Name') }}</label>
-                            <input id="surname" type="text" class="form-control" name="surname" value="{{ old('surname', auth()->user()->surname) }}"
-                                   value="{{ old('surname') }}" placeholder="surname">
-                            @error('surname')<span class="text-danger">{{ $message }}</span>@enderror
+                            <label for="last_name">Last Name</label>
+                            <input class="form-control" id="last_name" type="text" name="last_name" value="{{ old('last_name', auth()->user()->last_name) }}">
+                            @error('last_name')<span class="text-danger">{{ $message }}</span>@enderror
                         </div>
                     </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-6">
+                    <div class="col-4">
                         <div class="form-group">
                             <label for="username">Username</label>
                             <input class="form-control" id="username" type="text" name="username" value="{{ old('username', auth()->user()->username) }}">
                             @error('username')<span class="text-danger">{{ $message }}</span>@enderror
                         </div>
                     </div>
-                    <div class="col-6">
+                    
+                </div>
+
+              
+
+                <div class="row">
+                    <div class="col-4">
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input class="form-control" id="email" type="email" name="email" value="{{ old('email', auth()->user()->email) }}">
                             @error('email')<span class="text-danger">{{ $message }}</span>@enderror
                         </div>
                     </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-6">
+                    <div class="col-4">
                         <div class="form-group">
                             <label for="phone">Phone</label>
                             <input class="form-control" id="phone" type="text" name="phone" value="{{ old('phone', auth()->user()->phone) }}">
                             @error('phone')<span class="text-danger">{{ $message }}</span>@enderror
                         </div>
                     </div>
-                    @if(Auth::user()->hasRole('admin'))
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label for="status">Status</label>
-                            <select name="status" id="status" class="form-control">
-                                <option value="1" {{ old('status', auth()->user()->status) == "Active" ? 'selected' : null }}>Active</option>
-                                <option value="0" {{ old('status', auth()->user()->status) == "Inactive" ? 'selected' : null }}>Inactive</option>
-                            </select>
-                            @error('status')<span class="text-danger">{{ $message }}</span>@enderror
-                        </div>
-                    </div>
-                    @endif
-                </div>
-                <div class="row">
-                    <div class="col-6">
+                    <div class="col-4">
                         <div class="form-group">
                             <label for="password" class="text-danger">Change password</label>
                             <input class="form-control" id="password" type="password" name="password" value="{{ old('password') }}">
                             @error('password')<span class="text-danger">{{ $message }}</span>@enderror
                         </div>
                     </div>
+                    
                 </div>
                 <div class="row">
                     <div class="col-12">

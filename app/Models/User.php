@@ -45,7 +45,6 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return auth()->user()->hasRole('admin') 
         || auth()->user()->hasRole('supervisor') 
-        || auth()->user()->hasRole('consultant')
         || auth()->user()->hasRole('user');
     }
 

@@ -42,7 +42,7 @@ class UserController extends Controller
             })
             ->orderBy(\request()->sortBy ?? 'id', \request()->orderBy ?? 'desc')
             ->paginate(\request()->limitBy ?? 25);
-           
+         
         return view('backend.users.index', compact('users'));
     }
 
@@ -55,22 +55,22 @@ class UserController extends Controller
 
     public function store(UserRequest $request): RedirectResponse
     {
-        
+
         $this->authorize('create_user');
 
         if ($request->hasFile('user_image')) {
             $userImage = $this->imageService->storeUserImages($request->username, $request->user_image);
         }
-      //  dd($request);
+
         $user = User::create([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
-            'username' => $request->first_name.$request->last_name,
+            'username' => $request->first_name.$request->last_name . uniqid(),
             'email' => $request->email,
             'email_verified_at' => now(),
             'password' => bcrypt($request->password),
             'phone' => $request->phone,
-            'status' => $request->status,
+            'status' => true,
             'receive_email' => true,
             'user_image' => $userImage ?? NULL,
         ]);
@@ -144,61 +144,15 @@ class UserController extends Controller
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'username' => $request->username,
-            'surname' => $request->surname,
             'email' => $request->email,
             'email_verified_at' => now(),
             'password' => bcrypt($request->password),
             'phone' => $request->phone,
-            'whatsapp' => $request->whatsapp ?? NULL,
-            'location' => $request->location ?? NULL,
-            'visa_expiry' => $request->visa_expiry ?? NULL,
             'status' => $request->status,
-            'application_status' => $request->application_status,
-            'matter' => $request->matter ?? NULL,
-            //for 1st 
-            'currency' => $request->currency,
-            'amount' => $request->amount,
-            'client_paid' => $request->client_paid,
-            'client_amount' => $request->client_amount,
-            'onthe' => $request->onthe,
-            'for' => $request->for,
-            //for 2nd
-            'currency2' => $request->currency2,
-            'amount2' => $request->amount2,
-            'client_paid2' => $request->client_paid2,
-            'client_amount2' => $request->client_amount2,
-            'onthe2' => $request->onthe2,
-            'for2' => $request->for2,
-            //for 3rd
-            'currency3' => $request->currency3,
-            'amount3' => $request->amount3,
-            'client_paid3' => $request->client_paid3,
-            'client_amount3' => $request->client_amount3,
-            'onthe3' => $request->onthe3,
-            'for3' => $request->for3,
-
-            'immigiration' => $request->immigiration,
-            'admin_comments'=> $request->admin_comments ?? NULL,
             'receive_email' => true,
             'user_image' => $userImage ?? NULL,
         ]);
         
-        if($request->status == true){
-            $userData = [
-                'username' => $request->username,
-                'email' => $request->email,
-                'usertype' => 'consultant',
-                'messagetype' => "Dear ".$request->username .", Your Aus Legal Online 
-                System Account has been activated. You can now login with your username (please note your username is 
-                not your email but the username that was indicated in the previous email you received) and fill out the 
-                forms required for your application. IMPORTANT: Please check the following instructions on the workflow 
-                in order to understand how the system functions and how you will communicate with your consultant."                
-            ];
-
-    Mail::to($request->email)->send(new UserActivatedByAdmin($userData));
-        }
-               
-
         return redirect()->route('admin.users.index')->with([
             'message' => 'Updated successfully',
             'alert-type' => 'success'

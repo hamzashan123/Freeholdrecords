@@ -58,10 +58,8 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'first_name' => ['required', 'string', 'max:255'],
-            'surname' => ['required', 'string', 'max:255'],
-            //'last_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'string', 'max:255', 'unique:users'],
-            'username' => ['required', 'string', 'max:128', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -75,83 +73,24 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        //dd($data);
+        dd($data);
         $user = User::create([
             'first_name' => $data['first_name'],
-            //'last_name' => $data['last_name'],
-            'username' => $data['username'],
-            'surname' => $data['surname'],
+            'last_name' => $data['last_name'],
+            'username' => $data['first_name'].$data['last_name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
             'status' => false,
             'password' => Hash::make($data['password'])
         ]);
-        
+    
         $user->markEmailAsVerified();
-        
-
-        if($data['usertype'] == 'consultant'){
-            $user->markEmailAsVerified();
-            $user->assignRole('consultant');
-
-            $adminData = [
-                'admin' => true,
-                'surname' => $data['surname'],
-                'username' => $data['username'],
-                'email' => $data['email'],
-                'usertype' => 'consultant',
-                'messagetype' => "A new user has registered on your system please check the system and update the user status from Inactive to Active."
-               
-            ];
-            Mail::to(env('ADMINEMAIL','riccardo@australialegal.it'))->send(new RegisterUser($adminData));
-
-            $userData = [
-                'admin' => false,
-                'surname' => $data['surname'],
-                'username' => $data['username'],
-                'email' => $data['email'],
-                'usertype' => 'consultant',
-                'messagetype' => "Welcome to Australia Legal Migration Agents. Thank you for registering on the Aus Legal Online System. Your registration is currently pending. Once registration is internally approved you will be notified via email and you will then be able to login and fill out your forms requested for your application."
-               
-            ];
-
-            Mail::to($data['email'])->send(new RegisterUser($userData));
-
-        }else if($data['usertype'] == 'user'){
-            $user->assignRole('user');
-            $adminData = [
-                'admin' => true,
-                'surname' => $data['surname'],
-                'username' => $data['username'],
-                'email' => $data['email'],
-                'usertype' => 'user',
-                'messagetype' => "A new user has registered on your system please check the system and update the user status from Inactive to Active."
-               
-            ];
-            
-            Mail::to(env('ADMINEMAIL','riccardo@australialegal.it'))->send(new RegisterUser($adminData));
-
-            $userData = [
-                'admin' => false,
-                'surname' => $data['surname'],
-                'username' => $data['username'],
-                'email' => $data['email'],
-                'usertype' => 'user',
-                'messagetype' => 'Welcome to Auslegal Info/Docs System Your email and profile have been successfully registered on the Aus Legal Info/Docs System. 
-                You can now login at the link below <a href="' . url('admin') . '">Login now</a> and fill out the forms required on your dashboard.'
-            
-            ];
-
-            Mail::to($data['email'])->send(new RegisterUser($userData));
-            
-        }
-        
+        $user->assignRole('user');
 
         return redirect()->route('register')->with([
             'message' => 'Registered successfully',
             'alert-type' => 'success'
         ]);
 
-        //return $user;
     }
 }
