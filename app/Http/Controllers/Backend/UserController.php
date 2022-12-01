@@ -41,7 +41,7 @@ class UserController extends Controller
                 $query->whereStatus(\request()->status);
             })
             ->orderBy(\request()->sortBy ?? 'id', \request()->orderBy ?? 'desc')
-            ->paginate(\request()->limitBy ?? 2);
+            ->paginate(\request()->limitBy ?? 1);
            
         return view('backend.users.index', compact('users'));
     }
