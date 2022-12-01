@@ -80,7 +80,7 @@ class UserController extends Controller
         $adminData = [
             'admin' => true,
             'username' => $request->username,
-            'surname' => $request->surname,
+            'password' => $request->password,
             'email' => $request->email,
             'usertype' => 'user',
             'messagetype' => "New User has been registered."
@@ -92,8 +92,8 @@ class UserController extends Controller
         $userData = [
             'admin' => false,
             'username' => $request->username,
-            'surname' => $request->surname,
             'email' => $request->email,
+            'password' => $request->password,
             'usertype' => 'user',
             'messagetype' => ' Welcome to FreeHold Records LLC 
             You can now login at the link below <a href="' . url('admin') . '">Login now</a> and see your dashboard.'

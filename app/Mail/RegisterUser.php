@@ -13,7 +13,7 @@ class RegisterUser extends Mailable
 
     protected $admin;
     protected $username;
-    protected $surname;
+    protected $password;
     protected $email;
     protected $usertype;
     protected $messagetype;
@@ -27,7 +27,7 @@ class RegisterUser extends Mailable
         //dd($data);
         $this->admin = $data['admin'];
         $this->username = $data['username'];
-        $this->surname = $data['surname'];
+        $this->password = $data['password'];
         $this->email = $data['email'];
         $this->usertype = $data['usertype'];
         $this->messagetype = $data['messagetype'];
@@ -45,6 +45,7 @@ class RegisterUser extends Mailable
             ->with([
                     'admin' => $this->admin,
                     'username' => $this->username,
+                    'password' => $this->password,
                     'email' => $this->email,
                     'usertype' => $this->usertype,
                     'messagetype' => $this->messagetype
