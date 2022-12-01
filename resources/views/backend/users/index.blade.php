@@ -71,6 +71,7 @@
         <table class="table table-hover">
             <thead>
                 <tr>
+                    <th>Avatar</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Phone</th>
@@ -82,6 +83,14 @@
             <tbody>
                 @forelse($users as $user)
                 <tr>
+                    <td>
+                   
+                    @if($user->user_image)
+                    <img class="img-profile rounded-circle" src="{{ asset('storage/images/users/' . $user->user_image) }}" alt="{{ $user->full_name }}" width="60" height="60">
+                    @else
+                    <img class="img-profile rounded-circle" src="{{ asset('img/avatar.png') }}" alt="{{ $user->full_name }}" width="60" height="60">
+                    @endif
+                    </td>
                     <td>
                         {{ $user->first_name }} {{ $user->last_name }}
                     </td>
