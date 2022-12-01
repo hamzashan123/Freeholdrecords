@@ -88,7 +88,7 @@
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <label for="password" class="text-small text-uppercase">{{ __('Create Password') }}</label>
+                                            <label for="password" class="text-small text-uppercase">{{ __('Password') }}</label>
                                             <input id="password" type="password" class="form-control form-control-lg" name="password" placeholder="Enter your password">
                                             @error('password')<span class="text-danger" role="alert"><strong>{{ $message }}</strong></span>@enderror
                                         </div>
