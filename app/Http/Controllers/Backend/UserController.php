@@ -62,14 +62,15 @@ class UserController extends Controller
             $userImage = $this->imageService->storeUserImages($request->username, $request->user_image);
         }
         $username = $request->first_name.$request->last_name . uniqid();
-        $password = bcrypt($request->password);
+        $password = $username.uniqid();
+        $password_hashed = bcrypt($password);
         $user = User::create([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'username' => $username,
             'email' => $request->email,
             'email_verified_at' => now(),
-            'password' => $password,
+            'password' => $password_hashed,
             'phone' => $request->phone,
             'status' => true,
             'receive_email' => true,
