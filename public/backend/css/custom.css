@@ -297,7 +297,7 @@ a.btn.btn-primary {
     border-radius: 0px;
 }
 
-.btn.btn-primary:hover {
+button.btn.btn-primary:hover {
     border-color: transparent;
     background: #690505 !important;
     transition: .3s;
