@@ -331,6 +331,6 @@ label {
 
 
 
-.modal-dialog {
+div#exampleModal .modal-dialog {
     min-width: 80%;
 }
