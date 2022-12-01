@@ -1,3 +1,63 @@
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Customer</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    @csrf
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <label for="name">First Name*</label>
+                            <input type="text" id="customer_first_name" name="first_name" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="name">Last Name*</label>
+                            <input type="text" id="customer_last_name" name="last_name" class="form-control" required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="name">Email</label>
+                            <input type="email" id="customer_email" name="email" class="form-control">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="name">Phone</label>
+                            <input type="tel" id="customer_phone" name="phone" class="form-control">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="name">Address</label>
+                            <input type="text" id="customer_address" name="address" class="form-control">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="name">Company</label>
+                            <input type="text" id="customer_company" name="company" class="form-control">
+                        </div>
+                        <div class="col-md-12">
+                            <label for="name">VAT Number</label>
+                            <input type="text" id="customer_vat_number" name="vat_number" class="form-control">
+                        </div>
+                        <div class="col-md-12">
+                            <label for="name">Notes</label>
+                            <textarea name="notes" id="customer_notes" class="form-control"></textarea>
+                        </div>
+                        <div class="col-md-12" style="margin-top: 10px !important;">
+
+                            <input type="button" id="btn_customer" class="btn btn-primary" value="Submit">
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
     <!-- Sidebar Toggle (Topbar) -->
@@ -9,7 +69,7 @@
     <ul class="navbar-nav ml-auto">
 
         <li class="nav-item advance-search">
-            <a class="nav-link  btn btn-secondary" href="">Advanced Search</a>
+            <a class="nav-link  btn btn-secondary" id="exampleModal" data-toggle="modal" data-target="#exampleModal">Advanced Search</a>
         </li>
 
 

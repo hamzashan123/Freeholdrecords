@@ -328,3 +328,9 @@ label {
 .advance-search a:hover, .new-order a:hover {
     border-color: transparent !important;
 }
+
+
+
+.modal-dialog {
+    min-width: 80%;
+}
