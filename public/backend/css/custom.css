@@ -316,3 +316,15 @@ label {
     color: #5a6779;
     font-size: 14px;
 }
+
+.advance-search a, .new-order a {border-radius: 0px !important;color: white !important;font-weight: bold !important;height: auto !important;padding: 10px 20px !important;}
+
+.advance-search , .new-order {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.advance-search a:hover, .new-order a:hover {
+    border-color: transparent !important;
+}
