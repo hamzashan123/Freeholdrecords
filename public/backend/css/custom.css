@@ -76,3 +76,42 @@ div#registerDiv a {
     font-weight: bold;
     letter-spacing: 2px;
 }
+
+.sidebar-brand-text h1 {
+    font-size: 19px;
+}
+
+#accordionSidebar li a i {display: flex;justify-content: center;align-items: center;margin-left: auto;margin-right: auto;font-size: 26px;}
+
+#accordionSidebar li a span {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 17px;
+    font-weight: normal;
+    margin-top: 9px;
+}
+
+#accordionSidebar .nav-item .nav-link:hover i, #accordionSidebar .nav-item .nav-link:hover span {
+    color: white !important;
+    transition: .3s;
+    transform: scale(1.1);
+}
+
+input , button, select {
+    border-radius: 0px !important;
+}
+
+.sidebar .nav-item:hover {
+    border-right: 4px solid darkred;
+}
+
+.sidebar hr.sidebar-divider {
+    margin: 0px !important;
+}
+
+.btn-primary {
+    letter-spacing: 2px;
+    padding: 10px 40px;
+}

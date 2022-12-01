@@ -10509,7 +10509,7 @@ body.bg-gradient-primary {
 
 @media (min-width: 768px) {
   .sidebar {
-    width: 14rem !important;
+    width: 11rem !important;
   }
   .sidebar .nav-item .collapse {
     position: relative;
@@ -10536,7 +10536,7 @@ body.bg-gradient-primary {
     width: 100%;
     text-align: left;
     padding: 1rem;
-    width: 14rem;
+    width: 100%;
   }
   .sidebar .nav-item .nav-link i {
     font-size: 0.85rem;
