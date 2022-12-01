@@ -15,6 +15,7 @@ use Auth;
 use App\Mail\UserActivatedByAdmin;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\RegisterUser;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -230,5 +231,22 @@ class UserController extends Controller
         }
         //dd($users);
         return view('backend.users.index', compact('users'));
+    }
+
+    public function updateStatus(Request $request){
+        
+        if($request->status == 'Active'){
+            $user = User::where('id', $request->userid)->update([
+                'status' => true
+            ]);
+            return response()->json(['msg' => 'User Successfully Active!' ,'status' => 200]);
+        }else{
+            $user = User::where('id', $request->userid)->update([
+                'status' => false
+            ]);
+            return response()->json(['msg' => 'User Successfully Inactive!' ,'status' => 201]);
+        }
+        
+        
     }
 }

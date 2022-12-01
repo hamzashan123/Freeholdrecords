@@ -85,6 +85,8 @@ Route::group(['middleware' => ['roles']], function () {
     Route::get('/deleteform/{userid}/{form_id}', [FormController::class, 'deleteUserForm'])->name('userform.delete');
     Route::post('/correction-email', [Form360Controller::class, 'correctFieldsEmail'])->name('correctionemail');
 
+    Route::post('/update-user-status', [UserController::class, 'updateStatus'])->name('updatestatus');
+
     //new routes here..us
 });
 
