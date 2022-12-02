@@ -34,7 +34,7 @@
 
                         <div class="col-md-3">
                             <label for="name">COUNTY</label>
-                            <select name="county" id="county">
+                            <select name="county" id="county" class="form-control">
                                 <option value="">Select County</option>
                                 <option value="volvo">Volvo</option>
                                 <option value="saab">Saab</option>
