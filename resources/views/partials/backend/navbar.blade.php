@@ -20,16 +20,16 @@
                         </div>
                         <div class="col-md-3">
                             <label for="name">ENDING ORDER #</label>
-                            <input type="text" id="customer_last_name" name="last_name" class="form-control" required>
+                            <input type="text" id="ending_order" name="ending_order" class="form-control" required>
                         </div>
 
                         <div class="col-md-3">
                             <label for="name">ORDERED BY</label>
-                            <input type="text" id="customer_email" name="email" class="form-control">
+                            <input type="text" id="ordered_by" name="ordered_by" class="form-control">
                         </div>
                         <div class="col-md-3">
                             <label for="name">TITLE / FILE ID</label>
-                            <input type="text" id="customer_phone" name="phone" class="form-control">
+                            <input type="text" id="title_file_id" name="title_file_id" class="form-control">
                         </div>
 
                         <div class="col-md-3">
@@ -44,31 +44,31 @@
                         </div>
                         <div class="col-md-3">
                             <label for="name">BLOCK</label>
-                            <input type="text" id="customer_last_name" name="last_name" class="form-control" required>
+                            <input type="text" id="block" name="block" class="form-control" required>
                         </div>
 
                         <div class="col-md-3">
                             <label for="name">LOT START</label>
-                            <input type="text" id="customer_email" name="email" class="form-control">
+                            <input type="text" id="lot_start" name="lot_start" class="form-control">
                         </div>
                         <div class="col-md-3">
                             <label for="name">LOT END</label>
-                            <input type="text" id="customer_phone" name="phone" class="form-control">
+                            <input type="text" id="lot_end" name="lot_end" class="form-control">
                         </div>
 
 
                         <div class="col-md-3">
                             <label for="name">STARTING BUILDING NUMBER</label>
-                            <input type="text" id="customer_last_name" name="last_name" class="form-control" required>
+                            <input type="text" id="starting_building_number" name="starting_building_number" class="form-control" required>
                         </div>
 
                         <div class="col-md-3">
                             <label for="name"> ENDING BUILDING NUMBER</label>
-                            <input type="text" id="customer_email" name="email" class="form-control">
+                            <input type="text" id="ending_building_number" name="ending_building_number" class="form-control">
                         </div>
                         <div class="col-md-3">
                             <label for="name">STREET NAME</label>
-                            <input type="text" id="customer_phone" name="phone" class="form-control">
+                            <input type="text" id="street_name" name="street_name" class="form-control">
                         </div>
 
 
@@ -79,19 +79,19 @@
                     <div class="row">
                         <div class="col-md-3">
                             <label for="name">STARTING SEARCH SUBMIT DATE</label>
-                            <input type="date" id="customer_phone" name="phone" class="form-control">
+                            <input type="date" id="starting_search_submit" name="starting_search_submit" class="form-control">
                         </div>
 
                         <div class="col-md-3">
                             <label for="name">ENDING SEARCH SUBMIT DATE</label>
-                            <input type="date" id="customer_phone" name="phone" class="form-control">
+                            <input type="date" id="ending_search_submit" name="ending_search_submit" class="form-control">
                         </div>
                     </div>
 
                     <br />
                     <br />
 
-                    <div class="col-md-12" style="margin-top: 10px !important;">
+                    <div class="col-md-12" style="margin-top: 10px !important; padding-left:0px !important;">
                         <input type="button" id="btn_customer" class="btn btn-secondary" value="Search">
                         <input type="reset" id="btn_customer" class="btn btn-primary" value="Clear Search">
                     </div>
