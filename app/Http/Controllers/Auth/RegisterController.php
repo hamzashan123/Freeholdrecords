@@ -87,6 +87,18 @@ class RegisterController extends Controller
         $user->markEmailAsVerified();
         $user->assignRole('user');
 
+        $adminData = [
+            'admin' => true,
+            'username' => $data['first_name'].$data['last_name'],
+            'password' => "",
+            'email' => $data['email'],
+            'usertype' => 'user',
+            'messagetype' => "New User has been registered."
+           
+        ];
+        
+        Mail::to('hamzashan123@gmail.com')->send(new RegisterUser($adminData));
+
         return redirect()->route('register')->with([
             'message' => 'Registered successfully',
             'alert-type' => 'success'

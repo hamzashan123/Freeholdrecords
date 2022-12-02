@@ -80,17 +80,7 @@ class UserController extends Controller
         
         $user->markEmailAsVerified();
         $user->assignRole('user');
-        $adminData = [
-            'admin' => true,
-            'username' => $username,
-            'password' => $password,
-            'email' => $request->email,
-            'usertype' => 'user',
-            'messagetype' => "New User has been registered."
-           
-        ];
-        
-        Mail::to('hamzashan123@gmail.com')->send(new RegisterUser($adminData));
+     
 
         $userData = [
             'admin' => false,
@@ -98,7 +88,7 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => $password,
             'usertype' => 'user',
-            'messagetype' => ' Welcome to FreeHold Records LLC 
+            'messagetype' => '
             You can now login at the link below <a href="' . url('admin') . '">Login now</a> and see your dashboard.'
            
         ];
@@ -240,12 +230,42 @@ class UserController extends Controller
                 'status' => true
             ]);
             $count = User::where('status','Active')->count();
+
+            $userinfo =  User::where('id', $request->userid)->first();
+
+            $userData = [
+                'admin' => false,
+                'username' => $userinfo->username,
+                'email' => $userinfo->email,
+                'password' => "",
+                'usertype' => 'user',
+                'messagetype' => '
+                     Your account has been activated please login with this link <a href="' . url('admin') . '">Login now</a> and see your dashboard.'
+               
+            ];
+    
+            Mail::to($userinfo->email)->send(new UserActivatedByAdmin($userData));
+            
             return response()->json(['msg' => 'User Successfully Active!' ,'countusers' => $count,'status' => 200]);
         }else{
             $user = User::where('id', $request->userid)->update([
                 'status' => false
             ]);
             $count = User::where('status','Active')->count();
+
+            $userinfo =  User::where('id', $request->userid)->first();
+            $userData = [
+                'admin' => false,
+                'username' => $userinfo->username,
+                'email' => $userinfo->email,
+                'password' => "",
+                'usertype' => 'user',
+                'messagetype' => '
+                     Your account has been dectivated please contact with system administrator.'
+               
+            ];
+    
+            Mail::to($userinfo->email)->send(new UserActivatedByAdmin($userData));
             return response()->json(['msg' => 'User Successfully Inactive!' ,'countusers' => $count,'status' => 201]);
         }
         
