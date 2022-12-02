@@ -4,10 +4,10 @@ namespace App\Http\Livewire\Backend;
 
 use App\Models\Order;
 use Livewire\Component;
-use Auth;
 use App\Models\User;
 use App\Models\ConsultantUser;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardStatisticsComponent extends Component
 {
@@ -20,7 +20,7 @@ class DashboardStatisticsComponent extends Component
 
     public function mount()
     {
-        $this->users = User::all();
+        $this->users = User::where('id','!=', Auth::user()->id);
     }
 
     public function render()
