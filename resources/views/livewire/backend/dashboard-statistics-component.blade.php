@@ -55,9 +55,9 @@
 
                 <div class="col-2 imghead">
                     @if($user->user_image)
-                    <img class="img-profile " src="{{ asset('storage/images/users/' . $user->user_image) }}" alt="{{ $user->full_name }}" width="60" height="60">
+                    <img class="img-profile img-profile rounded-circle" src="{{ asset('storage/images/users/' . $user->user_image) }}" alt="{{ $user->full_name }}" width="60" height="60">
                     @else
-                    <img class="img-profile " src="{{ asset('img/avatar.png') }}" alt="{{ $user->full_name }}" width="60" height="60">
+                    <img class="img-profile img-profile rounded-circle" src="{{ asset('img/avatar.png') }}" alt="{{ $user->full_name }}" width="60" height="60">
                     @endif
                 </div>
 

@@ -87,6 +87,8 @@ Route::group(['middleware' => ['roles']], function () {
 
     Route::post('/update-user-status', [UserController::class, 'updateStatus'])->name('updatestatus');
 
+    Route::get('/systemorder', [OrderController::class, 'index'])->name('systemorder.index');
+
     //new routes here..us
 });
 

@@ -18,16 +18,8 @@ class OrderController extends Controller
     {
         $this->authorize('access_order');
 
-        $orders = Order::with('user', 'paymentMethod')
-            ->when(\request()->keyword != null, function ($query) {
-                $query->search(\request()->keyword);
-            })
-            ->when(\request()->status != null, function ($query) {
-                $query->whereOrderStatus(\request()->status);
-            })
-            ->orderBy(\request()->sortBy ?? 'id', \request()->orderBy ?? 'desc')
-            ->paginate(\request()->limitBy ?? 10);
-
+        $orders = Order::all();
+        
         return view('backend.orders.index', compact('orders'));
     }
 

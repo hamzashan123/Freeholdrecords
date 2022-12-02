@@ -36,7 +36,7 @@
     <hr class="sidebar-divider">
 
     <li class="nav-item  ">
-        <a class="nav-link" href="{{route('admin.form360.index')}}">
+        <a class="nav-link" href="{{route('admin.systemorder.index')}}">
             <i class="fas fa-clock fa-2x text-gray-300"></i>
             <span>Order</span></a>
     </li>
