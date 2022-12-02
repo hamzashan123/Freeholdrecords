@@ -36,10 +36,17 @@
                             <label for="name">COUNTY</label>
                             <select name="county" id="county" class="form-control">
                                 <option value="">Select County</option>
-                                <option value="volvo">Volvo</option>
-                                <option value="saab">Saab</option>
-                                <option value="mercedes">Mercedes</option>
-                                <option value="audi">Audi</option>
+                                <option value="MANHATTAN">MANHATTAN</option>
+                                <option value="BRONX">BRONX</option>
+                                <option value="KINGS">KINGS</option>
+                                <option value="QUEENS">QUEENS</option>
+                                <option value="RICHMOND">RICHMOND</option>
+                                <option value="NASSAU">NASSAU</option>
+                                <option value="SUFFOLK">SUFFOLK</option>
+                                <option value="WESTCHESTER">WESTCHESTER</option>
+                                <option value="PUTNAM">PUTNAM</option>
+
+
                             </select>
                         </div>
                         <div class="col-md-3">

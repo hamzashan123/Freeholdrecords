@@ -55,11 +55,11 @@
                 <form method="post">
                     <div class="col-md-12" style="padding-left: 0px;">
                         <label for="name">Search By Title</label>
-                        <input type="text" id="search_by_title" name="search_by_title" class="form-control" required>
+                        <input type="text" id="search_by_title" name="search_by_title" class="form-control" placeholder="Search By Title">
                     </div>
 
                     <div class="col-md-12" style="margin-top: 30px !important; padding-left:0px !important;">
-                        <input type="button" id="search_by_title" class="btn btn-primary" value="Search">
+                        <input type="button" id="search_by_title_input" class="btn btn-primary" value="Search">
                     </div>
                 </form>
             </div>
@@ -70,11 +70,11 @@
                 <form method="post">
                     <div class="col-md-12" style="padding-left: 0px;">
                         <label for="name">Search By App ID</label>
-                        <input type="text" id="search_by_app_id" name="search_by_app_id" class="form-control" required>
+                        <input type="text" id="search_by_app_id" name="search_by_app_id" class="form-control" placeholder="Search By App ID">
                     </div>
 
                     <div class="col-md-12" style="margin-top: 30px !important; padding-left:0px !important;">
-                        <input type="button" id="search_by_app_id" class="btn btn-primary" value="Search">
+                        <input type="button" id="search_by_app_id_input" class="btn btn-primary" value="Search">
                     </div>
                 </form>
             </div>
