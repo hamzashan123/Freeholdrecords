@@ -2,53 +2,98 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add Customer</h5>
+                <h5 class="modal-title" id="exampleModalLabel">ADVANCED SEARCH</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
+
+                <h4> FIND ALL TITLE(S) WITH... </h4>
+                <hr>
                 <form method="post">
                     @csrf
                     <div class="row">
-                        <div class="col-md-6">
-
-                            <label for="name">First Name*</label>
-                            <input type="text" id="customer_first_name" name="first_name" class="form-control" required>
+                        <div class="col-md-3">
+                            <label for="name">STARTING ORDER #</label>
+                            <input type="text" id="starting_order" name="starting_order" class="form-control" required>
                         </div>
-                        <div class="col-md-6">
-                            <label for="name">Last Name*</label>
+                        <div class="col-md-3">
+                            <label for="name">ENDING ORDER #</label>
                             <input type="text" id="customer_last_name" name="last_name" class="form-control" required>
                         </div>
 
-                        <div class="col-md-6">
-                            <label for="name">Email</label>
-                            <input type="email" id="customer_email" name="email" class="form-control">
+                        <div class="col-md-3">
+                            <label for="name">ORDERED BY</label>
+                            <input type="text" id="customer_email" name="email" class="form-control">
                         </div>
-                        <div class="col-md-6">
-                            <label for="name">Phone</label>
-                            <input type="tel" id="customer_phone" name="phone" class="form-control">
+                        <div class="col-md-3">
+                            <label for="name">TITLE / FILE ID</label>
+                            <input type="text" id="customer_phone" name="phone" class="form-control">
                         </div>
-                        <div class="col-md-6">
-                            <label for="name">Address</label>
-                            <input type="text" id="customer_address" name="address" class="form-control">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="name">Company</label>
-                            <input type="text" id="customer_company" name="company" class="form-control">
-                        </div>
-                        <div class="col-md-12">
-                            <label for="name">VAT Number</label>
-                            <input type="text" id="customer_vat_number" name="vat_number" class="form-control">
-                        </div>
-                        <div class="col-md-12">
-                            <label for="name">Notes</label>
-                            <textarea name="notes" id="customer_notes" class="form-control"></textarea>
-                        </div>
-                        <div class="col-md-12" style="margin-top: 10px !important;">
 
-                            <input type="button" id="btn_customer" class="btn btn-primary" value="Submit">
+                        <div class="col-md-3">
+                            <label for="name">COUNTY</label>
+                            <select name="county" id="county">
+                                <option value="">Select County</option>
+                                <option value="volvo">Volvo</option>
+                                <option value="saab">Saab</option>
+                                <option value="mercedes">Mercedes</option>
+                                <option value="audi">Audi</option>
+                            </select>
                         </div>
+                        <div class="col-md-3">
+                            <label for="name">BLOCK</label>
+                            <input type="text" id="customer_last_name" name="last_name" class="form-control" required>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="name">LOT START</label>
+                            <input type="text" id="customer_email" name="email" class="form-control">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="name">LOT END</label>
+                            <input type="text" id="customer_phone" name="phone" class="form-control">
+                        </div>
+
+
+                        <div class="col-md-3">
+                            <label for="name">STARTING BUILDING NUMBER</label>
+                            <input type="text" id="customer_last_name" name="last_name" class="form-control" required>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="name"> ENDING BUILDING NUMBER</label>
+                            <input type="text" id="customer_email" name="email" class="form-control">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="name">STREET NAME</label>
+                            <input type="text" id="customer_phone" name="phone" class="form-control">
+                        </div>
+
+
+
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="name">STARTING SEARCH SUBMIT DATE</label>
+                            <input type="date" id="customer_phone" name="phone" class="form-control">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="name">ENDING SEARCH SUBMIT DATE</label>
+                            <input type="date" id="customer_phone" name="phone" class="form-control">
+                        </div>
+                    </div>
+
+                    <br />
+                    <br />
+
+                    <div class="col-md-12" style="margin-top: 10px !important;">
+                        <input type="button" id="btn_customer" class="btn btn-secondary" value="Search">
+                        <input type="reset" id="btn_customer" class="btn btn-primary" value="Clear Search">
                     </div>
                 </form>
             </div>
