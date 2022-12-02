@@ -130,7 +130,7 @@
                         <div class="col-md-6">
                             <label for="name">CUSTOMER</label>
                             <select name="customer" id="customer" class="form-control">
-                                <option value="">Select County</option>
+                                <option value="">Select Customer</option>
                                 <option value="Absolute Title Agency">Absolute Title Agency</option>
                                 <option value="Advanced Abstract">Advanced Abstract</option>
                                 <option value="E Title Agency">E Title Agency</option>
@@ -152,9 +152,15 @@
                             <label for="name">COUNTY</label>
                             <select name="county" id="county" class="form-control">
                                 <option value="">Select County</option>
-                                <option value="Manhatan">Manhatan</option>
-                                <option value="Advanced Abstract">Advanced Abstract</option>
-                                <option value="E Title Agency">E Title Agency</option>
+                                <option value="MANHATTAN">MANHATTAN</option>
+                                <option value="BRONX">BRONX</option>
+                                <option value="KINGS">KINGS</option>
+                                <option value="QUEENS">QUEENS</option>
+                                <option value="RICHMOND">RICHMOND</option>
+                                <option value="NASSAU">NASSAU</option>
+                                <option value="SUFFOLK">SUFFOLK</option>
+                                <option value="WESTCHESTER">WESTCHESTER</option>
+                                <option value="PUTNAM">PUTNAM</option>
                             </select>
                         </div>
 
