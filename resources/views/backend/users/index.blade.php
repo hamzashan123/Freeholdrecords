@@ -84,12 +84,12 @@
                 @forelse($users as $user)
                 <tr>
                     <td>
-                   
-                    @if($user->user_image)
-                    <img class="img-profile rounded-circle" src="{{ asset('storage/images/users/' . $user->user_image) }}" alt="{{ $user->full_name }}" width="60" height="60">
-                    @else
-                    <img class="img-profile rounded-circle" src="{{ asset('img/avatar.png') }}" alt="{{ $user->full_name }}" width="60" height="60">
-                    @endif
+
+                        @if($user->user_image)
+                        <img class="img-profile rounded-circle" src="{{ asset('storage/images/users/' . $user->user_image) }}" alt="{{ $user->full_name }}" width="60" height="60">
+                        @else
+                        <img class="img-profile rounded-circle" src="{{ asset('img/avatar.png') }}" alt="{{ $user->full_name }}" width="60" height="60">
+                        @endif
                     </td>
                     <td>
                         {{ $user->first_name }} {{ $user->last_name }}
@@ -105,14 +105,14 @@
                     </td>
                     <td>
 
-                        
+
                         <div class="activeInactive">
                             <label class="switch">
                                 @if($user->status == 'Active')
-                                <input type="checkbox" id="togBtn"  checked class="update_status" data-id="{{$user->id}}">
-                                @else 
-                                <input type="checkbox" id="togBtn"  class="update_status" data-id="{{$user->id}}">
-                                @endif 
+                                <input type="checkbox" id="togBtn" checked class="update_status" data-id="{{$user->id}}">
+                                @else
+                                <input type="checkbox" id="togBtn" class="update_status" data-id="{{$user->id}}">
+                                @endif
                                 <div class="slider round"></div>
                             </label>
                         </div>
@@ -156,57 +156,56 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
-    $(document).ready(function(){
-    $(".update_status").change(function(e) {
-        e.preventDefault();
-        var status = '';
-        if ($(this).is(":checked"))
-        {
-            status = 'Active';
-    
-        }else{
-            status = 'Inactive';
-        }
-        var rowid = $(this).attr('data-id');
-        
-        $.ajax({
-            type:'POST',
-            data: {
-                "_token": "{{ csrf_token() }}",
-                "userid": rowid,
-                "status":status
-                },
-            url: "{{route('admin.updatestatus')}}",
-            success:function(data) {
-                console.log(data.status);
-                if(data.status == 200){
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: data.msg,
-                        showConfirmButton: false,
-                        timer: 1500
-                        })          
-                }else if (data.status == 201){
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'warning',
-                        title: data.msg,
-                        showConfirmButton: false,
-                        timer: 1500
-                        }) 
-                }else{
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'danger',
-                        title: 'Failed to update status!',
-                        showConfirmButton: false,
-                        timer: 1500
-                        }) 
-                }
+    $(document).ready(function() {
+        $(".update_status").change(function(e) {
+            e.preventDefault();
+            var status = '';
+            if ($(this).is(":checked")) {
+                status = 'Active';
 
+            } else {
+                status = 'Inactive';
             }
+            var rowid = $(this).attr('data-id');
+
+            $.ajax({
+                type: 'POST',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "userid": rowid,
+                    "status": status
+                },
+                url: "{{route('admin.updatestatus')}}",
+                success: function(data) {
+                    console.log(data.status);
+                    if (data.status == 200) {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: data.msg,
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    } else if (data.status == 201) {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'warning',
+                            title: data.msg,
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    } else {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'danger',
+                            title: 'Failed to update status!',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
+
+                }
+            });
         });
     });
-});
 </script>
