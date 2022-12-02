@@ -121,6 +121,14 @@
                     @csrf
                     <div class="row">
                         <div class="col-md-3">
+                            <label for="name">Customer</label>
+                            <select name="customer" id="customer" class="form-control">
+                                <option value="">Select County</option>
+                                <option value="Absolute Title Agency">Absolute Title Agency</option>
+                                <option value="E Title Agency">E Title Agency</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
                             <label for="name">STARTING ORDER #</label>
                             <input type="text" id="starting_order" name="starting_order" class="form-control" required>
                         </div>
@@ -138,16 +146,7 @@
                             <input type="text" id="customer_phone" name="phone" class="form-control">
                         </div>
 
-                        <div class="col-md-3">
-                            <label for="name">COUNTY</label>
-                            <select name="county" id="county">
-                                <option value="">Select County</option>
-                                <option value="volvo">Volvo</option>
-                                <option value="saab">Saab</option>
-                                <option value="mercedes">Mercedes</option>
-                                <option value="audi">Audi</option>
-                            </select>
-                        </div>
+                        
                         <div class="col-md-3">
                             <label for="name">BLOCK</label>
                             <input type="text" id="customer_last_name" name="last_name" class="form-control" required>
