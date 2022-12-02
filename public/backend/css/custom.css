@@ -391,3 +391,7 @@ button.close span {
     margin-top: 0px !important;
     margin-bottom: 0px !important;
 }
+
+#logoutModal .modal-content {
+    height: auto;
+}
