@@ -37,9 +37,9 @@
                             <form class="user" action="{{ route('login') }}" method="POST">
                                 @csrf
                                 <div class="form-group">
-                                    <label> USERNAME </label>
-                                    <input style="border-radius:0px !important;" type="text" name="username" value="{{ old('username') }}" class="form-control form-control-user" placeholder="Enter Your Username">
-                                    @error('username')<span class="text-danger">{{ $message }}</span>@enderror
+                                    <label> Email </label>
+                                    <input style="border-radius:0px !important;" type="email" name="email" value="{{ old('email') }}" class="form-control form-control-user" placeholder="Enter Your email">
+                                    @error('email')<span class="text-danger">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="form-group">
                                     <label> PASSWORD </label>

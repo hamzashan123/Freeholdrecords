@@ -23,9 +23,9 @@
                                 <form action="{{ route('login') }}" method="POST">
                                     @csrf
                                     <div class="mb-4">
-                                        <label for="username">Username*</label>
-                                        <input type="text" name="username" value="{{ old('username') }}" placeholder="Username">
-                                        @error('username')<span class="text-danger">{{ $message }}</span>@enderror
+                                        <label for="username">Email*</label>
+                                        <input type="email" name="email" value="{{ old('email') }}" placeholder="email">
+                                        @error('email')<span class="text-danger">{{ $message }}</span>@enderror
                                     </div>
 
                                     <div class="mb-3">
