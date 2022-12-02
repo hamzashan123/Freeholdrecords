@@ -167,10 +167,7 @@
                             <label for="name">LOT</label>
                             <input type="text" id="lot" name="lot" class="form-control"  placeholder="Lot">
                         </div>
-                        <div class="col-md-3">
-                            <label for="name">TITLE / FILE ID</label>
-                            <input type="text" id="customer_phone" name="phone" class="form-control">
-                        </div>
+                        
 
 
                         <div class="col-md-3">
