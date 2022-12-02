@@ -32,12 +32,80 @@
     .col-6.body {
         margin-top: 7px;
     }
+
+    .card-header {
+        padding: 20px !important;
+    }
 </style>
+
+<br /><br />
+<div class="card shadow mb-4">
+    <div class="card-header py-3 d-flex">
+        <h6 class="m-0 font-weight-bold text-primary">
+            Find My Order(s)
+        </h6>
+    </div>
+
+
+    <div class="table-responsive">
+        <div class="row">
+
+            <div class="col-4">
+
+                <form method="post">
+                    <div class="col-md-12" style="padding-left: 0px;">
+                        <label for="name">Search By Title</label>
+                        <input type="text" id="search_by_title" name="search_by_title" class="form-control" placeholder="Search By Title">
+                    </div>
+
+                    <div class="col-md-12" style="margin-top: 30px !important; padding-left:0px !important;">
+                        <input type="button" id="search_by_title_input" class="btn btn-primary" value="Search">
+                    </div>
+                </form>
+            </div>
+
+
+            <div class="col-4">
+
+                <form method="post">
+                    <div class="col-md-12" style="padding-left: 0px;">
+                        <label for="name">Search By App ID</label>
+                        <input type="text" id="search_by_app_id" name="search_by_app_id" class="form-control" placeholder="Search By App ID">
+                    </div>
+
+                    <div class="col-md-12" style="margin-top: 30px !important; padding-left:0px !important;">
+                        <input type="button" id="search_by_app_id_input" class="btn btn-primary" value="Search">
+                    </div>
+                </form>
+            </div>
+
+
+            <div class="col-4 ">
+
+                <form method="post">
+                    <div class="col-md-12" style="padding-left: 0px;">
+                        <label for="name">Search By Date Range</label>
+                        <div class="searchByDateRange">
+                            <input type="date" id="search_by_date_range_from" name="search_by_date_range_from" class="form-control" required>
+                            <input type="date" id="search_by_date_range_to" name="search_by_date_range_to" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12" style="margin-top: 30px !important; padding-left:0px !important;">
+                        <input type="button" id="search_by_app_id" class="btn btn-primary" value="Search">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br /><br /><br />
 
 <div class="card shadow mb-4">
     <div class="card-header py-3 d-flex">
         <h6 class="m-0 font-weight-bold text-primary">
-            Active Users <span id="activeusers"> {{ count($users->where('status', 'Active')) }} </span>
+            Active Users <span id="activeusers"> ({{ count($users->where('status', 'Active')) }}) </span>
         </h6>
     </div>
 

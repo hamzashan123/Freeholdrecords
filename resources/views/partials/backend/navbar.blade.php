@@ -36,10 +36,17 @@
                             <label for="name">COUNTY</label>
                             <select name="county" id="county" class="form-control">
                                 <option value="">Select County</option>
-                                <option value="volvo">Volvo</option>
-                                <option value="saab">Saab</option>
-                                <option value="mercedes">Mercedes</option>
-                                <option value="audi">Audi</option>
+                                <option value="MANHATTAN">MANHATTAN</option>
+                                <option value="BRONX">BRONX</option>
+                                <option value="KINGS">KINGS</option>
+                                <option value="QUEENS">QUEENS</option>
+                                <option value="RICHMOND">RICHMOND</option>
+                                <option value="NASSAU">NASSAU</option>
+                                <option value="SUFFOLK">SUFFOLK</option>
+                                <option value="WESTCHESTER">WESTCHESTER</option>
+                                <option value="PUTNAM">PUTNAM</option>
+
+
                             </select>
                         </div>
                         <div class="col-md-3">
@@ -158,14 +165,17 @@
 
                         <div class="col-md-2">
                             <label for="name">LOT</label>
-                            <input type="text" id="lot" name="lot" class="form-control" required placeholder="Lot">
+                            <input type="text" id="lot" name="lot" class="form-control"  placeholder="Lot">
                         </div>
-                    </div>
-                    <div class="row">
-                        
+                        <div class="col-md-3">
+                            <label for="name">TITLE / FILE ID</label>
+                            <input type="text" id="customer_phone" name="phone" class="form-control">
+                        </div>
+
+
                         <div class="col-md-3">
                             <label for="name">BUILDING NUMBER</label>
-                            <input type="text" id="building_number" name="building_number" class="form-control" required placeholder="Building number">
+                            <input type="text" id="building_number" name="building_number" class="form-control"  placeholder="Building number">
                         </div>
 
                         <div class="col-md-3">
@@ -234,7 +244,7 @@
         <div class="topbar-divider d-none d-sm-block"></div>
 
         <li class="nav-item new-order">
-            <a class="nav-link  btn btn-primary"  data-toggle="modal" data-target="#orderCreateModal">Create New Order</a>
+            <a class="nav-link  btn btn-primary" data-toggle="modal" data-target="#orderCreateModal">Create New Order</a>
         </li>
 
 

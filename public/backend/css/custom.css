@@ -376,3 +376,18 @@ button.close span {
 .modal-body .col-md-3 {
     margin: 15px 0px;
 }
+.searchByDateRange {
+    display: flex;
+}
+
+.card-header {
+    padding: 20px !important;
+}
+
+.card-header h6 {
+    color: #5a6779 !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+}
