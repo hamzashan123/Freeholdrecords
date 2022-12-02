@@ -6,6 +6,7 @@
         align-items: center;
         padding: 10px 20px;
         box-shadow: 0px 1px 5px 0px rgb(0 0 0 / 33%);
+        margin: 10px 0px;
 
 
     }
@@ -48,7 +49,7 @@
 
 
             @if($user->status == 'Active')
-            <div class="col-4 ">
+            <div class="col-4">
 
 
 
@@ -124,7 +125,7 @@
                 url: "{{route('admin.updatestatus')}}",
                 success: function(data) {
                     console.log(data.status);
-                    
+
                     if (data.status == 200) {
                         $('#activeusers').text(data.countusers);
                         Swal.fire({
