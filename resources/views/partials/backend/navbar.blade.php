@@ -115,65 +115,66 @@
             </div>
             <div class="modal-body">
 
-                <h4> FIND ALL TITLE(S) WITH... </h4>
+                
                 <hr>
                 <form method="post">
                     @csrf
                     <div class="row">
-                        <div class="col-md-3">
-                            <label for="name">Customer</label>
+                        <div class="col-md-6">
+                            <label for="name">CUSTOMER</label>
                             <select name="customer" id="customer" class="form-control">
                                 <option value="">Select County</option>
                                 <option value="Absolute Title Agency">Absolute Title Agency</option>
+                                <option value="Advanced Abstract">Advanced Abstract</option>
                                 <option value="E Title Agency">E Title Agency</option>
                             </select>
                         </div>
+                    </div>
+                    
+                    <div class="row">
+                    
                         <div class="col-md-3">
-                            <label for="name">STARTING ORDER #</label>
-                            <input type="text" id="starting_order" name="starting_order" class="form-control" required>
+                            <label for="name">YOUR FILE NUMBER</label>
+                            <input type="text" id="file_number" name="file_number" class="form-control" required placeholder="Enter File Number">
                         </div>
                         <div class="col-md-3">
-                            <label for="name">ENDING ORDER #</label>
-                            <input type="text" id="customer_last_name" name="last_name" class="form-control" required>
+                            <label for="name">REQUESTED BY</label>
+                            <input type="text" id="requested_by" name="last_name" class="form-control" required placeholder="Requested By">
+                        </div>
+                        <div class="col-md-2">
+                            <label for="name">COUNTY</label>
+                            <select name="county" id="county" class="form-control">
+                                <option value="">Select County</option>
+                                <option value="Manhatan">Manhatan</option>
+                                <option value="Advanced Abstract">Advanced Abstract</option>
+                                <option value="E Title Agency">E Title Agency</option>
+                            </select>
+                        </div>
+                        
+                        <div class="col-md-2">
+                            <label for="name">BLOCK</label>
+                            <input type="text" id="block" name="block" class="form-control" placeholder="Block">
                         </div>
 
-                        <div class="col-md-3">
-                            <label for="name">ORDERED BY</label>
-                            <input type="text" id="customer_email" name="email" class="form-control">
+                        <div class="col-md-2">
+                            <label for="name">LOT</label>
+                            <input type="text" id="lot" name="lot" class="form-control" required placeholder="Lot">
                         </div>
-                        <div class="col-md-3">
-                            <label for="name">TITLE / FILE ID</label>
-                            <input type="text" id="customer_phone" name="phone" class="form-control">
-                        </div>
-
+                    </div>
+                    <div class="row">
                         
                         <div class="col-md-3">
-                            <label for="name">BLOCK</label>
-                            <input type="text" id="customer_last_name" name="last_name" class="form-control" required>
+                            <label for="name">BUILDING NUMBER</label>
+                            <input type="text" id="building_number" name="building_number" class="form-control" required placeholder="Building number">
                         </div>
 
-                        <div class="col-md-3">
-                            <label for="name">LOT START</label>
-                            <input type="text" id="customer_email" name="email" class="form-control">
-                        </div>
-                        <div class="col-md-3">
-                            <label for="name">LOT END</label>
-                            <input type="text" id="customer_phone" name="phone" class="form-control">
-                        </div>
-
-
-                        <div class="col-md-3">
-                            <label for="name">STARTING BUILDING NUMBER</label>
-                            <input type="text" id="customer_last_name" name="last_name" class="form-control" required>
-                        </div>
-
-                        <div class="col-md-3">
-                            <label for="name"> ENDING BUILDING NUMBER</label>
-                            <input type="text" id="customer_email" name="email" class="form-control">
-                        </div>
                         <div class="col-md-3">
                             <label for="name">STREET NAME</label>
-                            <input type="text" id="customer_phone" name="phone" class="form-control">
+                            <input type="text" id="street_name" name="street_name" class="form-control" placeholder="Street name">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="name">UNIT #</label>
+                            <input type="text" id="unit" name="unit" class="form-control" placeholder="unit">
                         </div>
 
 
@@ -182,22 +183,30 @@
 
 
                     <div class="row">
-                        <div class="col-md-3">
-                            <label for="name">STARTING SEARCH SUBMIT DATE</label>
-                            <input type="date" id="customer_phone" name="phone" class="form-control">
+                        <div class="col-md-6">
+                            <label for="name">RECORD OWNERS</label>
+                            <input type="text" id="record_owners" name="record_owners" class="form-control" placeholder="Record number">
                         </div>
 
-                        <div class="col-md-3">
-                            <label for="name">ENDING SEARCH SUBMIT DATE</label>
-                            <input type="date" id="customer_phone" name="phone" class="form-control">
+                        <div class="col-md-6">
+                            <label for="name">ADDITIONAL INFO</label>
+                            <input type="text" id="additional_info" name="additional_info" class="form-control" placeholder="Additional info">
                         </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="name">DUE DATE</label>
+                            <input type="date" id="due_date" name="due_date" class="form-control">
+                        </div>
+
+                        
                     </div>
 
                     <br />
                     <br />
 
-                    <div class="col-md-12" style="margin-top: 10px !important;">
-                        <input type="button" id="btn_customer" class="btn btn-secondary" value="Search">
+                    <div class="col-md-12" style="margin-top: 10px !important;padding-left:0 !important;">
+                        <input type="button" id="btn_customer" class="btn btn-secondary" value="Create New Order">
                         <input type="reset" id="btn_customer" class="btn btn-primary" value="Clear Search">
                     </div>
                 </form>
