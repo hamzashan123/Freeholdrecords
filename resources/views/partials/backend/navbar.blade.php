@@ -115,14 +115,14 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Create Order</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Create New Order</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
 
-                
+
                 <hr>
                 <form method="post">
                     @csrf
@@ -137,9 +137,9 @@
                             </select>
                         </div>
                     </div>
-                    
+
                     <div class="row">
-                    
+
                         <div class="col-md-3">
                             <label for="name">YOUR FILE NUMBER</label>
                             <input type="text" id="file_number" name="file_number" class="form-control" required placeholder="Enter File Number">
@@ -157,7 +157,7 @@
                                 <option value="E Title Agency">E Title Agency</option>
                             </select>
                         </div>
-                        
+
                         <div class="col-md-2">
                             <label for="name">BLOCK</label>
                             <input type="text" id="block" name="block" class="form-control" placeholder="Block">
@@ -165,14 +165,14 @@
 
                         <div class="col-md-2">
                             <label for="name">LOT</label>
-                            <input type="text" id="lot" name="lot" class="form-control"  placeholder="Lot">
+                            <input type="text" id="lot" name="lot" class="form-control" placeholder="Lot">
                         </div>
-                        
+
 
 
                         <div class="col-md-3">
                             <label for="name">BUILDING NUMBER</label>
-                            <input type="text" id="building_number" name="building_number" class="form-control"  placeholder="Building number">
+                            <input type="text" id="building_number" name="building_number" class="form-control" placeholder="Building number">
                         </div>
 
                         <div class="col-md-3">
@@ -206,15 +206,15 @@
                             <input type="date" id="due_date" name="due_date" class="form-control">
                         </div>
 
-                        
+
                     </div>
 
                     <br />
                     <br />
 
                     <div class="col-md-12" style="margin-top: 10px !important;padding-left:0 !important;">
-                        <input type="button" id="btn_customer" class="btn btn-secondary" value="Create New Order">
-                        <input type="reset" id="btn_customer" class="btn btn-primary" value="Clear Search">
+                        <input type="button" id="btn_customer" class="btn btn-secondary" value="Order">
+                        <input type="reset" id="btn_customer" class="btn btn-primary" value="Clear Order">
                     </div>
                 </form>
             </div>
