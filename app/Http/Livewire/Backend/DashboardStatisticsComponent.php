@@ -20,7 +20,7 @@ class DashboardStatisticsComponent extends Component
 
     public function mount()
     {
-        $this->users = User::where('id','!=', Auth::user()->id);
+        $this->users = User::where('id','!=', Auth::user()->id)->get();
     }
 
     public function render()
