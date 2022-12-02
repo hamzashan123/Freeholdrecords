@@ -18,7 +18,7 @@
 <div class="card shadow mb-4">
     <div class="card-header py-3 d-flex">
         <h6 class="m-0 font-weight-bold text-primary">
-            Active Users {{ count($users->where('status', 'Active')) }}
+            Active Users <span id="activeusers"> {{ count($users->where('status', 'Active')) }} </span>
         </h6>
     </div>
 
@@ -78,3 +78,65 @@
 
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $(".update_status").change(function(e) {
+            e.preventDefault();
+            var status = '';
+            if ($(this).is(":checked")) {
+                status = 'Active';
+
+            } else {
+                status = 'Inactive';
+            }
+            var rowid = $(this).attr('data-id');
+
+            $.ajax({
+                type: 'POST',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "userid": rowid,
+                    "status": status
+                },
+                url: "{{route('admin.updatestatus')}}",
+                success: function(data) {
+                    console.log(data.status);
+                    
+                    if (data.status == 200) {
+                        $('#activeusers').text(data.countusers);
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: data.msg,
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        window.location.reload();
+                    } else if (data.status == 201) {
+                        $('#activeusers').text(data.countusers);
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'warning',
+                            title: data.msg,
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        window.location.reload();
+                    } else {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'danger',
+                            title: 'Failed to update status!',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
+
+                }
+            });
+        });
+    });
+</script>

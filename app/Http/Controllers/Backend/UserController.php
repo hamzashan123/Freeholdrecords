@@ -239,12 +239,14 @@ class UserController extends Controller
             $user = User::where('id', $request->userid)->update([
                 'status' => true
             ]);
-            return response()->json(['msg' => 'User Successfully Active!' ,'status' => 200]);
+            $count = User::where('status','Active')->count();
+            return response()->json(['msg' => 'User Successfully Active!' ,'countusers' => $count,'status' => 200]);
         }else{
             $user = User::where('id', $request->userid)->update([
                 'status' => false
             ]);
-            return response()->json(['msg' => 'User Successfully Inactive!' ,'status' => 201]);
+            $count = User::where('status','Active')->count();
+            return response()->json(['msg' => 'User Successfully Inactive!' ,'countusers' => $count,'status' => 201]);
         }
         
         

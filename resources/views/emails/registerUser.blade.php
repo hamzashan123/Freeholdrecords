@@ -1,18 +1,7 @@
-@if($admin == false && $usertype == 'user')
-    Dear {{ucfirst($username)}}, 
+    
+<p> Your account is successfully created with Freeholdrecords .</p>
 
-    <p>{!!$messagetype!!}</p>
+<p> Login Id : {{$email}} </p>
+<p>Password: {{$password}} </p>
 
-
-    Your login details are:
-
-    <p>Username : {{$username}}</p>
-    <p>Password : {{$password}}</p>
-    <p>Email  : {{$email}}</p>
-
-
-
-    Thanks,<br>
-    {{ config('app.name') }}
-   
-@endif
+<p> Click here to create your password and login. </p>
