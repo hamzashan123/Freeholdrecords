@@ -16,23 +16,23 @@
                     <div class="row">
                         <div class="col-md-3">
                             <label for="name">STARTING ORDER #</label>
-                            <input type="text" id="starting_order" name="starting_order" class="form-control" required>
+                            <input type="text" id="starting_order" name="starting_order" class="form-control" placeholder="STARTING ORDER #">
                         </div>
                         <div class="col-md-3">
                             <label for="name">ENDING ORDER #</label>
-                            <input type="text" id="ending_order" name="ending_order" class="form-control" required>
+                            <input type="text" id="ending_order" name="ending_order" class="form-control" placeholder="ENDING ORDER #">
                         </div>
 
                         <div class="col-md-3">
                             <label for="name">ORDERED BY</label>
-                            <input type="text" id="ordered_by" name="ordered_by" class="form-control">
+                            <input type="text" id="ordered_by" name="ordered_by" class="form-control" placeholder="ORDERED BY">
                         </div>
                         <div class="col-md-3">
                             <label for="name">TITLE / FILE ID</label>
-                            <input type="text" id="title_file_id" name="title_file_id" class="form-control">
+                            <input type="text" id="title_file_id" name="title_file_id" class="form-control" placeholder="TITLE / FILE ID">
                         </div>
 
-                        <div class="col-md-3">
+                        <div class=" col-md-3">
                             <label for="name">COUNTY</label>
                             <select name="county" id="county" class="form-control">
                                 <option value="">Select County</option>
@@ -51,31 +51,31 @@
                         </div>
                         <div class="col-md-3">
                             <label for="name">BLOCK</label>
-                            <input type="text" id="block" name="block" class="form-control" required>
+                            <input type="text" id="block" name="block" class="form-control" placeholder="BLOCK">
                         </div>
 
                         <div class="col-md-3">
                             <label for="name">LOT START</label>
-                            <input type="text" id="lot_start" name="lot_start" class="form-control">
+                            <input type="text" id="lot_start" name="lot_start" class="form-control" placeholder="LOT START">
                         </div>
                         <div class="col-md-3">
                             <label for="name">LOT END</label>
-                            <input type="text" id="lot_end" name="lot_end" class="form-control">
+                            <input type="text" id="lot_end" name="lot_end" class="form-control" placeholder="LOT END">
                         </div>
 
 
                         <div class="col-md-3">
                             <label for="name">STARTING BUILDING NUMBER</label>
-                            <input type="text" id="starting_building_number" name="starting_building_number" class="form-control" required>
+                            <input type="text" id="starting_building_number" name="starting_building_number" class="form-control" placeholder="STARTING BUILDING NUMBER">
                         </div>
 
                         <div class="col-md-3">
                             <label for="name"> ENDING BUILDING NUMBER</label>
-                            <input type="text" id="ending_building_number" name="ending_building_number" class="form-control">
+                            <input type="text" id="ending_building_number" name="ending_building_number" class="form-control" placeholder="ENDING BUILDING NUMBER">
                         </div>
                         <div class="col-md-3">
                             <label for="name">STREET NAME</label>
-                            <input type="text" id="street_name" name="street_name" class="form-control">
+                            <input type="text" id="street_name" name="street_name" class="form-control" placeholder="STREET NAME">
                         </div>
 
 
@@ -86,12 +86,12 @@
                     <div class="row">
                         <div class="col-md-3">
                             <label for="name">STARTING SEARCH SUBMIT DATE</label>
-                            <input type="date" id="starting_search_submit" name="starting_search_submit" class="form-control">
+                            <input type="date" id="starting_search_submit" name="starting_search_submit" class="form-control" placeholder="STARTING SEARCH SUBMIT DATE">
                         </div>
 
                         <div class="col-md-3">
                             <label for="name">ENDING SEARCH SUBMIT DATE</label>
-                            <input type="date" id="ending_search_submit" name="ending_search_submit" class="form-control">
+                            <input type="date" id="ending_search_submit" name="ending_search_submit" class="form-control" placeholder="ENDING SEARCH SUBMIT DATE">
                         </div>
                     </div>
 
