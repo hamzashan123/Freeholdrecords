@@ -146,7 +146,7 @@
                             <input type="text" id="customer_phone" name="phone" class="form-control">
                         </div>
 
-                        
+
                         <div class="col-md-3">
                             <label for="name">BLOCK</label>
                             <input type="text" id="customer_last_name" name="last_name" class="form-control" required>
@@ -225,7 +225,7 @@
         <div class="topbar-divider d-none d-sm-block"></div>
 
         <li class="nav-item new-order">
-            <a class="nav-link  btn btn-primary"  data-toggle="modal" data-target="#orderCreateModal">Create New Order</a>
+            <a class="nav-link  btn btn-primary" data-toggle="modal" data-target="#orderCreateModal">Create New Order</a>
         </li>
 
 

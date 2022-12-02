@@ -153,3 +153,7 @@
 .sidebar .sidebar-brand img {
     border-radius: 5px;
 }
+
+div.searchByDateRange {
+    display: flex;
+}
