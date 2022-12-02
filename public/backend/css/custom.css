@@ -373,7 +373,7 @@ button.close span {
     color: #313541;
 }
 
-.modal-body .col-md-3 {
+.modal-body .col-md-3 , .modal-body .col-md-2{
     margin: 15px 0px;
 }
 .searchByDateRange {
