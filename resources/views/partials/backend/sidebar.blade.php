@@ -41,6 +41,15 @@
             <span>Order</span></a>
     </li>
 
+    @if(Auth::user()->hasRole('user'))
+    <hr class="sidebar-divider">
+    <li class="nav-item">
+        <a class="nav-link">
+            <i class="fas fa-credit-card fa-2x text-gray-300"></i>
+            <span>Payment</span></a>
+    </li>
+    @endif
+
 
     <hr class="sidebar-divider">
 
@@ -54,13 +63,7 @@
 
 
 
-    @if(Auth::user()->hasRole('admin'))
-    <!-- <li class="nav-item active ">
-                <a class="nav-link" href="{{route('admin.form360.index')}}">
-                <i class="fas fa-clock fa-2x text-gray-300"></i>
-                    <span>Draft Applications</span></a>
-    </li> -->
-    @endif
+
     @if(Auth::user()->hasRole('admin'))
     <!-- <li class="nav-item active ">
                 <a class="nav-link" href="{{route('admin.form360.index')}}">
