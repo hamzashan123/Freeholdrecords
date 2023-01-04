@@ -124,7 +124,7 @@
 
 
                 <hr>
-                <form method="post">
+                <form method="post" action="{{route('admin.systemorder.createorder')}}">
                     @csrf
                     <div class="row">
                         <div class="col-md-6">
@@ -146,7 +146,7 @@
                         </div>
                         <div class="col-md-3">
                             <label for="name">REQUESTED BY</label>
-                            <input type="text" id="requested_by" name="last_name" class="form-control" required placeholder="Requested By">
+                            <input type="text" id="requested_by" name="requested_by" class="form-control" required placeholder="Requested By">
                         </div>
                         <div class="col-md-2">
                             <label for="name">COUNTY</label>
@@ -219,7 +219,7 @@
                     <br />
 
                     <div class="col-md-12" style="margin-top: 10px !important;padding-left:0 !important;">
-                        <input type="button" id="btn_customer" class="btn btn-secondary" value="Order">
+                        <input type="submit" id="btn_customer" class="btn btn-secondary" value="Order">
                         <input type="reset" id="btn_customer" class="btn btn-primary" value="Clear Order">
                     </div>
                 </form>

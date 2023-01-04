@@ -1,10 +1,12 @@
 @extends('layouts.admin')
 
 @section('content')
+
+@forelse($orders as $order)
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex">
             <h6 class="m-0 font-weight-bold text-primary">
-                Title ID: 12XY23GN12
+                Title ID: {{ $order->title_id }}
             </h6>
             <div class="ml-auto">
 
@@ -17,188 +19,110 @@
             <table class="table table-hover">
                 <thead>
                 <tr>
-                    <th>Searches</th>
-                    <th>Status</th>
-                    <th>App Id</th>
+                    <th>Actions</th>
+                    <th>Customer</th>
+                    <th>File Number</th>
+                    <th>Requested By</th>
                     <th>County</th>
                     <th>Block</th>
                     <th>Lot</th>
-                    <th>Premises</th>
-                    <th>Actions</th>
+                    <th>building Number</th>
+                    <th>Street Name</th>
+                    <th>Unit Number</th>
+                    <th>Record Owners</th>
+                    <th>Additional Info</th>
+                    <th>Due Date</th>
                 </tr>
                 </thead>
                 <tbody>
-                @forelse($orders as $order)
+                
                     <tr>
                         <td>
-                            <a href="{{ route('admin.orders.show', $order) }}">
-                                {{ $order->id }}
+                            @if(Auth::user()->hasRole('admin'))
+                            <a  data-orderid="{{ $order->id }}" href="#titleFileUpload"  data-target="#titleFileUpload" data-toggle="modal"
+                             
+                               class="btn btn-sm btn-danger titleFileUploadbtn">
+                                <i class="fa fa-upload"></i> 
                             </a>
+
+                          
+                            @else
+                            <a  download href="{{  asset('/storage/titlefiles/'.$order->id.'/'.$order->image_url)  }}"
+                               class="btn btn-sm btn-danger">
+                                <i class="fa fa-download"></i>
+                            </a>
+                            @endif
+                            <a target="_blank" href="{{  asset('/storage/titlefiles/'.$order->id.'/'.$order->image_url)  }}" class="btn btn-sm btn-secondary">
+                            <i class="fa fa-eye"></i>
+                            </a>
+                            
                         </td>
-                        <td>{{ $order->searches }}</td>
-                        <td>{{ $order->status }}</td>
-                        <td>{{ $order->app_id }}</td>
+                        <td>{{ $order->customer }}</td>
+                        <td>{{ $order->file_number }}</td>
+                        <td>{{ $order->requested_by }}</td>
                         <td>{{ $order->county }}</td>
                         <td>{{ $order->block }}</td>
                         <td>{{ $order->lot }}</td>
-                        <td>{{ $order->premises }}</td>
-                        <td>
-                            <a href="javascript:void(0);"
-                               onclick="if (confirm('Are you sure to delete this record?'))
-                                   {document.getElementById('delete-order-{{ $order->id }}').submit();} else {return false;}"
-                               class="btn btn-sm btn-danger">
-                                <i class="fa fa-download"></i> Download
-                            </a>
-                            <form action="{{ route('admin.orders.destroy', $order) }}"
-                                  method="POST"
-                                  id="delete-order-{{ $order->id }}" class="d-none">
-                                @csrf
-                                @method('DELETE')
-                            </form>
-                        </td>
+                        <td>{{ $order->building_number }}</td>
+                        <td>{{ $order->street_name }}</td>
+                        <td>{{ $order->unit_number }}</td>
+                        <td>{{ $order->record_owners }}</td>
+                        <td>{{ $order->additional_info }}</td>
+                        <td>{{ $order->due_date }}</td>
+                        
                     </tr>
-                @empty
-                    <tr>
-                        <td class="text-center" colspan="6">No orders found.</td>
-                    </tr>
-                @endforelse
+                
                 </tbody>
                 
             </table>
         </div>
     </div>
+    @empty
+                    <tr>
+                        <td class="text-center" colspan="6">No orders found.</td>
+                    </tr>
+    @endforelse
 
-    <div class="card shadow mb-4">
-        <div class="card-header py-3 d-flex">
-            <h6 class="m-0 font-weight-bold text-primary">
-                Title ID: 12XY23GN12
-            </h6>
-            <div class="ml-auto">
-
+    <div class="modal fade" id="titleFileUpload" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Upload File</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-        </div>
+            <div class="modal-body">
 
-       
-
-        <div class="table-responsive">
-            <table class="table table-hover">
-                <thead>
-                <tr>
-                    <th>Searches</th>
-                    <th>Status</th>
-                    <th>App Id</th>
-                    <th>County</th>
-                    <th>Block</th>
-                    <th>Lot</th>
-                    <th>Premises</th>
-                    <th>Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                @forelse($orders as $order)
-                    <tr>
-                        <td>
-                            <a href="{{ route('admin.orders.show', $order) }}">
-                                {{ $order->id }}
-                            </a>
-                        </td>
-                        <td>{{ $order->searches }}</td>
-                        <td>{{ $order->status }}</td>
-                        <td>{{ $order->app_id }}</td>
-                        <td>{{ $order->county }}</td>
-                        <td>{{ $order->block }}</td>
-                        <td>{{ $order->lot }}</td>
-                        <td>{{ $order->premises }}</td>
-                        <td>
-                            <a href="javascript:void(0);"
-                               onclick="if (confirm('Are you sure to delete this record?'))
-                                   {document.getElementById('delete-order-{{ $order->id }}').submit();} else {return false;}"
-                               class="btn btn-sm btn-danger">
-                                <i class="fa fa-download"></i> Download
-                            </a>
-                            <form action="{{ route('admin.orders.destroy', $order) }}"
-                                  method="POST"
-                                  id="delete-order-{{ $order->id }}" class="d-none">
-                                @csrf
-                                @method('DELETE')
-                            </form>
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td class="text-center" colspan="6">No orders found.</td>
-                    </tr>
-                @endforelse
-                </tbody>
-                
-            </table>
-        </div>
-    </div>
-
-    <div class="card shadow mb-4">
-        <div class="card-header py-3 d-flex">
-            <h6 class="m-0 font-weight-bold text-primary">
-                Title ID: 12XY23GN12
-            </h6>
-            <div class="ml-auto">
-
+               
+                <form method="post" action="{{route('admin.titlefileupload')}}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="titlefile">File</label>
+                            <input type="hidden" name="orderid" id="orderid" value="" >
+                            <input type="file" id="titlefile" name="titlefile" class="form-control" placeholder="STARTING ORDER #">
+                        </div>
+                        
+                    
+                    </div>
+                    <div class="col-md-12" style="margin-top: 10px !important; padding-left:0px !important;">
+                        <input type="submit"  class="btn btn-secondary" value="Upload">
+                    
+                    </div>
+                </form>
             </div>
-        </div>
 
-       
 
-        <div class="table-responsive">
-            <table class="table table-hover">
-                <thead>
-                <tr>
-                    <th>Searches</th>
-                    <th>Status</th>
-                    <th>App Id</th>
-                    <th>County</th>
-                    <th>Block</th>
-                    <th>Lot</th>
-                    <th>Premises</th>
-                    <th>Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                @forelse($orders as $order)
-                    <tr>
-                        <td>
-                            <a href="{{ route('admin.orders.show', $order) }}">
-                                {{ $order->id }}
-                            </a>
-                        </td>
-                        <td>{{ $order->searches }}</td>
-                        <td>{{ $order->status }}</td>
-                        <td>{{ $order->app_id }}</td>
-                        <td>{{ $order->county }}</td>
-                        <td>{{ $order->block }}</td>
-                        <td>{{ $order->lot }}</td>
-                        <td>{{ $order->premises }}</td>
-                        <td>
-                            <a href="javascript:void(0);"
-                               onclick="if (confirm('Are you sure to delete this record?'))
-                                   {document.getElementById('delete-order-{{ $order->id }}').submit();} else {return false;}"
-                               class="btn btn-sm btn-danger">
-                                <i class="fa fa-download"></i> Download
-                            </a>
-                            <form action="{{ route('admin.orders.destroy', $order) }}"
-                                  method="POST"
-                                  id="delete-order-{{ $order->id }}" class="d-none">
-                                @csrf
-                                @method('DELETE')
-                            </form>
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td class="text-center" colspan="6">No orders found.</td>
-                    </tr>
-                @endforelse
-                </tbody>
-                
-            </table>
         </div>
     </div>
+</div> 
+<script>
+    $('.titleFileUploadbtn').on('click', function(){
+        $('#orderid').val('');
+        $('#orderid').val($(this).attr("data-orderid"));
+    })
+</script>
 @endsection
+
+
