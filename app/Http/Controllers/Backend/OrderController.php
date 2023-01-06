@@ -64,25 +64,32 @@ class OrderController extends Controller
         ]);
 
         if($order){
-            $orderData = [
-                'orderid' => $order->id,
-                'titleid' => $titleId,
-                'user' => Auth::user(),
-                'msg' => 'Your order has been succesfully created.',
-                'admin' => false
-            ];
-            
-            Mail::to(Auth::user()->email)->send(new OrderEmail($orderData));
+            try {
 
-            $adminData = [
-                'orderid' => $order->id,
-                'titleid' => $titleId,
-                'user' => Auth::user(),
-                'msg' => 'New order recieved.',
-                'admin' => true
-            ];
+                $orderData = [
+                    'orderid' => $order->id,
+                    'titleid' => $titleId,
+                    'user' => Auth::user(),
+                    'msg' => 'Your order has been succesfully created.',
+                    'admin' => false
+                ];
+                
+                Mail::to(Auth::user()->email)->send(new OrderEmail($orderData));
+    
+                $adminData = [
+                    'orderid' => $order->id,
+                    'titleid' => $titleId,
+                    'user' => Auth::user(),
+                    'msg' => 'New order recieved.',
+                    'admin' => true
+                ];
+                
+                Mail::to('admin@admin.com')->send(new OrderEmail($adminData));
+              
+              } catch (\Exception $e) {
+              
+              }
             
-            Mail::to('admin@admin.com')->send(new OrderEmail($adminData));
         }
         return redirect()->back()->with('success','Order Created Successfully!');
     }
