@@ -91,7 +91,7 @@ class OrderController extends Controller
               }
             
         }
-        return redirect()->back()->with('success','Order Created Successfully!');
+        return redirect()->route('admin.systemorder.index')->with('success','Order Created Successfully!');
     }
 
     public function orderImage( Request $request){
