@@ -52,14 +52,15 @@
 
             <div class="col-4">
 
-                <form method="post">
+                <form method="post" action="{{route('admin.titleIdSearch')}}">
+                    @csrf
                     <div class="col-md-12" style="padding-left: 0px;">
-                        <label for="name">Search By Title</label>
-                        <input type="text" id="search_by_title" name="search_by_title" class="form-control" placeholder="Search By Title">
+                        <label for="name">Search By Title Id</label>
+                        <input type="text" id="search_by_title" name="search_by_title" class="form-control" placeholder="Search By Title Id">
                     </div>
 
                     <div class="col-md-12" style="margin-top: 30px !important; padding-left:0px !important;">
-                        <input type="button" id="search_by_title_input" class="btn btn-primary" value="Search">
+                        <input type="submit" id="search_by_title_input" class="btn btn-primary" value="Search">
                     </div>
                 </form>
             </div>
@@ -67,14 +68,15 @@
 
             <div class="col-4">
 
-                <form method="post">
+                <form method="post" action="{{route('admin.titleIdSearch')}}">
+                    @csrf
                     <div class="col-md-12" style="padding-left: 0px;">
-                        <label for="name">Search By App ID</label>
-                        <input type="text" id="search_by_app_id" name="search_by_app_id" class="form-control" placeholder="Search By App ID">
+                        <label for="search_by_fileNumber">Search By File Number</label>
+                        <input type="text" id="search_by_fileNumber" name="search_by_fileNumber" class="form-control" placeholder="Search By File Number">
                     </div>
 
                     <div class="col-md-12" style="margin-top: 30px !important; padding-left:0px !important;">
-                        <input type="button" id="search_by_app_id_input" class="btn btn-primary" value="Search">
+                        <input type="submit" id="search_by_app_id_input" class="btn btn-primary" value="Search">
                     </div>
                 </form>
             </div>
@@ -82,7 +84,8 @@
 
             <div class="col-4 ">
 
-                <form method="post">
+                <form method="post" action="{{route('admin.titleIdSearch')}}">
+                    @csrf
                     <div class="col-md-12" style="padding-left: 0px;">
                         <label for="name">Search By Date Range</label>
                         <div class="searchByDateRange">
@@ -92,7 +95,7 @@
                     </div>
 
                     <div class="col-md-12" style="margin-top: 30px !important; padding-left:0px !important;">
-                        <input type="button" id="search_by_app_id" class="btn btn-primary" value="Search">
+                        <input type="submit" id="search_by_app_id" class="btn btn-primary" value="Search">
                     </div>
                 </form>
             </div>

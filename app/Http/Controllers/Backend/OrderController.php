@@ -41,6 +41,33 @@ class OrderController extends Controller
         return view('backend.orders.index', compact('orders'));
     }
 
+    public function searchOrder(Request $request){
+
+        $titleId = $request->input('search_by_title');
+        $fileNumber = $request->input('search_by_fileNumber');
+        
+
+        if(Auth::user()->hasRole('admin')){
+            $orders = DB::table('orders')
+            ->select('orders.*','order_images.image_url')
+            ->leftjoin('order_images', 'orders.id', '=', 'order_images.order_id')
+            ->orderBy('created_at','desc')
+            ->where('orders.title_id', 'LIKE', "%{$titleId}%")
+            ->where('orders.file_number', 'LIKE', "%{$fileNumber}%")
+            ->get();
+        }else{
+            $orders = DB::table('orders')
+            ->select('orders.*','order_images.image_url')
+            ->leftjoin('order_images', 'orders.id', '=', 'order_images.order_id')
+            ->where('user_id',Auth::user()->id)
+            ->where('orders.title_id', 'LIKE', "%{$titleId}%")
+            ->where('orders.file_number', 'LIKE', "%{$fileNumber}%")
+            ->orderBy('created_at','desc')
+            ->get();
+        }
+        return view('backend.orders.index', compact('orders'));
+    }
+
     public function createOrder(Request $request){
 
        
