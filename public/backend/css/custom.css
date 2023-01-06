@@ -1,38 +1,63 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap'); */
 /* @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap'); */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
-body, h1, h2 , article, aside, figcaption, figure, footer, header, hgroup, main, nav, section, h1, h2, h3, h4, h5, h6
-
-ol ol,
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
+body,
+h1,
+h2,
+article,
+aside,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 ol ol,
 ul ul,
 ol ul,
-ul ol 
-
-small, label , span , button,  a , input, li , ul , html, table, td, tr, th, b , hr
-    {
-    font-family: 'Montserrat', sans-serif;
-
+ul ol small,
+label,
+span,
+button,
+a,
+input,
+li,
+ul,
+html,
+table,
+td,
+tr,
+th,
+b,
+hr {
+    font-family: "Montserrat", sans-serif;
 }
 .img-profile {
     height: 4rem;
-    width: 4rem
+    width: 4rem;
 }
 .rounded-circle {
-    border-radius: 50%
+    border-radius: 50%;
 }
 .col-12 {
     flex: 0 0 100%;
     margin-top: 16px;
     max-width: 100%;
 }
-input[type='tel'] {
+input[type="tel"] {
     left: 0;
     padding-left: 70px !important;
 }
 .iti.iti--allow-dropdown {
     display: block;
-  }
-
+}
 
 a.imgfileAnchor img {
     height: 100px;
@@ -43,9 +68,9 @@ body.bg-gradient-primary {
     background-color: #f4f7fa !important;
     background-image: none !important;
     background-size: cover;
-  }
+}
 
-  body.bg-gradient-primary {
+body.bg-gradient-primary {
     height: 100vh;
 }
 
@@ -58,22 +83,18 @@ body.bg-gradient-primary .container {
     align-items: center;
 }
 
-
-.bg-gradient-primary.login ,  
-.bg-gradient-primary.login .container{
+.bg-gradient-primary.login,
+.bg-gradient-primary.login .container {
     height: 100vh;
 }
-
 
 #accordionSidebar {
     background-color: #313541;
 }
 
 a.sidebar-brand.d-flex.align-items-center.justify-content-center {
-    background-color: #8b0000;
+    background-color: #0f245c;
 }
-
-
 
 div#registerDiv {
     background-color: #213159;
@@ -97,7 +118,14 @@ div#registerDiv a {
     margin-bottom: 0px;
 }
 
-#accordionSidebar li a i {display: flex;justify-content: center;align-items: center;margin-left: auto;margin-right: auto;font-size: 26px;}
+#accordionSidebar li a i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 26px;
+}
 
 #accordionSidebar li a span {
     text-align: center;
@@ -109,25 +137,30 @@ div#registerDiv a {
     margin-top: 9px;
 }
 
-#accordionSidebar .nav-item .nav-link:hover i, #accordionSidebar .nav-item .nav-link:hover span {
+#accordionSidebar .nav-item .nav-link:hover i,
+#accordionSidebar .nav-item .nav-link:hover span {
     color: white !important;
-    transition: .3s;
+    transition: 0.3s;
     transform: scale(1.1);
 }
 
-input , button, select, textarea {
+input,
+button,
+select,
+textarea {
     border-radius: 0px !important;
 }
 
 .sidebar .nav-item:hover {
-    border-right: 4px solid darkred;
+    border-right: 4px solid #0f245c;
 }
 
 .sidebar hr.sidebar-divider {
     margin: 0px !important;
 }
 
-.btn-primary, .btn-secondary {
+.btn-primary,
+.btn-secondary {
     letter-spacing: 2px;
     padding: 10px 40px;
 }
@@ -141,7 +174,6 @@ a.sidebar-brand.d-flex.align-items-center.justify-content-center {
     margin: 0px !important;
 }
 
-
 /* Active/Inactive Switch Start  */
 
 .activeInactive .switch {
@@ -150,24 +182,26 @@ a.sidebar-brand.d-flex.align-items-center.justify-content-center {
     width: 110px;
     height: 34px;
     margin-bottom: 0;
-  }
-  
-  .activeInactive .switch input {display:none;}
-  
-  .activeInactive .slider {
+}
+
+.activeInactive .switch input {
+    display: none;
+}
+
+.activeInactive .slider {
     position: absolute;
     cursor: pointer;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #CCCCCC;
-    -webkit-transition: .4s;
-    transition: .4s;
-     /* border-radius: 34px; */
-  }
-  
-  .activeInactive .slider:before {
+    background-color: #cccccc;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    /* border-radius: 34px; */
+}
+
+.activeInactive .slider:before {
     position: absolute;
     content: "";
     height: 26px;
@@ -175,32 +209,32 @@ a.sidebar-brand.d-flex.align-items-center.justify-content-center {
     left: 4px;
     bottom: 4px;
     background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
     /* border-radius: 50%; */
-  }
-  
-  .activeInactive input:checked + .slider {
+}
+
+.activeInactive input:checked + .slider {
     background-color: #139e6f;
-  }
-  
-  .activeInactive input:focus +  .slider {
-    box-shadow: 0 0 1px #2196F3;
-  }
-  
-  .activeInactive input:checked +  .slider:before {
+}
+
+.activeInactive input:focus + .slider {
+    box-shadow: 0 0 1px #2196f3;
+}
+
+.activeInactive input:checked + .slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(55px);
-  }
-  
-  /*------ ADDED CSS ---------*/
-  .activeInactive .slider:after {
-    content: 'INACTIVE';
+}
+
+/*------ ADDED CSS ---------*/
+.activeInactive .slider:after {
+    content: "INACTIVE";
     color: black;
     display: block;
     position: absolute;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     top: 50%;
     left: 62%;
     font-size: 11px;
@@ -209,9 +243,9 @@ a.sidebar-brand.d-flex.align-items-center.justify-content-center {
     font-weight: bold;
     text-align: center;
 }
-  
-  .activeInactive input:checked + .slider:after {
-    content: 'ACTIVE';
+
+.activeInactive input:checked + .slider:after {
+    content: "ACTIVE";
     color: white !important;
     left: 40px;
     font-weight: bold;
@@ -219,8 +253,7 @@ a.sidebar-brand.d-flex.align-items-center.justify-content-center {
     text-align: center;
 }
 
-
-  .activeInactive input:checked + .slider:before {
+.activeInactive input:checked + .slider:before {
     transform: translateX(75px) !important;
 }
 
@@ -228,21 +261,19 @@ a.sidebar-brand.d-flex.align-items-center.justify-content-center {
     display: flex;
 }
 
-
 /* Active/Inactive Switch End  */
 
 .container-fluid {
     padding: 20px 50px;
 }
 
-.card {border: 0px;}
-
+.card {
+    border: 0px;
+}
 
 .table-responsive {
     padding: 40px 40px;
 }
-
-
 
 .table thead th {
     border-top: 0px;
@@ -254,24 +285,25 @@ a.sidebar-brand.d-flex.align-items-center.justify-content-center {
     border-bottom: 1px solid;
 }
 
-.table th, .table td {
+.table th,
+.table td {
     border-top: 1px solid;
 }
 
 .card-header:first-child h6 {
     font-size: 22px;
-    color: black!important;
-     /* text-transform: uppercase; */
+    color: black !important;
+    /* text-transform: uppercase; */
     letter-spacing: 2px;
 }
 
 .card-header:first-child {
     background-color: #f8f8f8 !important;
 }
-.table th, .table td {
+.table th,
+.table td {
     vertical-align: middle;
 }
-
 
 .btn-group.btn-group-sm a {
     margin: 0px 10px;
@@ -285,7 +317,7 @@ a.sidebar-brand.d-flex.align-items-center.justify-content-center {
 }
 
 .btn-group.btn-group-sm a.btn-danger {
-    color: darkred;
+    color: #0f245c;
 }
 
 .card-header:first-child {
@@ -300,13 +332,12 @@ a.btn.btn-primary {
 button.btn.btn-primary:hover {
     border-color: transparent;
     background: #690505 !important;
-    transition: .3s;
+    transition: 0.3s;
 }
 
 .btn.btn-primary {
     font-weight: bold;
 }
-
 
 label {
     display: inline-block;
@@ -317,25 +348,34 @@ label {
     font-size: 14px;
 }
 
-.advance-search a, .new-order a {border-radius: 0px !important;color: white !important;font-weight: bold !important;height: auto !important;padding: 10px 20px !important;}
+.advance-search a,
+.new-order a {
+    border-radius: 0px !important;
+    color: white !important;
+    font-weight: bold !important;
+    height: auto !important;
+    padding: 10px 20px !important;
+}
 
-.advance-search , .new-order {
+.advance-search,
+.new-order {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.advance-search a:hover, .new-order a:hover {
+.advance-search a:hover,
+.new-order a:hover {
     border-color: transparent !important;
 }
 
-
-
-div#exampleModal .modal-dialog , div#orderCreateModal .modal-dialog {
+div#exampleModal .modal-dialog,
+div#orderCreateModal .modal-dialog {
     min-width: 80%;
 }
 
-div#exampleModal .modal-dialog , div#orderCreateModal .modal-dialog {
+div#exampleModal .modal-dialog,
+div#orderCreateModal .modal-dialog {
     max-width: 100%;
     margin: 0px;
     height: 100vh !important;
@@ -346,9 +386,9 @@ div#exampleModal .modal-dialog , div#orderCreateModal .modal-dialog {
     height: 100%;
 }
 
-div#exampleModal , div#orderCreateModal   {
+div#exampleModal,
+div#orderCreateModal {
     padding: 0px !important;
-
 }
 
 button.close span {
@@ -359,7 +399,7 @@ button.close span {
 }
 
 .modal-header {
-    background-color: darkred;
+    background-color: #0f245c;
 }
 
 .modal-header h5 {
@@ -373,7 +413,8 @@ button.close span {
     color: #313541;
 }
 
-.modal-body .col-md-3 , .modal-body .col-md-2{
+.modal-body .col-md-3,
+.modal-body .col-md-2 {
     margin: 15px 0px;
 }
 .searchByDateRange {
