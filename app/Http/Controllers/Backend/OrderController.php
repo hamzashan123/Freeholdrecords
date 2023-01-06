@@ -44,7 +44,7 @@ class OrderController extends Controller
     public function createOrder(Request $request){
 
        
-        $titleId =  rand(0,100).'XY'.time();
+        $titleId =  'FRH-'.rand(0,100000);
         $order = Order::create([
             'user_id' => Auth::user()->id,
             'title_id' => $titleId,
