@@ -11,6 +11,7 @@ class BackendController extends Controller
 {
     public function index(): View
     {
+        
         return view('backend.index');
     }
 }

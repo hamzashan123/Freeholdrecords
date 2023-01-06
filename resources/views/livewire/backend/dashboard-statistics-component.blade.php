@@ -115,7 +115,7 @@
         <div class="row activeUser ">
             @forelse($users as $user)
 
-
+            @if($user->hasRole('admin') == false)
             @if($user->status == 'Active')
             <div class="col-4">
 
@@ -153,6 +153,8 @@
 
 
             </div>
+            @endif
+
             @endif
 
 
