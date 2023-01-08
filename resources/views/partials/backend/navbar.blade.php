@@ -11,28 +11,31 @@
 
                 <h4> FIND ALL TITLE(S) WITH... </h4>
                 <hr>
-                <form method="post">
+                <form method="post" action="{{route('admin.advanceSearch')}}">
                     @csrf
                     <div class="row">
-                        <div class="col-md-3">
-                            <label for="name">STARTING ORDER #</label>
-                            <input type="text" id="starting_order" name="starting_order" class="form-control" placeholder="STARTING ORDER #">
+                        <div class="col-md-6">
+                            <label for="name">CUSTOMER</label>
+                            <select name="customer" id="customer" class="form-control">
+                                <option value="">Select Customer</option>
+                                <option value="Absolute Title Agency">Absolute Title Agency</option>
+                                <option value="Advanced Abstract">Advanced Abstract</option>
+                                <option value="E Title Agency">E Title Agency</option>
+                            </select>
                         </div>
-                        <div class="col-md-3">
-                            <label for="name">ENDING ORDER #</label>
-                            <input type="text" id="ending_order" name="ending_order" class="form-control" placeholder="ENDING ORDER #">
-                        </div>
+                    </div>
+
+                    <div class="row">
 
                         <div class="col-md-3">
-                            <label for="name">ORDERED BY</label>
-                            <input type="text" id="ordered_by" name="ordered_by" class="form-control" placeholder="ORDERED BY">
+                            <label for="name">YOUR FILE NUMBER</label>
+                            <input type="text" id="file_number" name="file_number" class="form-control" placeholder="Enter File Number">
                         </div>
                         <div class="col-md-3">
-                            <label for="name">TITLE / FILE ID</label>
-                            <input type="text" id="title_file_id" name="title_file_id" class="form-control" placeholder="TITLE / FILE ID">
+                            <label for="name">REQUESTED BY</label>
+                            <input type="text" id="requested_by" name="requested_by" class="form-control"  placeholder="Requested By">
                         </div>
-
-                        <div class=" col-md-3">
+                        <div class="col-md-2">
                             <label for="name">COUNTY</label>
                             <select name="county" id="county" class="form-control">
                                 <option value="">Select County</option>
@@ -45,37 +48,33 @@
                                 <option value="SUFFOLK">SUFFOLK</option>
                                 <option value="WESTCHESTER">WESTCHESTER</option>
                                 <option value="PUTNAM">PUTNAM</option>
-
-
                             </select>
                         </div>
-                        <div class="col-md-3">
+
+                        <div class="col-md-2">
                             <label for="name">BLOCK</label>
-                            <input type="text" id="block" name="block" class="form-control" placeholder="BLOCK">
+                            <input type="text" id="block" name="block" class="form-control" placeholder="Block">
                         </div>
 
-                        <div class="col-md-3">
-                            <label for="name">LOT START</label>
-                            <input type="text" id="lot_start" name="lot_start" class="form-control" placeholder="LOT START">
-                        </div>
-                        <div class="col-md-3">
-                            <label for="name">LOT END</label>
-                            <input type="text" id="lot_end" name="lot_end" class="form-control" placeholder="LOT END">
+                        <div class="col-md-2">
+                            <label for="name">LOT</label>
+                            <input type="text" id="lot" name="lot" class="form-control" placeholder="Lot">
                         </div>
 
 
-                        <div class="col-md-3">
-                            <label for="name">STARTING BUILDING NUMBER</label>
-                            <input type="text" id="starting_building_number" name="starting_building_number" class="form-control" placeholder="STARTING BUILDING NUMBER">
-                        </div>
 
                         <div class="col-md-3">
-                            <label for="name"> ENDING BUILDING NUMBER</label>
-                            <input type="text" id="ending_building_number" name="ending_building_number" class="form-control" placeholder="ENDING BUILDING NUMBER">
+                            <label for="name">BUILDING NUMBER</label>
+                            <input type="text" id="building_number" name="building_number" class="form-control" placeholder="Building number">
                         </div>
+
                         <div class="col-md-3">
                             <label for="name">STREET NAME</label>
-                            <input type="text" id="street_name" name="street_name" class="form-control" placeholder="STREET NAME">
+                            <input type="text" id="street_name" name="street_name" class="form-control" placeholder="Street name">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="name">UNIT #</label>
+                            <input type="text" id="unit" name="unit" class="form-control" placeholder="unit">
                         </div>
 
 
@@ -84,23 +83,31 @@
 
 
                     <div class="row">
-                        <div class="col-md-3">
-                            <label for="name">STARTING SEARCH SUBMIT DATE</label>
-                            <input type="date" id="starting_search_submit" name="starting_search_submit" class="form-control" placeholder="STARTING SEARCH SUBMIT DATE">
+                        <div class="col-md-6">
+                            <label for="name">RECORD OWNERS</label>
+                            <input type="text" id="record_owners" name="record_owners" class="form-control" placeholder="Record number">
                         </div>
 
-                        <div class="col-md-3">
-                            <label for="name">ENDING SEARCH SUBMIT DATE</label>
-                            <input type="date" id="ending_search_submit" name="ending_search_submit" class="form-control" placeholder="ENDING SEARCH SUBMIT DATE">
+                        <div class="col-md-6">
+                            <label for="name">ADDITIONAL INFO</label>
+                            <input type="text" id="additional_info" name="additional_info" class="form-control" placeholder="Additional info">
                         </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="name">DUE DATE</label>
+                            <input type="date" id="due_date" name="due_date" class="form-control">
+                        </div>
+
+
                     </div>
 
                     <br />
                     <br />
 
-                    <div class="col-md-12" style="margin-top: 10px !important; padding-left:0px !important;">
-                        <input type="button" id="btn_customer" class="btn btn-secondary" value="Search">
-                        <input type="reset" id="btn_customer" class="btn btn-primary" value="Clear Search">
+                    <div class="col-md-12" style="margin-top: 10px !important;padding-left:0 !important;">
+                        <input type="submit" id="btn_search" class="btn btn-secondary" value="Search">
+                        <input type="reset" id="btn_search" class="btn btn-primary" value="Clear Search">
                     </div>
                 </form>
             </div>

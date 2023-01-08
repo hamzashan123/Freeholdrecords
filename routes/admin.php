@@ -91,6 +91,8 @@ Route::group(['middleware' => ['roles']], function () {
     Route::post('/createOrder', [OrderController::class, 'createOrder'])->name('systemorder.createorder');
     Route::post('/titlefileupload', [OrderController::class, 'createOrder'])->name('titlefileupload');
     Route::post('/titleIdSearch', [OrderController::class, 'searchOrder'])->name('titleIdSearch');
+    Route::post('/advanceSearch', [OrderController::class, 'advanceSearch'])->name('advanceSearch');
+    
     
 
     //new routes here..us

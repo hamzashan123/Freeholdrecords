@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Mail\OrderEmail;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Mail;
@@ -45,8 +46,11 @@ class OrderController extends Controller
 
         $titleId = $request->input('search_by_title');
         $fileNumber = $request->input('search_by_fileNumber');
-        
-
+        $search_by_date_range_from = $request->input('search_by_date_range_from');
+        $search_by_date_range_to = $request->input('search_by_date_range_to');
+        // $formatDateFrom = Carbon::createFromFormat('Y-m-d', $search_by_date_range_from)->format('Y-m-d H:i:s');
+        // $formatDateTo = Carbon::createFromFormat('Y-m-d', $search_by_date_range_to)->format('Y-m-d H:i:s');
+        //dd($formatDateTo);
         if(Auth::user()->hasRole('admin')){
             $orders = DB::table('orders')
             ->select('orders.*','order_images.image_url')
@@ -54,6 +58,7 @@ class OrderController extends Controller
             ->orderBy('created_at','desc')
             ->where('orders.title_id', 'LIKE', "%{$titleId}%")
             ->where('orders.file_number', 'LIKE', "%{$fileNumber}%")
+            ->whereBetween('created_on', [$search_by_date_range_from, $search_by_date_range_to])
             ->get();
         }else{
             $orders = DB::table('orders')
@@ -62,12 +67,52 @@ class OrderController extends Controller
             ->where('user_id',Auth::user()->id)
             ->where('orders.title_id', 'LIKE', "%{$titleId}%")
             ->where('orders.file_number', 'LIKE', "%{$fileNumber}%")
+            ->whereBetween('created_on', [$search_by_date_range_from, $search_by_date_range_to])
             ->orderBy('created_at','desc')
             ->get();
         }
         return view('backend.orders.index', compact('orders'));
     }
 
+    public function advanceSearch(Request $request){
+        //dd($request);
+        $customer = $request->input('customer');
+        $file_number = $request->input('file_number');
+        $requested_by = $request->input('requested_by');
+        $county = $request->input('county');
+        $block = $request->input('block');
+        $lot = $request->input('lot');
+        $building_number = $request->input('building_number');
+        $street_name = $request->input('street_name');
+        $unit = $request->input('unit');
+        $record_owners = $request->input('record_owners');
+        $additional_info = $request->input('additional_info');
+        $due_date = $request->input('due_date');
+
+        // $formatDateFrom = Carbon::createFromFormat('Y-m-d', $search_by_date_range_from)->format('Y-m-d H:i:s');
+        // $formatDateTo = Carbon::createFromFormat('Y-m-d', $search_by_date_range_to)->format('Y-m-d H:i:s');
+        //dd($formatDateTo);
+        if(Auth::user()->hasRole('admin')){
+            $orders = DB::table('orders')
+            ->select('orders.*','order_images.image_url')
+            ->leftjoin('order_images', 'orders.id', '=', 'order_images.order_id')
+            ->orderBy('created_at','desc')
+            ->where('orders.customer', 'LIKE', "%{$customer}%")
+            ->where('orders.file_number', 'LIKE', "%{$file_number}%")
+            
+            ->get();
+        }else{
+            $orders = DB::table('orders')
+            ->select('orders.*','order_images.image_url')
+            ->leftjoin('order_images', 'orders.id', '=', 'order_images.order_id')
+            ->where('user_id',Auth::user()->id)
+            ->where('orders.customer', 'LIKE', "%{$customer}%")
+            ->where('orders.file_number', 'LIKE', "%{$file_number}%")
+            ->orderBy('created_at','desc')
+            ->get();
+        }
+        return view('backend.orders.index', compact('orders'));
+    }
     public function createOrder(Request $request){
 
        
@@ -87,6 +132,7 @@ class OrderController extends Controller
             'record_owners' => $request->record_owners,
             'additional_info' => $request->additional_info,
             'due_date' => $request->due_date,
+            'created_on' => Carbon::now()->format('Y-m-d')
             
         ]);
 
