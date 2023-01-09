@@ -452,3 +452,7 @@ button.close span {
 .btn-secondary:hover {
     background-color: #0f245c !important;
 }
+
+.scroll-to-top {
+    background: #d4af37;
+}
