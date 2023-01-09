@@ -1,3 +1,8 @@
+<style>
+    .row .select2 {
+    width: 102.75rem !important;
+}
+</style>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -10,17 +15,38 @@
             <div class="modal-body">
 
                 <h4> FIND ALL TITLE(S) WITH... </h4>
+
                 <hr>
                 <form method="post" action="{{route('admin.advanceSearch')}}">
                     @csrf
                     <div class="row">
+                        <div class="col-12">
+                                
+                               
+                                    <label for="searches"><b>Type Searches here... </b> </label>
+                                    <select name="searches[]" id="searches" class="form-control select2" multiple="multiple">
+                                            <option value="AIR RESOURCES SEARCH">AIR RESOURCES SEARCH</option>
+                                            <option value="ASSESSED VALUATION">ASSESSED VALUATION</option>
+                                            <option value="ASSESSOR'S LETTERS">ASSESSOR'S LETTERS</option>
+                                            <option value="ATTORNEY SEARCH">ATTORNEY SEARCH</option>
+
+                                            <option value="BANKRUPTCY DOCKET COPIES">BANKRUPTCY DOCKET COPIES</option>
+                                            <option value="BANKRUPTCY PROCEEDINGS">BANKRUPTCY PROCEEDINGS</option>
+                                    </select>
+                                    
+                               
+                            </div>
+                    </div>
+                    <div class="row">
+                        
                         <div class="col-md-6">
                             <label for="name">CUSTOMER</label>
                             <select name="customer" id="customer" class="form-control">
+                              
                                 <option value="">Select Customer</option>
-                                <option value="Absolute Title Agency">Absolute Title Agency</option>
-                                <option value="Advanced Abstract">Advanced Abstract</option>
-                                <option value="E Title Agency">E Title Agency</option>
+                                <option value="Absolute Title Agency" value="{{old('customer', isset($request->customer) && $request->customer == 'Absolute Title Agency' ? $request->customer : ''  )}}" >Absolute Title Agency</option>
+                                <option value="Advanced Abstract" value="{{old('customer', isset($request->customer) && $request->customer == 'Advanced Abstract' ? $request->customer : ''  )}}">Advanced Abstract</option>
+                                <option value="E Title Agency" value="{{old('customer', isset($request->customer) && $request->customer == 'E Title Agency' ? $request->customer : ''  )}}">E Title Agency</option>
                             </select>
                         </div>
                     </div>
@@ -29,15 +55,18 @@
 
                         <div class="col-md-3">
                             <label for="name">YOUR FILE NUMBER</label>
-                            <input type="text" id="file_number" name="file_number" class="form-control" placeholder="Enter File Number">
+                            <input type="text" value="{{old('file_number', isset($request->file_number) ? $request->file_number : ''  )}}" id="file_number" name="file_number" class="form-control" placeholder="Enter File Number">
                         </div>
                         <div class="col-md-3">
                             <label for="name">REQUESTED BY</label>
-                            <input type="text" id="requested_by" name="requested_by" class="form-control"  placeholder="Requested By">
+                            <input type="text" value="{{old('requested_by', isset($request->requested_by) ? $request->requested_by : ''  )}}" id="requested_by" name="requested_by" class="form-control"  placeholder="Requested By">
                         </div>
                         <div class="col-md-2">
                             <label for="name">COUNTY</label>
                             <select name="county" id="county" class="form-control">
+                                @if(isset($request->county))
+                                <option value="{{old('county', isset($request->county) ? $request->county : ''  )}}" selected>{{old('county', isset($request->county) ? $request->county : ''  )}}</option>
+                                @endif
                                 <option value="">Select County</option>
                                 <option value="MANHATTAN">MANHATTAN</option>
                                 <option value="BRONX">BRONX</option>
@@ -53,28 +82,28 @@
 
                         <div class="col-md-2">
                             <label for="name">BLOCK</label>
-                            <input type="text" id="block" name="block" class="form-control" placeholder="Block">
+                            <input type="text" id="block" value="{{old('block', isset($request->block) ? $request->block : ''  )}}" name="block" class="form-control" placeholder="Block">
                         </div>
 
                         <div class="col-md-2">
                             <label for="name">LOT</label>
-                            <input type="text" id="lot" name="lot" class="form-control" placeholder="Lot">
+                            <input type="text" id="lot" value="{{old('lot', isset($request->lot) ? $request->lot : ''  )}}" name="lot" class="form-control" placeholder="Lot">
                         </div>
 
 
 
                         <div class="col-md-3">
                             <label for="name">BUILDING NUMBER</label>
-                            <input type="text" id="building_number" name="building_number" class="form-control" placeholder="Building number">
+                            <input type="text" id="building_number" value="{{old('building_number', isset($request->building_number) ? $request->building_number : ''  )}}"  name="building_number" class="form-control" placeholder="Building number">
                         </div>
 
                         <div class="col-md-3">
                             <label for="name">STREET NAME</label>
-                            <input type="text" id="street_name" name="street_name" class="form-control" placeholder="Street name">
+                            <input type="text" id="street_name" value="{{old('street_name', isset($request->street_name) ? $request->street_name : ''  )}}" name="street_name" class="form-control" placeholder="Street name">
                         </div>
                         <div class="col-md-3">
                             <label for="name">UNIT #</label>
-                            <input type="text" id="unit" name="unit" class="form-control" placeholder="unit">
+                            <input type="text" id="unit" value="{{old('unit', isset($request->unit) ? $request->unit : ''  )}}" name="unit" class="form-control" placeholder="unit">
                         </div>
 
 
@@ -85,18 +114,18 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label for="name">RECORD OWNERS</label>
-                            <input type="text" id="record_owners" name="record_owners" class="form-control" placeholder="Record number">
+                            <input type="text" id="record_owners" value="{{old('record_owners', isset($request->record_owners) ? $request->record_owners : ''  )}}" name="record_owners" class="form-control" placeholder="Record number">
                         </div>
 
                         <div class="col-md-6">
                             <label for="name">ADDITIONAL INFO</label>
-                            <input type="text" id="additional_info" name="additional_info" class="form-control" placeholder="Additional info">
+                            <input type="text" id="additional_info" value="{{old('additional_info', isset($request->additional_info) ? $request->additional_info : ''  )}}" name="additional_info" class="form-control" placeholder="Additional info">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <label for="name">DUE DATE</label>
-                            <input type="date" id="due_date" name="due_date" class="form-control">
+                            <input type="date" id="due_date" value="{{old('due_date', isset($request->due_date) ? $request->due_date : ''  )}}" name="due_date" class="form-control">
                         </div>
 
 
@@ -149,7 +178,7 @@
 
                         <div class="col-md-3">
                             <label for="name">YOUR FILE NUMBER</label>
-                            <input type="text" id="file_number" name="file_number" class="form-control" required placeholder="Enter File Number">
+                            <input type="text" value="{{ old('file_number') }}" id="file_number" name="file_number" class="form-control" required placeholder="Enter File Number">
                         </div>
                         <div class="col-md-3">
                             <label for="name">REQUESTED BY</label>
@@ -326,3 +355,6 @@
     </ul>
 
 </nav>
+
+
+    

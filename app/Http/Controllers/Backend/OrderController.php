@@ -96,22 +96,93 @@ class OrderController extends Controller
             $orders = DB::table('orders')
             ->select('orders.*','order_images.image_url')
             ->leftjoin('order_images', 'orders.id', '=', 'order_images.order_id')
-            ->orderBy('created_at','desc')
-            ->where('orders.customer', 'LIKE', "%{$customer}%")
-            ->where('orders.file_number', 'LIKE', "%{$file_number}%")
-            
-            ->get();
+            ->orderBy('created_at','desc');
+            if(!empty($customer)){
+                $orders->where('orders.customer','=',$customer);
+            }
+            if(!empty($file_number)){
+                $orders->where('orders.file_number','=',$file_number);
+            }
+            if(!empty($requested_by)){
+                $orders->where('orders.requested_by','=',$requested_by);
+            }
+            if(!empty($county)){
+                $orders->where('orders.county','=',$county);
+            }
+            if(!empty($block)){
+                $orders->where('orders.block','=',$block);
+            }
+            if(!empty($lot)){
+                $orders->where('orders.lot','=',$lot);
+            }
+            if(!empty($building_number)){
+                $orders->where('orders.building_number','=',$building_number);
+            }
+            if(!empty($street_name)){
+                $orders->where('orders.street_name','=',$street_name);
+            }
+            if(!empty($unit)){
+                $orders->where('orders.unit_number','=',$unit);
+            }
+            if(!empty($record_owners)){
+                $orders->where('orders.record_owners','=',$record_owners);
+            }
+            if(!empty($additional_info)){
+                $orders->where('orders.additional_info','=',$additional_info);
+            }
+            if(!empty($due_date)){
+                $orders->where('orders.due_date','=',$due_date);
+            }
+           // dd($request);
+            $orders = $orders->get();
         }else{
             $orders = DB::table('orders')
             ->select('orders.*','order_images.image_url')
             ->leftjoin('order_images', 'orders.id', '=', 'order_images.order_id')
             ->where('user_id',Auth::user()->id)
-            ->where('orders.customer', 'LIKE', "%{$customer}%")
-            ->where('orders.file_number', 'LIKE', "%{$file_number}%")
-            ->orderBy('created_at','desc')
-            ->get();
+            ->orderBy('created_at','desc');
+            
+            if(!empty($customer)){
+                $orders->where('orders.customer','=',$customer);
+            }
+            if(!empty($file_number)){
+                $orders->where('orders.file_number','=',$file_number);
+            }
+            if(!empty($requested_by)){
+                $orders->where('orders.requested_by','=',$requested_by);
+            }
+            if(!empty($county)){
+                $orders->where('orders.county','=',$county);
+            }
+            if(!empty($block)){
+                $orders->where('orders.block','=',$block);
+            }
+            if(!empty($lot)){
+                $orders->where('orders.lot','=',$lot);
+            }
+            if(!empty($building_number)){
+                $orders->where('orders.building_number','=',$building_number);
+            }
+            if(!empty($street_name)){
+                $orders->where('orders.street_name','=',$street_name);
+            }
+            if(!empty($unit)){
+                $orders->where('orders.unit_number','=',$unit);
+            }
+            if(!empty($record_owners)){
+                $orders->where('orders.record_owners','=',$record_owners);
+            }
+            if(!empty($additional_info)){
+                $orders->where('orders.additional_info','=',$additional_info);
+            }
+            if(!empty($due_date)){
+                $orders->where('orders.due_date','=',$due_date);
+            }
+           // dd($request);
+            $orders = $orders->get();
+            
         }
-        return view('backend.orders.index', compact('orders'));
+        return view('backend.orders.index', compact('orders','request'));
     }
     public function createOrder(Request $request){
 
