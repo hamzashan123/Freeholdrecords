@@ -152,7 +152,7 @@ textarea {
 }
 
 .sidebar .nav-item:hover {
-    border-right: 4px solid #0f245c;
+    border-right: 4px solid #d4af37;
 }
 
 .sidebar hr.sidebar-divider {
@@ -330,8 +330,8 @@ a.btn.btn-primary {
 }
 
 button.btn.btn-primary:hover {
-    border-color: transparent;
-    background: #690505 !important;
+    /* border-color: transparent;
+    background: #690505 !important; */
     transition: 0.3s;
 }
 
@@ -435,4 +435,24 @@ button.close span {
 
 #logoutModal .modal-content {
     height: auto;
+}
+
+
+.btn-secondary {
+
+    background-color: #d4af37 !important;
+    border-color: white !important;
+}
+
+.btn-primary:hover {
+    background-color: #d4af37;
+    border-color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #0f245c !important;
+}
+
+.scroll-to-top {
+    background: #d4af37;
 }

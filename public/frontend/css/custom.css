@@ -157,3 +157,8 @@
 div.searchByDateRange {
     display: flex;
 }
+
+
+.scroll-to-top {
+    background: #d4af37;
+}
