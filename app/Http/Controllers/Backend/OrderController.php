@@ -57,11 +57,10 @@ class OrderController extends Controller
             ->leftjoin('order_images', 'orders.id', '=', 'order_images.order_id')
             ->orderBy('created_at','desc');
             if(!empty($titleId)){
-                $orders->where('orders.title_id', '=', $titleId);
+                $orders->where('orders.title_id', 'LIKE', "%{$titleId}%");
             }
-           
             if(!empty($fileNumber)){
-                $orders->where('orders.file_number', '=', $fileNumber);
+                $orders->where('orders.file_number', 'LIKE', "%{$fileNumber}%");
             }
             if(!empty($search_by_date_range_from) && !empty($search_by_date_range_to)){
                 $orders->whereBetween('created_on', [$search_by_date_range_from, $search_by_date_range_to]);
@@ -75,10 +74,10 @@ class OrderController extends Controller
             ->where('user_id',Auth::user()->id)
             ->orderBy('created_at','desc');
             if(!empty($titleId)){
-                $orders->where('orders.title_id', '=', $titleId);
+                $orders->where('orders.title_id', 'LIKE', "%{$titleId}%");
             }
             if(!empty($fileNumber)){
-                $orders->where('orders.file_number', '=', $fileNumber);
+                $orders->where('orders.file_number', 'LIKE', "%{$fileNumber}%");
             }
             if(!empty($search_by_date_range_from) && !empty($search_by_date_range_to)){
                 $orders->whereBetween('created_on', [$search_by_date_range_from, $search_by_date_range_to]);
