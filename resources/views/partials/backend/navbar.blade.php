@@ -1,6 +1,6 @@
 <style>
     .row .select2 {
-        width: 102.75rem !important;
+        width: 80.75rem !important;
     }
 </style>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -129,7 +129,52 @@
     </div>
 </div>
 
+allSearch
+<div class="modal fade" id="allSearch" tabindex="-1" role="dialog" aria-labelledby="allSearch" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="allSearch">All Searches</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
 
+                <div class="row">
+                        
+                        <div class="col-12">
+                        <form method="post" action="{{route('admin.systemorder.createorder')}}">
+                    @csrf
+                    <div class="row">
+                        <div class="col-12">
+
+
+                            
+                                @foreach($searchdata as $searchd)
+                                <p>{{$searchd->name}}</option>
+                                @endforeach
+                           
+
+
+                        </div>
+                    </div>
+                    <br />
+
+                    <div class="col-md-12" style="margin-top: 10px !important;padding-left:0 !important;">
+                        <input type="submit" id="btn_customer" class="btn btn-secondary" value="Continue">
+                        
+                    </div>
+                </form>
+                        </div>
+                </div>
+                
+            </div>
+
+
+        </div>
+    </div>
+</div>
 <div class="modal fade" id="orderCreateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -141,11 +186,14 @@
             </div>
             <div class="modal-body">
 
-
-                <hr>
-
-
-                <form method="post" action="{{route('admin.systemorder.createorder')}}">
+                <div class="row">
+                        <div class="col-3">
+                        <a   href="#allSearch" data-target="#allSearch" data-toggle="modal" class="btn btn-sm btn-primary allSearch">
+                                <i class="fa fa-edit"></i> View All Search
+                             </a>
+                        </div>
+                        <div class="col-9">
+                        <form method="post" action="{{route('admin.systemorder.createorder')}}">
                     @csrf
                     <div class="row">
                         <div class="col-12">
@@ -258,6 +306,9 @@
                         <input type="reset" id="btn_customer" class="btn btn-primary" value="Clear Order">
                     </div>
                 </form>
+                        </div>
+                </div>
+                
             </div>
 
 

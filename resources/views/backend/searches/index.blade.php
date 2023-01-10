@@ -81,15 +81,15 @@
                     @csrf
                     <div class="row">
                         <div class="col-md-12">
-                            <label for="titlefile">File</label>
+                            <label for="titlefile">Name</label>
                             <input type="hidden" name="searchid" id="searchid" value="">
-                            <input type="input" id="searchnameupdate" name="searchnameupdate" placeholder="STARTING ORDER #">
+                            <input type="text" id="searchnameupdate" class="form-control" name="searchnameupdate" placeholder="">
                         </div>
 
 
                     </div>
                     <div class="col-md-12" style="margin-top: 10px !important; padding-left:0px !important;">
-                        <input type="submit" class="btn btn-secondary" value="Upload">
+                        <input type="submit" class="btn btn-secondary" value="Update">
 
                     </div>
                 </form>
