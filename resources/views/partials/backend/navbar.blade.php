@@ -114,8 +114,8 @@
 
                     </div>
 
-                    <br />
-                    <br />
+
+
 
                     <div class="col-md-12" style="margin-top: 10px !important;padding-left:0 !important;">
                         <input type="submit" id="btn_search" class="btn btn-secondary" value="Search">
@@ -292,28 +292,28 @@
                             @csrf
                             <div class="row">
                                 <div class="col-12">
-                                    
+
                                     @foreach($searchdata as $searchd)
                                     @php
                                     $limit = "Z";
-                                    
+
 
                                     for($x = "A", $limit++; $x != $limit; $x++) {
-                                        if(strpos($searchd->name, $x) === 0){
-                                            
-                                    @endphp     
-                                    <div class="col-md-3">   
-                                           <h1> {{$x}}</h1>
-                                           <input type="checkbox" name="searchnames[]" value="{{$searchd->id}}"> &nbsp; {{$searchd->name}} 
+                                    if(strpos($searchd->name, $x) === 0){
+
+                                    @endphp
+                                    <div class="col-md-3">
+                                        <h1> {{$x}}</h1>
+                                        <input type="checkbox" name="searchnames[]" value="{{$searchd->id}}"> &nbsp; {{$searchd->name}}
                                     </div>
-                                           @php        
-                                            
-                                        }
-                                        
+                                    @php
+
+                                    }
+
 
                                     }
                                     @endphp
-                                    
+
 
                                     @endforeach
                                 </div>
