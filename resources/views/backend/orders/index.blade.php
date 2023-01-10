@@ -19,6 +19,7 @@
         <table class="table table-hover">
             <thead>
                 <tr>
+                    
                     <th>Actions</th>
                     <th>Customer</th>
                     <th>File Number</th>
@@ -46,13 +47,17 @@
 
 
                             @else
+                            @if(!empty($order->image_url))
                             <a download href="{{  asset('/storage/titlefiles/'.$order->id.'/'.$order->image_url)  }}" class="btn btn-sm btn-danger" style="color:black;">
                                 <i class="fa fa-download"></i>
                             </a>
                             @endif
+                            @endif
+                            @if(!empty($order->image_url))
                             <a target="_blank" href="{{  asset('/storage/titlefiles/'.$order->id.'/'.$order->image_url)  }}" class="btn btn-sm" style="color:black;">
                                 <i class="fa fa-eye"></i>
                             </a>
+                            @endif
                         </div>
 
                     </td>

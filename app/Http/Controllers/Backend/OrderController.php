@@ -38,7 +38,7 @@ class OrderController extends Controller
             ->get();
         }
         
-        
+       
         return view('backend.orders.index', compact('orders'));
     }
 
@@ -141,7 +141,7 @@ class OrderController extends Controller
             ->leftjoin('order_images', 'orders.id', '=', 'order_images.order_id')
             ->where('user_id',Auth::user()->id)
             ->orderBy('created_at','desc');
-            
+
             if(!empty($customer)){
                 $orders->where('orders.customer','=',$customer);
             }
@@ -239,7 +239,7 @@ class OrderController extends Controller
     }
 
     public function orderImage( Request $request){
-        
+        // dd($request);
         if($request->hasFile('titlefile')){
             $uploadedFile = $request->file('titlefile');
             $filename = time().$uploadedFile->getClientOriginalName();
