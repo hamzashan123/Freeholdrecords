@@ -370,12 +370,14 @@ label {
 }
 
 div#exampleModal .modal-dialog,
-div#orderCreateModal .modal-dialog {
+div#orderCreateModal .modal-dialog ,
+div#allSearch .modal-dialog {
     min-width: 80%;
 }
 
 div#exampleModal .modal-dialog,
-div#orderCreateModal .modal-dialog {
+div#orderCreateModal .modal-dialog,
+div#allSearch .modal-dialog {
     max-width: 100%;
     margin: 0px;
     height: 100vh !important;

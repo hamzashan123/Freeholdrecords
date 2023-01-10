@@ -130,51 +130,8 @@
 </div>
 
 
-<div class="modal fade" id="allSearch" tabindex="-1" role="dialog" aria-labelledby="allSearch" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="allSearch">All Searches</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-
-                <div class="row">
-
-                    <div class="col-12">
-                        <form method="post" action="{{route('admin.systemorder.createorder')}}">
-                            @csrf
-                            <div class="row">
-                                <div class="col-12">
 
 
-
-                                    @foreach($searchdata as $searchd)
-                                    {{$searchd->name}} <input type="checkbox" name="searchnames[]" value="{{ $searchd->id }}">
-                                    @endforeach
-
-
-
-                                </div>
-                            </div>
-                            <br />
-
-                            <div class="col-md-12" style="margin-top: 10px !important;padding-left:0 !important;">
-                                <input type="submit" id="btn_customer" class="btn btn-secondary" value="Continue">
-
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-            </div>
-
-
-        </div>
-    </div>
-</div>
 <div class="modal fade" id="orderCreateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -315,6 +272,55 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="allSearch" tabindex="-1" role="dialog" aria-labelledby="allSearch" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="allSearch">All Searches</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+
+                    <div class="col-12">
+                        <form method="post" action="{{route('admin.systemorder.createorder')}}">
+                            @csrf
+                            <div class="row">
+                                <div class="col-12">
+
+
+
+                                    @foreach($searchdata as $searchd)
+
+                                    <input type="checkbox" name="searchnames[]" value="{{ $searchd->id }}">{{$searchd->name}}
+
+                                    @endforeach
+
+
+
+                                </div>
+                            </div>
+                            <br />
+
+                            <div class="col-md-12" style="margin-top: 10px !important;padding-left:0 !important;">
+                                <input type="submit" id="btn_customer" class="btn btn-secondary" value="Continue">
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
     <!-- Sidebar Toggle (Topbar) -->

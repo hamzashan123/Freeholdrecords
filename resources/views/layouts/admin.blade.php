@@ -122,6 +122,12 @@
             jQuery('#searches').select2({
                 placeholder: "Type Searches Here..."
             });
+
+            // jQuery('.allSearch').on('click', function() {
+            //     jQuery('div#allSearch').css('z-index', '9999');
+            // })
+
+
         })
     </script>
 
