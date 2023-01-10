@@ -456,3 +456,17 @@ button.close span {
 .scroll-to-top {
     background: #d4af37;
 }
+
+.card-header.py-3.d-flex {
+    justify-content: space-between;
+}
+
+.card-header .first {
+    width: 70%;
+}
+
+.card-header  .second {
+    width: 30%;
+    display: flex;
+    justify-content: end;
+}

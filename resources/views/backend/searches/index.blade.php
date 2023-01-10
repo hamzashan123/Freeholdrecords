@@ -5,14 +5,17 @@
 
 <div class="card shadow mb-4">
     <div class="card-header py-3 d-flex">
-        <h6 class="m-0 font-weight-bold text-primary">
-            Searches
-        </h6>
-        <br>
-        <a  href="#searchUpload" data-target="#searchUpload" data-toggle="modal" class="btn btn-sm btn-primary searchUpload">
-                                <i class="fa fa-plus"></i> Add Search
-        </a>
-        
+        <div class="first">
+            <h6 class="m-0 font-weight-bold text-primary">
+                Add New Type Searches
+            </h6>
+        </div>
+        <div class="second">
+            <a href="#searchUpload" data-target="#searchUpload" data-toggle="modal" class="btn btn-sm btn-primary searchUpload">
+                <i class="fa fa-plus"></i> Add Search
+            </a>
+        </div>
+
         <div class="ml-auto">
 
         </div>
@@ -24,38 +27,38 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    
+
                     <th>ID</th>
                     <th>Search Name</th>
                     <th>Action</th>
-                    
+
                 </tr>
             </thead>
             <tbody>
-            @foreach($searches as $search)
+                @foreach($searches as $search)
                 <tr>
-                    
+
                     <td>{{ $search->id }}</td>
                     <td>{{ $search->name }}</td>
                     <td>
                         <div class="btn-group btn-group-sm">
                             @if(Auth::user()->hasRole('admin'))
-                             <a  data-searchid="{{ $search->id }}" data-searchname="{{ $search->name}}" href="#searchEdit" data-target="#searchEdit" data-toggle="modal" class="btn btn-sm btn-primary searchEdit">
+                            <a data-searchid="{{ $search->id }}" data-searchname="{{ $search->name}}" href="#searchEdit" data-target="#searchEdit" data-toggle="modal" class="btn btn-sm btn-primary searchEdit">
                                 <i class="fa fa-edit"></i>
-                             </a>
-                            <a href="{{route('admin.searches.delete',['id' => $search->id])}}"class="btn btn-sm btn-primary">
+                            </a>
+                            <a href="{{route('admin.searches.delete',['id' => $search->id])}}" class="btn btn-sm btn-primary">
                                 <i class="fa fa-trash"></i>
                             </a>
 
                             @endif
 
-                            
+
                         </div>
 
                     </td>
 
                 </tr>
-            @endforeach
+                @endforeach
             </tbody>
 
         </table>
@@ -117,7 +120,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <label for="titlefile">Search Name</label>
-                          
+
                             <input type="input" id="searchname" name="searchname" placeholder="">
                         </div>
 
@@ -136,7 +139,7 @@
 </div>
 <script>
     $('.searchUpload').on('click', function() {
-        
+
     })
 </script>
 
