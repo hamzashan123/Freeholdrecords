@@ -121,7 +121,7 @@
                         <div class="col-md-12">
                             <label for="titlefile">Search Name</label>
 
-                            <input type="input" id="searchname" name="searchname" placeholder="">
+                            <input type="input" id="searchname" name="searchname" class="form-control" placeholder="Add New Search Type...">
                         </div>
 
 
