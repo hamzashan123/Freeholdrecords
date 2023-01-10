@@ -43,7 +43,7 @@ class OrderController extends Controller
     }
 
     public function searchOrder(Request $request){
-
+        //dd($request);
         $titleId = $request->input('search_by_title');
         $fileNumber = $request->input('search_by_fileNumber');
         $search_by_date_range_from = $request->input('search_by_date_range_from');
@@ -55,21 +55,36 @@ class OrderController extends Controller
             $orders = DB::table('orders')
             ->select('orders.*','order_images.image_url')
             ->leftjoin('order_images', 'orders.id', '=', 'order_images.order_id')
-            ->orderBy('created_at','desc')
-            ->where('orders.title_id', 'LIKE', "%{$titleId}%")
-            ->where('orders.file_number', 'LIKE', "%{$fileNumber}%")
-            ->whereBetween('created_on', [$search_by_date_range_from, $search_by_date_range_to])
-            ->get();
+            ->orderBy('created_at','desc');
+            if(!empty($titleId)){
+                $orders->where('orders.title_id', '=', $titleId);
+            }
+           
+            if(!empty($fileNumber)){
+                $orders->where('orders.file_number', '=', $fileNumber);
+            }
+            if(!empty($search_by_date_range_from) && !empty($search_by_date_range_to)){
+                $orders->whereBetween('created_on', [$search_by_date_range_from, $search_by_date_range_to]);
+            }
+            $orders = $orders->get();
+            
         }else{
             $orders = DB::table('orders')
             ->select('orders.*','order_images.image_url')
             ->leftjoin('order_images', 'orders.id', '=', 'order_images.order_id')
             ->where('user_id',Auth::user()->id)
-            ->where('orders.title_id', 'LIKE', "%{$titleId}%")
-            ->where('orders.file_number', 'LIKE', "%{$fileNumber}%")
-            ->whereBetween('created_on', [$search_by_date_range_from, $search_by_date_range_to])
-            ->orderBy('created_at','desc')
-            ->get();
+            ->orderBy('created_at','desc');
+            if(!empty($titleId)){
+                $orders->where('orders.title_id', '=', $titleId);
+            }
+            if(!empty($fileNumber)){
+                $orders->where('orders.file_number', '=', $fileNumber);
+            }
+            if(!empty($search_by_date_range_from) && !empty($search_by_date_range_to)){
+                $orders->whereBetween('created_on', [$search_by_date_range_from, $search_by_date_range_to]);
+            }
+            $orders = $orders->get();
+            
         }
         return view('backend.orders.index', compact('orders'));
     }
