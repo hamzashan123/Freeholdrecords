@@ -159,6 +159,7 @@
                                     <label for="searches"><b>Type Searches here... </b> </label>
                                     <select name="searches[]" id="searches" class="form-control select2" multiple="multiple">
                                         @foreach($searchdata as $searchd)
+
                                         <option value="{{$searchd->name}}">{{$searchd->name}}</option>
                                         @endforeach
                                     </select>
@@ -291,9 +292,28 @@
                             @csrf
                             <div class="row">
                                 <div class="col-12">
+                                    
                                     @foreach($searchdata as $searchd)
+                                    @php
+                                    $limit = "Z";
+                                    
 
-                                    <input type="checkbox" name="searchnames[]" value="{{ $searchd->id }}">{{$searchd->name}}
+                                    for($x = "A", $limit++; $x != $limit; $x++) {
+                                        if(strpos($searchd->name, $x) === 0){
+                                            
+                                    @endphp     
+                                    <div class="col-md-3">   
+                                           <h1> {{$x}}</h1>
+                                           <input type="checkbox" name="searchnames[]" value="{{$searchd->id}}"> &nbsp; {{$searchd->name}} 
+                                    </div>
+                                           @php        
+                                            
+                                        }
+                                        
+
+                                    }
+                                    @endphp
+                                    
 
                                     @endforeach
                                 </div>
