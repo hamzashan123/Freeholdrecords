@@ -88,6 +88,7 @@ class OrderController extends Controller
         return view('backend.orders.index', compact('orders'));
     }
 
+
     public function advanceSearch(Request $request){
         //dd($request);
         $customer = $request->input('customer');
@@ -278,6 +279,44 @@ class OrderController extends Controller
             return redirect()->back()->with('error','Failed to upload file!');
         }
         
+    }
+
+    public function searches(){
+        $searches = DB::table('searches')->get();
+        return view('backend.searches.index',compact('searches'));
+    }
+
+    public function createSearch(Request $request){
+        if(!empty($request->searchname)){
+            DB::table('searches')->insert([
+                'name' => $request->searchname
+            ]);
+            return redirect()->back()->with('success','Search added Successfully');
+        }else{
+            return redirect()->back();
+        }
+    }
+
+    public function deleteSearch(int $id){
+        if(!empty($id)){
+            DB::table('searches')->where('id',$id)->delete();
+            return redirect()->back()->with('success','Search Deleted Successfully');
+        }else{
+            return redirect()->back();
+        }
+        
+    }
+
+    public function updateSearch(Request $request){
+        
+        if(!empty($request->searchnameupdate)){
+            DB::table('searches')->where('id',$request->searchid)->update([
+                'name' => $request->searchnameupdate
+            ]);
+            return redirect()->back()->with('success','Search updated Successfully');
+        }else{
+            return redirect()->back();
+        }
     }
     // public function show(Order $order): View
     // {

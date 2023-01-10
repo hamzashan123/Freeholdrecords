@@ -92,8 +92,10 @@ Route::group(['middleware' => ['roles']], function () {
     Route::post('/titlefileupload', [OrderController::class, 'orderImage'])->name('titlefileupload');
     Route::post('/titleIdSearch', [OrderController::class, 'searchOrder'])->name('titleIdSearch');
     Route::post('/advanceSearch', [OrderController::class, 'advanceSearch'])->name('advanceSearch');
-    
-    
+    Route::get('/searches', [OrderController::class, 'searches'])->name('searches.index');
+    Route::post('/searche-create', [OrderController::class, 'createSearch'])->name('searches.create');
+    Route::get('/searche-delete/{id}', [OrderController::class, 'deleteSearch'])->name('searches.delete');
+    Route::post('/searche-update', [OrderController::class, 'updateSearch'])->name('searches.update');
 
     //new routes here..us
 });

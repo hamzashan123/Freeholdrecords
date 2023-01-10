@@ -49,6 +49,14 @@
             <span>Payment</span></a>
     </li>
     @endif
+    @if(Auth::user()->hasRole('admin'))
+    <hr class="sidebar-divider">
+    <li class="nav-item">
+        <a class="nav-link" href="{{route('admin.searches.index')}}">
+            <i class="fas fa-search fa-2x text-gray-300"></i>
+            <span>Searches</span></a>
+    </li>
+    @endif
 
 
     <hr class="sidebar-divider">

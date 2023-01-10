@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Pagination\Paginator;
+use View;
 use Illuminate\Support\ServiceProvider;
+use DB;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,5 +27,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrap();
+
+        $searchesData = DB::table('searches')->get();
+        View::share ('searchdata', $searchesData );
     }
 }

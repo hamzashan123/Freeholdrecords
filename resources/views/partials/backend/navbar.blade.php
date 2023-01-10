@@ -153,14 +153,9 @@
 
                             <label for="searches"><b>Type Searches here... </b> </label>
                             <select name="searches[]" id="searches" class="form-control select2" multiple="multiple">
-
-                                <option value="AIR RESOURCES SEARCH">AIR RESOURCES SEARCH</option>
-                                <option value="ASSESSED VALUATION">ASSESSED VALUATION</option>
-                                <option value="ASSESSOR'S LETTERS">ASSESSOR'S LETTERS</option>
-                                <option value="ATTORNEY SEARCH">ATTORNEY SEARCH</option>
-
-                                <option value="BANKRUPTCY DOCKET COPIES">BANKRUPTCY DOCKET COPIES</option>
-                                <option value="BANKRUPTCY PROCEEDINGS">BANKRUPTCY PROCEEDINGS</option>
+                                @foreach($searchdata as $searchd)
+                                <option value="{{$searchd->name}}">{{$searchd->name}}</option>
+                                @endforeach
                             </select>
 
 
