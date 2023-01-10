@@ -256,8 +256,7 @@
 
                             </div>
 
-                            <br />
-                            <br />
+
 
                             <div class="col-md-12" style="margin-top: 10px !important;padding-left:0 !important;">
                                 <input type="submit" id="btn_customer" class="btn btn-secondary" value="Order">
