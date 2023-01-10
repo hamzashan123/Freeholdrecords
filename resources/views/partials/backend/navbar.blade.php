@@ -293,6 +293,7 @@
                                 <div class="col-12">
                                     @foreach($searchdata as $searchd)
 
+
                                     <input type="checkbox" name="searchnames[]" value="{{ $searchd->id }}">{{$searchd->name}}
 
                                     @endforeach
