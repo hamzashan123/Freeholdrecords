@@ -152,7 +152,7 @@ allSearch
 
                             
                                 @foreach($searchdata as $searchd)
-                                <p>{{$searchd->name}}</option>
+                                    {{$searchd->name}} <input type="checkbox" name="searchnames[]" value="{{ $searchd->id }}">
                                 @endforeach
                            
 
