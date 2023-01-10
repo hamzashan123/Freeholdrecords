@@ -1,7 +1,7 @@
 <style>
     .row .select2 {
-    width: 102.75rem !important;
-}
+        width: 102.75rem !important;
+    }
 </style>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -19,32 +19,15 @@
                 <hr>
                 <form method="post" action="{{route('admin.advanceSearch')}}">
                     @csrf
-                    <div class="row">
-                        <div class="col-12">
-                                
-                               
-                                    <label for="searches"><b>Type Searches here... </b> </label>
-                                    <select name="searches[]" id="searches" class="form-control select2" multiple="multiple">
-                                            <option value="AIR RESOURCES SEARCH">AIR RESOURCES SEARCH</option>
-                                            <option value="ASSESSED VALUATION">ASSESSED VALUATION</option>
-                                            <option value="ASSESSOR'S LETTERS">ASSESSOR'S LETTERS</option>
-                                            <option value="ATTORNEY SEARCH">ATTORNEY SEARCH</option>
 
-                                            <option value="BANKRUPTCY DOCKET COPIES">BANKRUPTCY DOCKET COPIES</option>
-                                            <option value="BANKRUPTCY PROCEEDINGS">BANKRUPTCY PROCEEDINGS</option>
-                                    </select>
-                                    
-                               
-                            </div>
-                    </div>
                     <div class="row">
-                        
+
                         <div class="col-md-6">
                             <label for="name">CUSTOMER</label>
                             <select name="customer" id="customer" class="form-control">
-                              
+
                                 <option value="">Select Customer</option>
-                                <option value="Absolute Title Agency" value="{{old('customer', isset($request->customer) && $request->customer == 'Absolute Title Agency' ? $request->customer : ''  )}}" >Absolute Title Agency</option>
+                                <option value="Absolute Title Agency" value="{{old('customer', isset($request->customer) && $request->customer == 'Absolute Title Agency' ? $request->customer : ''  )}}">Absolute Title Agency</option>
                                 <option value="Advanced Abstract" value="{{old('customer', isset($request->customer) && $request->customer == 'Advanced Abstract' ? $request->customer : ''  )}}">Advanced Abstract</option>
                                 <option value="E Title Agency" value="{{old('customer', isset($request->customer) && $request->customer == 'E Title Agency' ? $request->customer : ''  )}}">E Title Agency</option>
                             </select>
@@ -59,7 +42,7 @@
                         </div>
                         <div class="col-md-3">
                             <label for="name">REQUESTED BY</label>
-                            <input type="text" value="{{old('requested_by', isset($request->requested_by) ? $request->requested_by : ''  )}}" id="requested_by" name="requested_by" class="form-control"  placeholder="Requested By">
+                            <input type="text" value="{{old('requested_by', isset($request->requested_by) ? $request->requested_by : ''  )}}" id="requested_by" name="requested_by" class="form-control" placeholder="Requested By">
                         </div>
                         <div class="col-md-2">
                             <label for="name">COUNTY</label>
@@ -94,7 +77,7 @@
 
                         <div class="col-md-3">
                             <label for="name">BUILDING NUMBER</label>
-                            <input type="text" id="building_number" value="{{old('building_number', isset($request->building_number) ? $request->building_number : ''  )}}"  name="building_number" class="form-control" placeholder="Building number">
+                            <input type="text" id="building_number" value="{{old('building_number', isset($request->building_number) ? $request->building_number : ''  )}}" name="building_number" class="form-control" placeholder="Building number">
                         </div>
 
                         <div class="col-md-3">
@@ -160,8 +143,29 @@
 
 
                 <hr>
+
+
                 <form method="post" action="{{route('admin.systemorder.createorder')}}">
                     @csrf
+                    <div class="row">
+                        <div class="col-12">
+
+
+                            <label for="searches"><b>Type Searches here... </b> </label>
+                            <select name="searches[]" id="searches" class="form-control select2" multiple="multiple">
+
+                                <option value="AIR RESOURCES SEARCH">AIR RESOURCES SEARCH</option>
+                                <option value="ASSESSED VALUATION">ASSESSED VALUATION</option>
+                                <option value="ASSESSOR'S LETTERS">ASSESSOR'S LETTERS</option>
+                                <option value="ATTORNEY SEARCH">ATTORNEY SEARCH</option>
+
+                                <option value="BANKRUPTCY DOCKET COPIES">BANKRUPTCY DOCKET COPIES</option>
+                                <option value="BANKRUPTCY PROCEEDINGS">BANKRUPTCY PROCEEDINGS</option>
+                            </select>
+
+
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-6">
                             <label for="name">CUSTOMER</label>
@@ -355,6 +359,3 @@
     </ul>
 
 </nav>
-
-
-    

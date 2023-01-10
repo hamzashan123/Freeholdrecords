@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
     <link rel="stylesheet" href="{{ asset('backend/vendor/select2/css/select2.min.css') }}">
-    
+
 
     <livewire:styles />
     @yield('styles')
@@ -76,8 +76,7 @@
     </script>
     <script src="{{ asset('backend/vendor/select2/js/select2.full.min.js') }}"></script>
     <script>
-        
-        jQuery(function () {
+        jQuery(function() {
             // select2
             function matchStart(params, data) {
                 // If there are no search terms, return all of the data
@@ -92,7 +91,7 @@
 
                 // `data.children` contains the actual options that we are matching against
                 var filteredChildren = [];
-                jQuery.each(data.children, function (idx, child) {
+                jQuery.each(data.children, function(idx, child) {
                     if (child.text.toUpperCase().indexOf(params.term.toUpperCase()) == 0) {
                         filteredChildren.push(child);
                     }
@@ -118,6 +117,10 @@
                 closeOnSelect: false,
                 minimumResultsForSearch: Infinity,
                 matcher: matchStart
+            });
+
+            jQuery('#searches').select2({
+                placeholder: "Type Searches Here..."
             });
         })
     </script>
