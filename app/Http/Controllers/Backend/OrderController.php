@@ -261,17 +261,23 @@ class OrderController extends Controller
             
             Storage::disk('local')->put('/public/titlefiles/'.$request->orderid.'/' . $filename, File::get($uploadedFile));
             
-            $exist = DB::table('order_images')->where('order_id',$request->orderid)->first();
-            if(!empty($exist->id)){
-                 DB::table('order_images')->where('order_id',$request->orderid)->update([
-                    'image_url' => $filename
-                 ]);
-            }else{
-                $image = DB::table('order_images')->insert([
-                    'order_id' => $request->orderid,
-                    'image_url' => $filename
-                ]);
-            }
+            DB::table('order_images')->insert([
+                'order_id' => $request->orderid,
+                'image_url' => $filename
+            ]);
+                //         'image_url' => $filename
+                //      ]);
+            // $exist = DB::table('order_images')->where('order_id',$request->orderid)->first();
+            // if(!empty($exist->id)){
+            //      DB::table('order_images')->where('order_id',$request->orderid)->update([
+            //         'image_url' => $filename
+            //      ]);
+            // }else{
+            //     $image = DB::table('order_images')->insert([
+            //         'order_id' => $request->orderid,
+            //         'image_url' => $filename
+            //     ]);
+            // }
             
 
             return redirect()->back()->with('success','File Uploaded Successfully');
@@ -279,6 +285,16 @@ class OrderController extends Controller
             return redirect()->back()->with('error','Failed to upload file!');
         }
         
+    }
+
+    public function orderDocuments(Request $request, $id= null){
+        
+        $data = DB::table('order_images')->where('order_id',$id)->get();
+        
+        $headers = [
+            'Content-type' => 'application/json'
+        ];
+        return response()->json($data, 200, $headers);
     }
 
     public function searches(){

@@ -48,15 +48,18 @@
 
                             @else
                             @if(!empty($order->image_url))
-                            <a download href="{{  asset('/storage/titlefiles/'.$order->id.'/'.$order->image_url)  }}" class="btn btn-sm btn-danger" style="color:black;">
+                            <!-- <a download href="{{  asset('/storage/titlefiles/'.$order->id.'/'.$order->image_url)  }}" class="btn btn-sm btn-danger" style="color:black;">
                                 <i class="fa fa-download"></i>
-                            </a>
+                            </a> -->
                             @endif
                             @endif
                             @if(!empty($order->image_url))
-                            <a target="_blank" href="{{  asset('/storage/titlefiles/'.$order->id.'/'.$order->image_url)  }}" class="btn btn-sm" style="color:black;">
-                                <i class="fa fa-eye"></i>
+                            <a data-orderid="{{ $order->id }}"  class="btn btn-sm btn-danger orderDocuments">
+                                <i class="fa fa-book"></i>
                             </a>
+                            <!-- <a target="_blank" href="{{  asset('/storage/titlefiles/'.$order->id.'/'.$order->image_url)  }}" class="btn btn-sm" style="color:black;">
+                                <i class="fa fa-eye"></i>
+                            </a> -->
                             @endif
                         </div>
 
@@ -121,10 +124,90 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="orderDocuments" tabindex="-1" role="dialog" aria-labelledby="orderDocuments" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="orderDocuments">All Files</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+
+                <form method="post" action="{{route('admin.titlefileupload')}}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="row">
+                        
+                    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Actions</th>
+                    
+                </tr>
+            </thead>
+            <tbody id="bodyData">
+                            <!-- dynamic data comes here with api -->
+                        </tbody>
+           
+
+        </table>
+    </div>
+
+                    </div>
+                  
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+</div>
 <script>
     $('.titleFileUploadbtn').on('click', function() {
         $('#orderid').val('');
         $('#orderid').val($(this).attr("data-orderid"));
     })
+
+    
+    $('.orderDocuments').on('click', function () {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            
+            var orderid  = $(this).data('orderid');
+            console.log(orderid);
+                $.get('{{route("admin.documentslist")}}' + '/'+orderid, function (data) {
+                    console.log(data);
+                    var resultData = data;
+                    var bodyData = '';
+                    var i=1;
+                    $.each(resultData,function(index,row){
+                       
+                        bodyData+="<tr>"
+                        bodyData+="<td>"+ i++ +"</td><td>"+row.image_url+"</td><td><a download href='{{asset('/storage/titlefiles/29/16734728261672865958169_12312022_KAIA_D2DE9E7DE.pdf')}}' class='btn btn-sm' style='color:black;'> <i class='fa fa-download'></i></a><a href='{{asset('/storage/titlefiles/29/16734728261672865958169_12312022_KAIA_D2DE9E7DE.pdf')}}' target='_blank' class='btn btn-sm' style='color:black;'> <i class='fa fa-eye'></i></a></td>";
+                        bodyData+="</tr>";
+                        
+                    })
+
+                    console.log(bodyData);
+                    // $('.projectid').text('Project Unique ID : '+ data.name);
+                    $("#bodyData").html('');
+                    $("#bodyData").append(bodyData);
+                    
+                    $('#orderDocuments').modal('show');
+                    
+              
+          
+        });
+    });
 </script>
 @endsection

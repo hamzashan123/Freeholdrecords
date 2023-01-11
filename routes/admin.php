@@ -90,6 +90,7 @@ Route::group(['middleware' => ['roles']], function () {
     Route::get('/systemorder', [OrderController::class, 'index'])->name('systemorder.index');
     Route::post('/createOrder', [OrderController::class, 'createOrder'])->name('systemorder.createorder');
     Route::post('/titlefileupload', [OrderController::class, 'orderImage'])->name('titlefileupload');
+    Route::get('/orderdocuments/{id?}', [OrderController::class, 'orderDocuments'])->name('documentslist');
     Route::post('/titleIdSearch', [OrderController::class, 'searchOrder'])->name('titleIdSearch');
     Route::post('/advanceSearch', [OrderController::class, 'advanceSearch'])->name('advanceSearch');
     Route::get('/searches', [OrderController::class, 'searches'])->name('searches.index');
