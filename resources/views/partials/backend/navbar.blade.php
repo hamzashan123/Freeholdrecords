@@ -144,126 +144,122 @@
             <div class="modal-body">
 
                 <div class="row">
-                    <div class="col-3">
-                        <a href="#allSearch" data-target="#allSearch" data-toggle="modal" class="btn btn-sm btn-primary allSearch">
-                            <i class="fa fa-edit"></i> View All Search
-                        </a>
-                    </div>
-                    <div class="col-9">
-                        <form method="post" action="{{route('admin.systemorder.createorder')}}">
-                            @csrf
-                            <div class="row">
-                                <div class="col-12">
 
 
-                                    <label for="searches"><b>Type Searches here... </b> </label>
-                                    <select name="searches[]" id="searches" class="form-control select2" multiple="multiple">
-                                        @foreach($searchdata as $searchd)
-
-                                        <option value="{{$searchd->name}}">{{$searchd->name}}</option>
-                                        @endforeach
-                                    </select>
+                    <form method="post" action="{{route('admin.systemorder.createorder')}}">
+                        @csrf
+                        <div class="row">
+                            <div class="col-12">
 
 
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="name">CUSTOMER</label>
-                                    <select name="customer" id="customer" class="form-control">
-                                        <option value="">Select Customer</option>
-                                        <option value="Absolute Title Agency">Absolute Title Agency</option>
-                                        <option value="Advanced Abstract">Advanced Abstract</option>
-                                        <option value="E Title Agency">E Title Agency</option>
-                                    </select>
-                                </div>
-                            </div>
+                                <label for="searches"><b>Type Searches here... </b> </label>
+                                <select name="searches[]" id="searches" class="form-control select2" multiple="multiple">
+                                    @foreach($searchdata as $searchd)
 
-                            <div class="row">
-
-                                <div class="col-md-3">
-                                    <label for="name">YOUR FILE NUMBER</label>
-                                    <input type="text" value="{{ old('file_number') }}" id="file_number" name="file_number" class="form-control" required placeholder="Enter File Number">
-                                </div>
-                                <div class="col-md-3">
-                                    <label for="name">REQUESTED BY</label>
-                                    <input type="text" id="requested_by" name="requested_by" class="form-control" required placeholder="Requested By">
-                                </div>
-                                <div class="col-md-2">
-                                    <label for="name">COUNTY</label>
-                                    <select name="county" id="county" class="form-control">
-                                        <option value="">Select County</option>
-                                        <option value="MANHATTAN">MANHATTAN</option>
-                                        <option value="BRONX">BRONX</option>
-                                        <option value="KINGS">KINGS</option>
-                                        <option value="QUEENS">QUEENS</option>
-                                        <option value="RICHMOND">RICHMOND</option>
-                                        <option value="NASSAU">NASSAU</option>
-                                        <option value="SUFFOLK">SUFFOLK</option>
-                                        <option value="WESTCHESTER">WESTCHESTER</option>
-                                        <option value="PUTNAM">PUTNAM</option>
-                                    </select>
-                                </div>
-
-                                <div class="col-md-2">
-                                    <label for="name">BLOCK</label>
-                                    <input type="text" id="block" name="block" class="form-control" placeholder="Block">
-                                </div>
-
-                                <div class="col-md-2">
-                                    <label for="name">LOT</label>
-                                    <input type="text" id="lot" name="lot" class="form-control" placeholder="Lot">
-                                </div>
-
-
-
-                                <div class="col-md-3">
-                                    <label for="name">BUILDING NUMBER</label>
-                                    <input type="text" id="building_number" name="building_number" class="form-control" placeholder="Building number">
-                                </div>
-
-                                <div class="col-md-3">
-                                    <label for="name">STREET NAME</label>
-                                    <input type="text" id="street_name" name="street_name" class="form-control" placeholder="Street name">
-                                </div>
-                                <div class="col-md-3">
-                                    <label for="name">UNIT #</label>
-                                    <input type="text" id="unit" name="unit" class="form-control" placeholder="unit">
-                                </div>
-
+                                    <option value="{{$searchd->name}}">{{$searchd->name}}</option>
+                                    @endforeach
+                                </select>
 
 
                             </div>
-
-
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="name">RECORD OWNERS</label>
-                                    <input type="text" id="record_owners" name="record_owners" class="form-control" placeholder="Record number">
-                                </div>
-
-                                <div class="col-md-6">
-                                    <label for="name">ADDITIONAL INFO</label>
-                                    <input type="text" id="additional_info" name="additional_info" class="form-control" placeholder="Additional info">
-                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="name">CUSTOMER</label>
+                                <select name="customer" id="customer" class="form-control">
+                                    <option value="">Select Customer</option>
+                                    <option value="Absolute Title Agency">Absolute Title Agency</option>
+                                    <option value="Advanced Abstract">Advanced Abstract</option>
+                                    <option value="E Title Agency">E Title Agency</option>
+                                </select>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="name">DUE DATE</label>
-                                    <input type="date" id="due_date" name="due_date" class="form-control">
-                                </div>
+                        </div>
 
+                        <div class="row">
 
+                            <div class="col-md-3">
+                                <label for="name">YOUR FILE NUMBER</label>
+                                <input type="text" value="{{ old('file_number') }}" id="file_number" name="file_number" class="form-control" required placeholder="Enter File Number">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="name">REQUESTED BY</label>
+                                <input type="text" id="requested_by" name="requested_by" class="form-control" required placeholder="Requested By">
+                            </div>
+                            <div class="col-md-2">
+                                <label for="name">COUNTY</label>
+                                <select name="county" id="county" class="form-control">
+                                    <option value="">Select County</option>
+                                    <option value="MANHATTAN">MANHATTAN</option>
+                                    <option value="BRONX">BRONX</option>
+                                    <option value="KINGS">KINGS</option>
+                                    <option value="QUEENS">QUEENS</option>
+                                    <option value="RICHMOND">RICHMOND</option>
+                                    <option value="NASSAU">NASSAU</option>
+                                    <option value="SUFFOLK">SUFFOLK</option>
+                                    <option value="WESTCHESTER">WESTCHESTER</option>
+                                    <option value="PUTNAM">PUTNAM</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-2">
+                                <label for="name">BLOCK</label>
+                                <input type="text" id="block" name="block" class="form-control" placeholder="Block">
+                            </div>
+
+                            <div class="col-md-2">
+                                <label for="name">LOT</label>
+                                <input type="text" id="lot" name="lot" class="form-control" placeholder="Lot">
                             </div>
 
 
 
-                            <div class="col-md-12" style="margin-top: 10px !important;padding-left:0 !important;">
-                                <input type="submit" id="btn_customer" class="btn btn-secondary" value="Order">
-                                <input type="reset" id="btn_customer" class="btn btn-primary" value="Clear Order">
+                            <div class="col-md-3">
+                                <label for="name">BUILDING NUMBER</label>
+                                <input type="text" id="building_number" name="building_number" class="form-control" placeholder="Building number">
                             </div>
-                        </form>
-                    </div>
+
+                            <div class="col-md-3">
+                                <label for="name">STREET NAME</label>
+                                <input type="text" id="street_name" name="street_name" class="form-control" placeholder="Street name">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="name">UNIT #</label>
+                                <input type="text" id="unit" name="unit" class="form-control" placeholder="unit">
+                            </div>
+
+
+
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="name">RECORD OWNERS</label>
+                                <input type="text" id="record_owners" name="record_owners" class="form-control" placeholder="Record number">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="name">ADDITIONAL INFO</label>
+                                <input type="text" id="additional_info" name="additional_info" class="form-control" placeholder="Additional info">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="name">DUE DATE</label>
+                                <input type="date" id="due_date" name="due_date" class="form-control">
+                            </div>
+
+
+                        </div>
+
+
+
+                        <div class="col-md-12" style="margin-top: 10px !important;padding-left:0 !important;">
+                            <input type="submit" id="btn_customer" class="btn btn-secondary" value="Order">
+                            <input type="reset" id="btn_customer" class="btn btn-primary" value="Clear Order">
+                        </div>
+                    </form>
+
                 </div>
 
             </div>
@@ -273,7 +269,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="allSearch" tabindex="-1" role="dialog" aria-labelledby="allSearch" aria-hidden="true">
+<!-- <div class="modal fade" id="allSearch" tabindex="-1" role="dialog" aria-labelledby="allSearch" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -332,7 +328,7 @@
 
         </div>
     </div>
-</div>
+</div> -->
 
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
