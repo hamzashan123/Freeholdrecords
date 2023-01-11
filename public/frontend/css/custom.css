@@ -162,3 +162,5 @@ div.searchByDateRange {
 .scroll-to-top {
     background: #d4af37;
 }
+
+.table thead th, .table tr {white-space: nowrap;text-align: center;vertical-align: middle;}
