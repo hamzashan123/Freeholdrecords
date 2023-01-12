@@ -53,14 +53,12 @@
                             </a> -->
                             @endif
                             @endif
-                            @if(!empty($order->image_url))
+                            
                             <a data-orderid="{{ $order->id }}"  class="btn btn-sm btn-danger orderDocuments">
                                 <i class="fa fa-book"></i>
                             </a>
-                            <!-- <a target="_blank" href="{{  asset('/storage/titlefiles/'.$order->id.'/'.$order->image_url)  }}" class="btn btn-sm" style="color:black;">
-                                <i class="fa fa-eye"></i>
-                            </a> -->
-                            @endif
+                          
+                            
                         </div>
 
                     </td>

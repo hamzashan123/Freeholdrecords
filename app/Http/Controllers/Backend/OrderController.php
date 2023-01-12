@@ -25,20 +25,18 @@ class OrderController extends Controller
     {
         if(Auth::user()->hasRole('admin')){
             $orders = DB::table('orders')
-            ->select('orders.*','order_images.image_url')
-            ->leftjoin('order_images', 'orders.id', '=', 'order_images.order_id')
+            ->select('orders.*')
             ->orderBy('created_at','desc')
             ->get();
         }else{
             $orders = DB::table('orders')
-            ->select('orders.*','order_images.image_url')
-            ->leftjoin('order_images', 'orders.id', '=', 'order_images.order_id')
+            ->select('orders.*')
             ->where('user_id',Auth::user()->id)
             ->orderBy('created_at','desc')
             ->get();
         }
         
-       
+        //dd($orders);
         return view('backend.orders.index', compact('orders'));
     }
 
