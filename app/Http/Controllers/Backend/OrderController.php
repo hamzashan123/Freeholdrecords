@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Mail\OrderEmail;
+use App\Mail\DocumentUploadEmail;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
@@ -36,7 +37,6 @@ class OrderController extends Controller
             ->get();
         }
         
-        //dd($orders);
         return view('backend.orders.index', compact('orders'));
     }
 
@@ -46,9 +46,7 @@ class OrderController extends Controller
         $fileNumber = $request->input('search_by_fileNumber');
         $search_by_date_range_from = $request->input('search_by_date_range_from');
         $search_by_date_range_to = $request->input('search_by_date_range_to');
-        // $formatDateFrom = Carbon::createFromFormat('Y-m-d', $search_by_date_range_from)->format('Y-m-d H:i:s');
-        // $formatDateTo = Carbon::createFromFormat('Y-m-d', $search_by_date_range_to)->format('Y-m-d H:i:s');
-        //dd($formatDateTo);
+        
         if(Auth::user()->hasRole('admin')){
             $orders = DB::table('orders')
             ->select('orders.*','order_images.image_url')
@@ -88,7 +86,7 @@ class OrderController extends Controller
 
 
     public function advanceSearch(Request $request){
-        //dd($request);
+        
         $customer = $request->input('customer');
         $file_number = $request->input('file_number');
         $requested_by = $request->input('requested_by');
@@ -102,9 +100,6 @@ class OrderController extends Controller
         $additional_info = $request->input('additional_info');
         $due_date = $request->input('due_date');
 
-        // $formatDateFrom = Carbon::createFromFormat('Y-m-d', $search_by_date_range_from)->format('Y-m-d H:i:s');
-        // $formatDateTo = Carbon::createFromFormat('Y-m-d', $search_by_date_range_to)->format('Y-m-d H:i:s');
-        //dd($formatDateTo);
         if(Auth::user()->hasRole('admin')){
             $orders = DB::table('orders')
             ->select('orders.*','order_images.image_url')
@@ -146,7 +141,7 @@ class OrderController extends Controller
             if(!empty($due_date)){
                 $orders->where('orders.due_date','=',$due_date);
             }
-           // dd($request);
+           
             $orders = $orders->get();
         }else{
             $orders = DB::table('orders')
@@ -191,7 +186,7 @@ class OrderController extends Controller
             if(!empty($due_date)){
                 $orders->where('orders.due_date','=',$due_date);
             }
-           // dd($request);
+
             $orders = $orders->get();
             
         }
@@ -223,15 +218,15 @@ class OrderController extends Controller
         if($order){
             try {
 
-                $orderData = [
-                    'orderid' => $order->id,
-                    'titleid' => $titleId,
-                    'user' => Auth::user(),
-                    'msg' => 'Your order has been succesfully created.',
-                    'admin' => false
-                ];
+                // $orderData = [
+                //     'orderid' => $order->id,
+                //     'titleid' => $titleId,
+                //     'user' => Auth::user(),
+                //     'msg' => 'Your order has been succesfully created.',
+                //     'admin' => false
+                // ];
                 
-                Mail::to(Auth::user()->email)->send(new OrderEmail($orderData));
+                // Mail::to(Auth::user()->email)->send(new OrderEmail($orderData));
     
                 $adminData = [
                     'orderid' => $order->id,
@@ -263,20 +258,28 @@ class OrderController extends Controller
                 'order_id' => $request->orderid,
                 'image_url' => $filename
             ]);
-                //         'image_url' => $filename
-                //      ]);
-            // $exist = DB::table('order_images')->where('order_id',$request->orderid)->first();
-            // if(!empty($exist->id)){
-            //      DB::table('order_images')->where('order_id',$request->orderid)->update([
-            //         'image_url' => $filename
-            //      ]);
-            // }else{
-            //     $image = DB::table('order_images')->insert([
-            //         'order_id' => $request->orderid,
-            //         'image_url' => $filename
-            //     ]);
-            // }
+
             
+            try {
+                $order = DB::table('orders')->where('id',$request->orderid)->first();
+                $user = User::where('id',$order->user_id)->first();
+                $orderData = [
+                    'orderid' => $order->id,
+                    'titleid' => $order->title_id,
+                    'user' => $user,
+                    'msg' => 'A new document has been added on your document.',
+                    'link' => $filename,
+                    'admin' => true
+                ];
+                
+                Mail::to($user->email)->send(new DocumentUploadEmail($orderData));
+    
+               
+              
+              } catch (\Exception $e) {
+              
+              }
+                
 
             return redirect()->back()->with('success','File Uploaded Successfully');
         }else{

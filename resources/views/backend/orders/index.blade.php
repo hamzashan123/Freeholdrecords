@@ -191,7 +191,7 @@
                     $.each(resultData,function(index,row){
                        
                         bodyData+="<tr>"
-                        bodyData+="<td>"+ i++ +"</td><td>"+row.image_url+"</td><td><a download href='{{asset('/storage/titlefiles/29/16734728261672865958169_12312022_KAIA_D2DE9E7DE.pdf')}}' class='btn btn-sm' style='color:black;'> <i class='fa fa-download'></i></a><a href='{{asset('/storage/titlefiles/29/16734728261672865958169_12312022_KAIA_D2DE9E7DE.pdf')}}' target='_blank' class='btn btn-sm' style='color:black;'> <i class='fa fa-eye'></i></a></td>";
+                        bodyData+="<td>"+ i++ +"</td><td>"+row.image_url+"</td><td><a download href='{{asset('/storage/titlefiles')}}/"+orderid+"/"+row.image_url+"' class='btn btn-sm' style='color:black;'> <i class='fa fa-download'></i></a><a href='{{asset('/storage/titlefiles')}}/"+orderid+"/"+row.image_url+"' target='_blank' class='btn btn-sm' style='color:black;'> <i class='fa fa-eye'></i></a></td>";
                         bodyData+="</tr>";
                         
                     })
