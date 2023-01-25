@@ -6,6 +6,8 @@ use Illuminate\Pagination\Paginator;
 use View;
 use Illuminate\Support\ServiceProvider;
 use DB;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -30,5 +32,8 @@ class AppServiceProvider extends ServiceProvider
 
         $searchesData = DB::table('searches')->orderBy('name')->get();
         View::share ('searchdata', $searchesData );
+        
+        $alluserslist = User::all();    
+        View::share('alluserslist', $alluserslist);
     }
 }

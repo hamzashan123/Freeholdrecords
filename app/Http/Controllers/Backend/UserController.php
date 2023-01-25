@@ -11,11 +11,11 @@ use App\Traits\ImageUploadTrait;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
-use Auth;
 use App\Mail\UserActivatedByAdmin;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\RegisterUser;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -41,15 +41,20 @@ class UserController extends Controller
             ->when(\request()->status != null, function ($query) {
                 $query->whereStatus(\request()->status);
             })
-            ->orderBy(\request()->sortBy ?? 'id', \request()->orderBy ?? 'desc')
-            ->paginate(\request()->limitBy ?? 25);
-         
+            ->orderBy(\request()->sortBy ?? 'id', \request()->orderBy ?? 'desc');
+            
+            
+            if(Auth::user()->hasRole('admin')){
+                $users = $users->paginate(\request()->limitBy ?? 25);
+            }else{
+               $users =  $users->where('created_by', $me->id)->paginate(\request()->limitBy ?? 25);
+            }
         return view('backend.users.index', compact('users'));
     }
 
     public function create(): View
     {
-        $this->authorize('create_user');
+        //$this->authorize('create_user');
 
         return view('backend.users.create');
     }
@@ -57,7 +62,7 @@ class UserController extends Controller
     public function store(UserRequest $request): RedirectResponse
     {
 
-        $this->authorize('create_user');
+        //$this->authorize('create_user');
 
         if ($request->hasFile('user_image')) {
             $userImage = $this->imageService->storeUserImages($request->username, $request->user_image);
@@ -76,6 +81,7 @@ class UserController extends Controller
             'status' => true,
             'receive_email' => true,
             'user_image' => $userImage ?? NULL,
+            'created_by' => Auth::user()->id
         ]);
         
         $user->markEmailAsVerified();
@@ -112,7 +118,7 @@ class UserController extends Controller
 
     public function edit(User $user): View
     {
-        $this->authorize('edit_user');
+        //$this->authorize('edit_user');
 
         return view('backend.users.edit', compact('user'));
     }
@@ -120,7 +126,7 @@ class UserController extends Controller
     public function update(UserRequest $request, User $user): RedirectResponse
     {
        
-        $this->authorize('edit_user');
+        //$this->authorize('edit_user');
 
         if ($request->hasFile('user_image')) {
             if ($user->user_image) {

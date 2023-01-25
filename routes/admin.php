@@ -89,6 +89,8 @@ Route::group(['middleware' => ['roles']], function () {
 
     Route::get('/systemorder', [OrderController::class, 'index'])->name('systemorder.index');
     Route::post('/createOrder', [OrderController::class, 'createOrder'])->name('systemorder.createorder');
+    Route::get('/order-delete/{id}', [OrderController::class, 'deleteOrder'])->name('systemorder.delete');
+    Route::get('/orderdocument-delete/{id?}', [OrderController::class, 'deleteOrderDocument'])->name('systemorder.deleteOrderDocument');
     Route::post('/titlefileupload', [OrderController::class, 'orderImage'])->name('titlefileupload');
     Route::get('/orderdocuments/{id?}', [OrderController::class, 'orderDocuments'])->name('documentslist');
     Route::post('/titleIdSearch', [OrderController::class, 'searchOrder'])->name('titleIdSearch');
@@ -97,7 +99,7 @@ Route::group(['middleware' => ['roles']], function () {
     Route::post('/searche-create', [OrderController::class, 'createSearch'])->name('searches.create');
     Route::get('/searche-delete/{id}', [OrderController::class, 'deleteSearch'])->name('searches.delete');
     Route::post('/searche-update', [OrderController::class, 'updateSearch'])->name('searches.update');
-
+    
     //new routes here..us
 });
 

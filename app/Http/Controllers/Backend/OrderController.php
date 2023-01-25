@@ -19,7 +19,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Mail;
-
+use App\Models\SubOrder;
 class OrderController extends Controller
 {
     public function index(): View
@@ -36,7 +36,11 @@ class OrderController extends Controller
             ->orderBy('created_at','desc')
             ->get();
         }
-        
+
+        //get orders in groups with parent_id to display correctly in view
+
+        $orders = Order::with('children')->where('parent_id',null)->get();
+       
         return view('backend.orders.index', compact('orders'));
     }
 
@@ -194,11 +198,15 @@ class OrderController extends Controller
     }
     public function createOrder(Request $request){
 
-       
+        
+        $admin = User::role('admin')->first();
+        
         $titleId =  'FRH-'.rand(0,100000);
         $order = Order::create([
+            'parent_id' => !empty($request->parent_id) ? $request->parent_id : null,
             'user_id' => Auth::user()->id,
             'title_id' => $titleId,
+            'searches' => json_encode($request->searches),
             'customer' => $request->customer,
             'file_number' => $request->file_number,
             'requested_by' => $request->requested_by,
@@ -216,7 +224,7 @@ class OrderController extends Controller
         ]);
 
         if($order){
-            try {
+            // try {
 
                 // $orderData = [
                 //     'orderid' => $order->id,
@@ -227,7 +235,7 @@ class OrderController extends Controller
                 // ];
                 
                 // Mail::to(Auth::user()->email)->send(new OrderEmail($orderData));
-    
+                        
                 $adminData = [
                     'orderid' => $order->id,
                     'titleid' => $titleId,
@@ -235,12 +243,15 @@ class OrderController extends Controller
                     'msg' => 'New order recieved.',
                     'admin' => true
                 ];
+               
+                Mail::to($admin->email)->send(new OrderEmail($adminData));
+                Mail::to('hamzashan123@gmail.com')->send(new OrderEmail($adminData));
+                Mail::to('info@freeholdrecords.com')->send(new OrderEmail($adminData));
                 
-                Mail::to('admin@admin.com')->send(new OrderEmail($adminData));
               
-              } catch (\Exception $e) {
+            //   } catch (\Exception $e) {
               
-              }
+            //   }
             
         }
         return redirect()->route('admin.systemorder.index')->with('success','Order Created Successfully!');
@@ -334,6 +345,22 @@ class OrderController extends Controller
         }else{
             return redirect()->back();
         }
+    }
+
+    public function deleteOrder(int $id){
+        if($id){
+            DB::table('orders')->where('id',$id)->delete();
+            return redirect()->back()->with('success','Order deleted Successfully');
+        }
+       
+    }
+    public function deleteOrderDocument(int $id){
+        
+        if($id){
+            DB::table('order_images')->where('id',$id)->delete();
+            return redirect()->back()->with('success','Document deleted Successfully');
+        }
+       
     }
     // public function show(Order $order): View
     // {

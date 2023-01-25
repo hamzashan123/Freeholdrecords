@@ -7,10 +7,12 @@ use App\Models\Link;
 use App\Models\Page;
 use App\Models\Review;
 use App\Models\Tag;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use Auth;
+use Illuminate\Support\Facades\View;
 
 class ViewServiceProvider extends ServiceProvider
 {
@@ -31,6 +33,7 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        
         if (request()->is('admin') || request()->is('admin/*')) {
             view()->composer('*', function ($view) {
                 if (!Cache::has('admin_side_menu')) {
@@ -54,8 +57,10 @@ class ViewServiceProvider extends ServiceProvider
                     
                 ]);
             });
-        }
 
+            
+        }
+        
         if (!request()->is('admin/*')) {
             view()->composer('*', function ($view) {
                 if (!Cache::has('recent_reviews')) {
@@ -92,12 +97,14 @@ class ViewServiceProvider extends ServiceProvider
                     });
                 }
                 $pages_menu = Cache::get('pages_menu');
-
+                
+                
                 $view->with([
                     'recent_reviews' => $recent_reviews,
                     'shop_categories_menu' => $shop_categories_menu,
                     'shop_tags_menu' => $shop_tags_menu,
-                    'pages_menu' => $pages_menu
+                    'pages_menu' => $pages_menu,
+                   
                 ]);
             });
         }

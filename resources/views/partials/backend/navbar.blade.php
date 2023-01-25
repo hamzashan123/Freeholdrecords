@@ -23,14 +23,21 @@
                     <div class="row">
 
                         <div class="col-md-6">
+                           @if(Auth::user()->hasRole('admin'))
                             <label for="name">CUSTOMER</label>
+                            
                             <select name="customer" id="customer" class="form-control">
 
                                 <option value="">Select Customer</option>
-                                <option value="Absolute Title Agency" value="{{old('customer', isset($request->customer) && $request->customer == 'Absolute Title Agency' ? $request->customer : ''  )}}">Absolute Title Agency</option>
-                                <option value="Advanced Abstract" value="{{old('customer', isset($request->customer) && $request->customer == 'Advanced Abstract' ? $request->customer : ''  )}}">Advanced Abstract</option>
-                                <option value="E Title Agency" value="{{old('customer', isset($request->customer) && $request->customer == 'E Title Agency' ? $request->customer : ''  )}}">E Title Agency</option>
+                                @if(!empty($alluserslist))
+                                @foreach($alluserslist as $user)
+                                <option value="{{$user->username}}">{{$user->username}}</option>
+                                @endforeach
+                                @endif
                             </select>
+                            @else
+                            <!-- <input type="text" name="customer" id="customer" value="{{ucfirst(Auth::user()->username)}}" disabled class="form-control" > -->
+                            @endif
                         </div>
                     </div>
 
@@ -148,6 +155,7 @@
 
                     <form method="post" action="{{route('admin.systemorder.createorder')}}">
                         @csrf
+                        
                         <div class="row">
                             <div class="col-12">
 
@@ -166,12 +174,20 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <label for="name">CUSTOMER</label>
+                                @if(Auth::user()->hasRole('admin'))
                                 <select name="customer" id="customer" class="form-control">
+
                                     <option value="">Select Customer</option>
-                                    <option value="Absolute Title Agency">Absolute Title Agency</option>
-                                    <option value="Advanced Abstract">Advanced Abstract</option>
-                                    <option value="E Title Agency">E Title Agency</option>
+                                    @if(!empty($alluserslist))
+                                    @foreach($alluserslist as $user)
+                                    <option value="{{$user->username}}">{{$user->username}}</option>
+                                    @endforeach
+                                    
+                                    @endif
                                 </select>
+                                @else
+                            <input type="text" name="customer" id="customer" value="{{ucfirst(Auth::user()->username)}}" readonly class="form-control" >
+                            @endif
                             </div>
                         </div>
 
@@ -391,7 +407,7 @@
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 @auth()
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()->username }}</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ ucfirst(auth()->user()->username) }}</span>
                 @endauth
                 @if(auth()->user()->user_image)
                 <img class="img-profile rounded-circle" src="{{ asset('storage/images/users/' . auth()->user()->user_image) }}" alt="{{ auth()->user()->full_name }}">

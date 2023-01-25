@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Nicolaslopezj\Searchable\SearchableTrait;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Order extends Model
 {
@@ -124,4 +125,14 @@ class Order extends Model
     {
         return $this->belongsTo(ShippingCompany::class);
     }
+
+    public function parent() {
+        return $this->belongsToOne(static::class, 'parent_id');
+    }
+
+    // Each category may have multiple children
+    public function children() {
+        return  $this->hasMany(static::class, 'parent_id' ,'id');
+    }
+
 }

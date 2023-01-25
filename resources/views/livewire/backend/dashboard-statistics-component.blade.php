@@ -104,11 +104,18 @@
 </div>
 
 <br /><br /><br />
-
+@php 
+    if(Auth::user()->hasRole('admin')){
+        $users = $users->where('status', 'Active');
+    }else{
+        $users = $users->where('status', 'Active')->where('created_by',Auth::user()->id);
+    }
+    
+@endphp
 <div class="card shadow mb-4">
     <div class="card-header py-3 d-flex">
         <h6 class="m-0 font-weight-bold text-primary">
-            Active Users <span id="activeusers"> ({{ count($users->where('status', 'Active')) }}) </span>
+            Active Users <span id="activeusers"> ({{ count($users) }}) </span>
         </h6>
     </div>
 
