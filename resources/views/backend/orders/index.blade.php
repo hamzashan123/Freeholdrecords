@@ -12,6 +12,7 @@
     </div>
  @endif
 
+@if(count($orders) > 0)
 @foreach($orders as $order)
 
 <!-- parent loop -->
@@ -57,9 +58,11 @@
                             <a data-orderid="{{ $order->id }}" href="#titleFileUpload" data-target="#titleFileUpload" data-toggle="modal" class="btn btn-sm btn-danger titleFileUploadbtn">
                                 <i class="fa fa-upload"></i>
                             </a>
+                            @if(count($order->children) < 1)
                             <a  href="{!! route('admin.systemorder.delete', ['id'=>$order->id]) !!}" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-sm btn-danger" style="color:black;">
                                 <i class="fa fa-trash"></i>
                             </a>
+                            @endif
                             @endif
                             
                             <a data-orderid="{{ $order->id }}"  class="btn btn-sm btn-danger orderDocuments">
@@ -204,13 +207,15 @@
   
 
 @endforeach
-
-
-
-
+@else
 <tr>
     <td class="text-center" colspan="6">No orders found.</td>
 </tr>
+@endif
+
+
+
+
 
 <div class="modal fade" id="titleFileUpload" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
