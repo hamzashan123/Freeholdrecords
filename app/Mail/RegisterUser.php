@@ -41,7 +41,7 @@ class RegisterUser extends Mailable
     public function build()
     {
         return $this->view('emails.registerUser')
-        ->subject(ucfirst($this->username).' - Registration successful')
+        ->subject('New User/Customer Registered on your system')
             ->with([
                     'admin' => $this->admin,
                     'username' => $this->username,

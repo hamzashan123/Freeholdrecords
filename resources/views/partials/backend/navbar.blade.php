@@ -114,8 +114,12 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="name">DUE DATE</label>
-                            <input type="date" id="due_date" value="{{old('due_date', isset($request->due_date) ? $request->due_date : ''  )}}" name="due_date" class="form-control">
+                            <label for="name">START DATE</label>
+                            <input type="date" id="start_date" value="{{old('start_date', isset($request->start_date) ? $request->start_date : ''  )}}" name="start_date" class="form-control">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="name">END DATE</label>
+                            <input type="date" id="end_date" value="{{old('end_date', isset($request->end_date) ? $request->end_date : ''  )}}" name="end_date" class="form-control">
                         </div>
 
 

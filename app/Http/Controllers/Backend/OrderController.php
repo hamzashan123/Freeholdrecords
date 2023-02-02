@@ -20,27 +20,21 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Mail;
 use App\Models\SubOrder;
+use Illuminate\Support\Str;
 class OrderController extends Controller
 {
     public function index(): View
     {
         if(Auth::user()->hasRole('admin')){
-            $orders = DB::table('orders')
-            ->select('orders.*')
-            ->orderBy('created_at','desc')
+            $orders = Order::with('children')->where('parent_id',null)->orderBy('created_at','desc')
             ->get();
         }else{
-            $orders = DB::table('orders')
-            ->select('orders.*')
+            $orders = Order::with('children')->where('parent_id',null)
             ->where('user_id',Auth::user()->id)
             ->orderBy('created_at','desc')
             ->get();
         }
 
-        //get orders in groups with parent_id to display correctly in view
-
-        $orders = Order::with('children')->where('parent_id',null)->get();
-       
         return view('backend.orders.index', compact('orders'));
     }
 
@@ -52,7 +46,7 @@ class OrderController extends Controller
         $search_by_date_range_to = $request->input('search_by_date_range_to');
         
         if(Auth::user()->hasRole('admin')){
-            $orders = DB::table('orders')
+            $orders = Order::with('children')->where('parent_id',null)
             ->select('orders.*','order_images.image_url')
             ->leftjoin('order_images', 'orders.id', '=', 'order_images.order_id')
             ->orderBy('created_at','desc');
@@ -68,7 +62,7 @@ class OrderController extends Controller
             $orders = $orders->get();
             
         }else{
-            $orders = DB::table('orders')
+            $orders = Order::with('children')->where('parent_id',null)
             ->select('orders.*','order_images.image_url')
             ->leftjoin('order_images', 'orders.id', '=', 'order_images.order_id')
             ->where('user_id',Auth::user()->id)
@@ -102,10 +96,11 @@ class OrderController extends Controller
         $unit = $request->input('unit');
         $record_owners = $request->input('record_owners');
         $additional_info = $request->input('additional_info');
-        $due_date = $request->input('due_date');
+        $start_date = $request->input('start_date');
+        $end_date = $request->input('end_date');
 
         if(Auth::user()->hasRole('admin')){
-            $orders = DB::table('orders')
+            $orders = Order::with('children')->where('parent_id',null)
             ->select('orders.*','order_images.image_url')
             ->leftjoin('order_images', 'orders.id', '=', 'order_images.order_id')
             ->orderBy('created_at','desc');
@@ -142,13 +137,14 @@ class OrderController extends Controller
             if(!empty($additional_info)){
                 $orders->where('orders.additional_info','=',$additional_info);
             }
-            if(!empty($due_date)){
-                $orders->where('orders.due_date','=',$due_date);
+            //dd($request);
+            if(!empty($start_date) && !empty($end_date)){
+                $orders->whereBetween('created_on', [$start_date, $end_date]);
             }
            
             $orders = $orders->get();
         }else{
-            $orders = DB::table('orders')
+            $orders = Order::with('children')->where('parent_id',null)
             ->select('orders.*','order_images.image_url')
             ->leftjoin('order_images', 'orders.id', '=', 'order_images.order_id')
             ->where('user_id',Auth::user()->id)
@@ -187,8 +183,9 @@ class OrderController extends Controller
             if(!empty($additional_info)){
                 $orders->where('orders.additional_info','=',$additional_info);
             }
-            if(!empty($due_date)){
-                $orders->where('orders.due_date','=',$due_date);
+            
+            if(!empty($start_date) && !empty($end_date)){
+                $orders->whereBetween('created_on', [$start_date, $end_date]);
             }
 
             $orders = $orders->get();
@@ -197,16 +194,31 @@ class OrderController extends Controller
         return view('backend.orders.index', compact('orders','request'));
     }
     public function createOrder(Request $request){
-
         
+        $searches = "";
+        if(!empty($request->searches)){
+            $searches = $request->searches;
+        }
+        if(!empty($request->searchesnew)){
+            $searches = $request->searchesnew;
+        } 
         $admin = User::role('admin')->first();
+        $order = Order::orderBy('created_at','desc')->first();
+        if(!empty($order->title_id)){
+            $orderTitleId = Str::remove('FRH-', $order->title_id); 
+            $updatedNumber = $orderTitleId + 1;
+            $titleId =  'FRH-'.$updatedNumber;
+        }else{
+            $startingOrderId = 1001;
+            $titleId =  'FRH-'.$startingOrderId;
+        }
         
-        $titleId =  'FRH-'.rand(0,100000);
+        
         $order = Order::create([
             'parent_id' => !empty($request->parent_id) ? $request->parent_id : null,
             'user_id' => Auth::user()->id,
             'title_id' => $titleId,
-            'searches' => json_encode($request->searches),
+            'searches' => json_encode($searches),
             'customer' => $request->customer,
             'file_number' => $request->file_number,
             'requested_by' => $request->requested_by,

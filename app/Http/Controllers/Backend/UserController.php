@@ -63,10 +63,11 @@ class UserController extends Controller
     {
 
         //$this->authorize('create_user');
-
+        
         if ($request->hasFile('user_image')) {
             $userImage = $this->imageService->storeUserImages($request->username, $request->user_image);
         }
+        
         $username = $request->first_name.$request->last_name . uniqid();
         $password = $username.uniqid();
         $password_hashed = bcrypt($password);

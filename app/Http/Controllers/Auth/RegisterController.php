@@ -80,7 +80,7 @@ class RegisterController extends Controller
             'username' => $data['first_name'].$data['last_name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
-            'status' => false,
+            'status' => true,
             'password' => Hash::make($data['password'])
         ]);
     
@@ -93,7 +93,7 @@ class RegisterController extends Controller
             'password' => "",
             'email' => $data['email'],
             'usertype' => 'user',
-            'messagetype' => "New User has been registered."
+            'messagetype' => "New User/Customer Registered on your system."
            
         ];
         

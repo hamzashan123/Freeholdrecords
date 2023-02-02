@@ -1,10 +1,11 @@
 <p> Welcome to Freehold Records LLC </p>    
 @if($admin == true)
-<p> New User has been registered .</p>
+<p> New User/Customer Registered on your system .</p>
 
-<p> Login Id : {{$email}} </p>
+<p> Name Of the User : {{$username}} </p>
+<p> Email Of the User : {{$email}} </p>
 
-<p> Please Check the dashboard for further actions thanks. </p>
+
 @else
 <p> Your account is successfully created with Freeholdrecords .</p>
 

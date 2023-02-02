@@ -34,7 +34,7 @@
                     
                     <th>Actions</th>
                     <th>Add Order</th>
-                    <!-- <th>Searches</th> -->
+                    <th>Searches</th>
                     <th>Customer</th>
                     <th>File Number</th>
                     <th>Requested By</th>
@@ -85,14 +85,14 @@
                     
                     @endphp
                     
-                    <!-- <td>
+                    <td>
                     @if(!empty($searches))
                         @for($i = 0; $i < $count; $i++)
                          <span class="badge badge-danger">{{ $searches[$i] }}</span>
                          <br>
                          @endfor
                     @endif
-                    </td> -->
+                    </td>
                     
                     <td>{{ $order->customer }}</td>
                     <td>{{ $order->file_number }}</td>
@@ -122,8 +122,8 @@
                 <tr style="visibility:collapse">
                     
                     <th>Actions</th>
-                    <th>Add Order</th>
-                    <!-- <th>Searches</th> -->
+                   
+                    <th>Searches</th>
                     <th>Customer</th>
                     <th>File Number</th>
                     <th>Requested By</th>
@@ -167,21 +167,21 @@
                                 <i class="fa fa-plus"></i>
                             </a></td>
     @php 
-    $searches = json_decode($child->searches,true);
-    if(!empty($searches)){
-        $count = count($searches);
+    $childsearches = json_decode($child->searches,true);
+    if(!empty($childsearches)){
+        $count = count($childsearches);
     }
     
     @endphp
     
-    <!-- <td>
-    @if(!empty($searches))
+    <td>
+    @if(!empty($childsearches))
         @for($i = 0; $i < $count; $i++)
-         <span class="badge badge-danger">{{ $searches[$i] }}</span>
+         <span class="badge badge-danger">{{ $childsearches[$i] }}</span>
          <br>
          @endfor
     @endif
-    </td> -->
+    </td>
     
     <td>{{ $child->customer }}</td>
     <td>{{ $child->file_number }}</td>
@@ -475,7 +475,7 @@
                         
                         
                             bodyData+="<tr>"
-                            bodyData+="<td>"+ i++ +"</td><td>"+row.image_url+"</td><td><a download href='{{asset('/storage/titlefiles')}}/"+orderid+"/"+row.image_url+"' class='btn btn-sm' style='color:black;'> <i class='fa fa-download'></i></a><a href='{{asset('/storage/titlefiles')}}/"+orderid+"/"+row.image_url+"' target='_blank' class='btn btn-sm' style='color:black;'> <i class='fa fa-eye'></i></a><a href='{{route('admin.systemorder.deleteOrderDocument')}}/"+row.id+"' onclick='return confirm('Are you sure you want to delete?')' class='btn btn-sm' style='color:black;'> <i class='fa fa-trash'></i></a></td>";
+                            bodyData+="<td>"+ i++ +"</td><td>"+row.image_url+"</td><td><a  href='{{asset('/storage/titlefiles')}}/"+orderid+"/"+row.image_url+"' class='btn btn-sm' style='color:black;'> <i class='fa fa-download'></i></a><a href='{{asset('/storage/titlefiles')}}/"+orderid+"/"+row.image_url+"' target='_blank' class='btn btn-sm' style='color:black;'> <i class='fa fa-eye'></i></a>   @if(Auth::user()->hasRole('admin'))<a href='{{route('admin.systemorder.deleteOrderDocument')}}/"+row.id+"' onclick='return confirm('Are you sure you want to delete?')' class='btn btn-sm' style='color:black;'> <i class='fa fa-trash'></i></a>   @endif</td>";
                             bodyData+="</tr>";
                         
                        
