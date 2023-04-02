@@ -7,7 +7,7 @@
                 Products   
             </h6>
             <br>
-            <h3>  (Your Wholesale Discount is {{Auth::user()->discount}}%)</h3>
+            <h3>  @if(Auth::user()->hasRole('user')) (Your Wholesale Discount is {{Auth::user()->discount}}%) @endif</h3>
             <div class="ml-auto">
                 @can('create_category')
                     <a href="{{ route('admin.products.create') }}" class="btn btn-primary">
