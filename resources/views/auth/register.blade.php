@@ -29,8 +29,8 @@
                     <div class="col-lg-6">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4" style="font-weight:bold !important; text-align:left !important;">Register</h1>
-                                <p style="text-align:left;"> This is a secure system and you will need to provide your registration details to access the site</p>
+                                <h1 class="h4 text-gray-900 mb-4" style="font-weight:bold !important; text-align:left !important;">WholeSale Customer Registration</h1>
+                                <p style="text-align:left;"> This is a secure system and you will need to provide your registration details to access the site once approved by admin.</p>
                             </div>
                             <form method="POST" action="{{ route('register') }}">
                                 @csrf
@@ -39,7 +39,7 @@
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="company" class="text-small text-uppercase">{{ __('company') }}</label>
-                                            <input id="company" type="text" class="form-control form-control-lg" name="company" value="{{ old('company') }}" placeholder="First Name">
+                                            <input id="company" type="text" class="form-control form-control-lg" name="company" value="{{ old('company') }}" placeholder="Company">
                                             @error('first_name')<span class="text-danger" role="alert"><strong>{{ $message }}</strong></span>@enderror
                                         </div>
                                     </div>

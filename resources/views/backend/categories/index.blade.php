@@ -4,7 +4,7 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex">
             <h6 class="m-0 font-weight-bold text-primary">
-                Categories
+                Categories List
             </h6>
             <div class="ml-auto">
                 @can('create_category')
@@ -25,8 +25,8 @@
                     <th>ID</th>
                     <th>Image</th>
                     <th>Name</th>
-                    <th>Product count</th>
-                    <th>Parent</th>
+                    <!-- <th>Product count</th> -->
+                    <!-- <th>Parent</th> -->
                     <th>Status</th>
                     <th>Created at</th>
                     <th class="text-center" style="width: 30px;">Action</th>
@@ -48,8 +48,8 @@
                                 {{ $category->name }}
                             </a>
                         </td>
-                        <td>{{ $category->products_count }}</td>
-                        <td>{{ $category->parent->name ?? '' }}</td>
+                        <!-- <td>{{ $category->products_count }}</td> -->
+                        <!-- <td>{{ $category->parent->name ?? '' }}</td> -->
                         <td>{{ $category->status }}</td>
                         <td>{{ $category->created_at }}</td>
                         <td>

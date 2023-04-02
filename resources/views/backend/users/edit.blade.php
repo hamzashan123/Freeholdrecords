@@ -61,25 +61,56 @@
                         @error('phone')<span class="text-danger">{{ $message }}</span>@enderror
                     </div>
                 </div>
+                
+               
+               
+            </div>
+             
+            <div class="row">
+            <div class="col-4">
+                    <div class="form-group">
+                        <label for="company_name" class="text-small text-uppercase">{{ __('Company Name') }}</label>
+                        <input id="company_name" type="text" class="form-control form-control" name="company_name" value="{{ old('company_name', $user->company_name) }}" placeholder="Company Name">
+                        @error('company_name')<span class="text-danger">{{ $message }}</span>@enderror
+                    </div>
+
+                </div>
+
                 <div class="col-4">
+                    <div class="form-group">
+                        <label for="company_contact" class="text-small text-uppercase">{{ __('Company Contact') }}</label>
+                        <input id="company_contact" type="tel" class="form-control form-control" name="company_contact" value="{{ old('company_contact', $user->company_contact) }}" placeholder="Company Contact">
+                        @error('company_contact')<span class="text-danger">{{ $message }}</span>@enderror
+                    </div>
+
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label for="discount" class="text-small text-uppercase">{{ __('% discount ') }}</label>
+                        <input id="discount" type="text" class="form-control form-control" name="discount" value="{{ old('discount', $user->discount) }}" placeholder="Discount">
+                        @error('discount')<span class="text-danger">{{ $message }}</span>@enderror
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                        <div class="form-group">
+                            <label for="status">Status</label>
+                            <select name="status" id="status" class="form-control">
+                                <option value="1" {{ old('status', $user->status) == "Active" ? 'selected' : null }}>Active</option>
+                                <option value="0" {{ old('status', $user->status) == "Inactive" ? 'selected' : null }}>Inactive</option>
+                            </select>
+                            @error('status')<span class="text-danger">{{ $message }}</span>@enderror
+                        </div>
+                </div>
+                <div class="col-6">
                     <div class="form-group">
                         <label for="password" class="text-danger">Change password</label>
                         <input class="form-control" id="password" type="password" name="password" >
                         @error('password')<span class="text-danger">{{ $message }}</span>@enderror
                     </div>
                 </div>
-                <!-- <div class="col-6">
-                    <div class="form-group">
-                        <label for="status">Status</label>
-                        <select name="status" id="status" class="form-control">
-                            <option value="1" {{ old('status', $user->status) == "Active" ? 'selected' : null }}>Active</option>
-                            <option value="0" {{ old('status', $user->status) == "Inactive" ? 'selected' : null }}>Inactive</option>
-                        </select>
-                        @error('status')<span class="text-danger">{{ $message }}</span>@enderror
-                    </div>
-                </div> -->
             </div>
-             
             <div class="row">
                 <div class="col-12">
                     @if($user->user_image)

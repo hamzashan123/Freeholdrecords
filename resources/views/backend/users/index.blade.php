@@ -2,68 +2,22 @@
 
 @section('content')
 
+
 <div class="card shadow mb-4">
     <div class="card-header py-3 d-flex">
         <h6 class="m-0 font-weight-bold text-primary">
-            Add New User
+            Customers List
         </h6>
-    </div>
-    <div class="card-body">
-        <form method="POST" action="{{ route('admin.users.store') }}" enctype="multipart/form-data">
-            @csrf
-            <div class="row">
-                <div class="col-6">
-                    <div class="form-group">
-                        <label for="first_name" class="text-small text-uppercase">{{ __('First Name') }}</label>
-                        <input id="first_name" type="text" class="form-control form-control" name="first_name" value="{{ old('first_name') }}" placeholder="First Name">
-                        @error('first_name')<span class="text-danger">{{ $message }}</span>@enderror
-                    </div>
-
-                </div>
-
-                <div class="col-6">
-                    <div class="form-group">
-                        <label for="last_name" class="text-small text-uppercase">{{ __('Last Name') }}</label>
-                        <input id="last_name" type="text" class="form-control form-control" name="last_name" value="{{ old('last_name') }}" placeholder="Last Name">
-                        @error('last_name')<span class="text-danger">{{ $message }}</span>@enderror
-                    </div>
-
-                </div>
-
-                <div class="col-6">
-                    <div class="form-group">
-                        <label for="email" class="text-small text-uppercase">{{ __('E-Mail') }}</label>
-                        <input id="email" type="email" class="form-control form-control" name="email" value="{{ old('email') }}" placeholder="Enter your Email">
-                        @error('email')<span class="text-danger">{{ $message }}</span>@enderror
-                    </div>
-                </div>
-
-                <div class="col-6">
-                    <div class="form-group">
-                        <label for="phone" class="text-small text-uppercase">{{ __('Phone') }}</label>
-                        <input id="phone" type="tel" class="form-control form-control" name="phone" value="{{ old('phone') }}" placeholder="Phone Number">
-                        @error('phone')<span class="text-danger">{{ $message }}</span>@enderror
-                    </div>
-                </div>
-
+        <div class="ml-auto">
+                @can('create_category')
+                    <a href="{{ route('admin.users.create') }}" class="btn btn-primary">
+                    <span class="icon text-white-50">
+                        <i class="fa fa-plus"></i>
+                    </span>
+                        <span class="text">Add New Customer</span>
+                    </a>
+                @endcan
             </div>
-
-
-
-
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">
-                    <i class="fa fa-plus-circle" aria-hidden="true"></i> {{ __('Add User') }}
-                </button>
-            </div>
-        </form>
-    </div>
-</div>
-<div class="card shadow mb-4">
-    <div class="card-header py-3 d-flex">
-        <h6 class="m-0 font-weight-bold text-primary">
-            Users List
-        </h6>
     </div>
 
 
@@ -71,10 +25,13 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>Avatar</th>
+                    <!-- <th>Avatar</th> -->
                     <th>Name</th>
                     <th>Email</th>
                     <th>Phone</th>
+                    <th>Company Name</th>
+                    <th>Company Contact</th>
+                    <th>% Discount</th>
                     <th>Created At</th>
                     <th>Status</th>
                     <th class="text-center" style="width: 30px;">Action</th>
@@ -83,14 +40,14 @@
             <tbody>
                 @forelse($users as $user)
                 <tr>
-                    <td>
+                    <!-- <td>
 
                         @if($user->user_image)
                         <img class="img-profile rounded-circle" src="{{ asset('storage/images/users/' . $user->user_image) }}" alt="{{ $user->full_name }}" width="60" height="60">
                         @else
                         <img class="img-profile rounded-circle" src="{{ asset('img/avatar.png') }}" alt="{{ $user->full_name }}" width="60" height="60">
                         @endif
-                    </td>
+                    </td> -->
                     <td>
                         {{ $user->first_name }} {{ $user->last_name }}
                     </td>
@@ -99,6 +56,15 @@
                     </td>
                     <td>
                         {{ $user->phone }}
+                    </td>
+                    <td>
+                        {{ $user->company_name }}
+                    </td>
+                    <td>
+                        {{ $user->company_contact }}
+                    </td>
+                    <td>
+                        {{ $user->discount }}
                     </td>
                     <td>
                         {{ $user->created_at }}

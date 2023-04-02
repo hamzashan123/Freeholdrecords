@@ -1,4 +1,4 @@
-<p> Welcome to Freehold Records LLC </p>    
+<p> Welcome to Wholesale Customer Portal </p>    
 @if($admin == true)
 <p> New User/Customer Registered on your system .</p>
 
@@ -7,7 +7,7 @@
 
 
 @else
-<p> Your account is successfully created with Freeholdrecords .</p>
+<p> Your account is successfully created.</p>
 
 <p> Login Id : {{$email}} </p>
 <p>Password: {{$password}} </p>

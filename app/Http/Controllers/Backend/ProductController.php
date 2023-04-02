@@ -19,7 +19,7 @@ class ProductController extends Controller
 
     public function index(): View
     {
-        $this->authorize('access_product');
+        
 
         $products = Product::with('category', 'tags', 'firstMedia')
             ->when(\request()->keyword != null, function ($query) {
@@ -49,8 +49,8 @@ class ProductController extends Controller
         $this->authorize('create_product');
 
         if ($request->validated()){
-            $product = Product::create($request->except('tags', 'images', '_token'));
-            $product->tags()->attach($request->tags);
+            $product = Product::create($request->except('images', '_token'));
+            // $product->tags()->attach($request->tags);
 
             if ($request->images && count($request->images) > 0) {
                 (new ImageService())->storeProductImages($request->images, $product);

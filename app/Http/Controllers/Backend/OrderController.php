@@ -26,11 +26,10 @@ class OrderController extends Controller
     public function index(): View
     {
         if(Auth::user()->hasRole('admin')){
-            $orders = Order::with('children')->where('parent_id',null)->orderBy('created_at','desc')
+            $orders = Order::orderBy('created_at','desc')
             ->get();
         }else{
-            $orders = Order::with('children')->where('parent_id',null)
-            ->where('user_id',Auth::user()->id)
+            $orders = Order::where('user_id',Auth::user()->id)
             ->orderBy('created_at','desc')
             ->get();
         }

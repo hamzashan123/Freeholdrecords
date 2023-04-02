@@ -1,109 +1,66 @@
 <style>
-    .row.activeUser .col-4 {
+    .card-counter{
+    box-shadow: 2px 2px 10px #DADADA;
+    margin: 5px;
+    padding: 20px 10px;
+    background-color: #fff;
+    height: 100px;
+    border-radius: 5px;
+    transition: .3s linear all;
+  }
 
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 10px 20px;
-        box-shadow: 0px 1px 5px 0px rgb(0 0 0 / 33%);
-        margin: 10px 0px;
+  .card-counter:hover{
+    box-shadow: 4px 4px 20px #DADADA;
+    transition: .3s linear all;
+  }
 
+  .card-counter.primary{
+    background-color: #007bff;
+    color: #FFF;
+  }
 
-    }
+  .card-counter.danger{
+    background-color: #ef5350;
+    color: #FFF;
+  }  
 
-    .col-6.body .username {
-        font-weight: bold;
-        font-size: 16px;
-        margin-bottom: 0px;
-    }
+  .card-counter.success{
+    background-color: #66bb6a;
+    color: #FFF;
+  }  
 
+  .card-counter.info{
+    background-color: #26c6da;
+    color: #FFF;
+  }  
 
+  .card-counter i{
+    font-size: 5em;
+    opacity: 0.2;
+  }
 
-    .statusfoot {
-        box-shadow: unset !important;
-    }
+  .card-counter .count-numbers{
+    position: absolute;
+    right: 35px;
+    top: 20px;
+    font-size: 32px;
+    display: block;
+  }
 
-    .col-6.body .userCreatedAt {
-        font-size: 14px;
-        font-weight: 500;
-        color: #5a6779;
-    }
-
-    .col-6.body {
-        margin-top: 7px;
-    }
-
-    .card-header {
-        padding: 20px !important;
-    }
+  .card-counter .count-name{
+    color: white !important;
+    position: absolute;
+    right: 35px;
+    top: 65px;
+    font-style: italic;
+    text-transform: capitalize;
+    opacity: 0.5;
+    display: block;
+    font-size: 18px;
+  }
 </style>
 
-<br /><br />
-<div class="card shadow mb-4">
-    <div class="card-header py-3 d-flex">
-        <h6 class="m-0 font-weight-bold text-primary">
-            Find My Order(s)
-        </h6>
-    </div>
-
-
-    <div class="table-responsive">
-        <div class="row">
-
-            <div class="col-4">
-
-                <form method="post" action="{{route('admin.titleIdSearch')}}">
-                    @csrf
-                    <div class="col-md-12" style="padding-left: 0px;">
-                        <label for="name">Search By Title Id</label>
-                        <input type="text" id="search_by_title" name="search_by_title" class="form-control" placeholder="Search By Title Id">
-                    </div>
-
-                    <div class="col-md-12" style="margin-top: 30px !important; padding-left:0px !important;">
-                        <input type="submit" id="search_by_title_input" class="btn btn-primary" value="Search">
-                    </div>
-                </form>
-            </div>
-
-
-            <div class="col-4">
-
-                <form method="post" action="{{route('admin.titleIdSearch')}}">
-                    @csrf
-                    <div class="col-md-12" style="padding-left: 0px;">
-                        <label for="search_by_fileNumber">Search By File Number</label>
-                        <input type="text" id="search_by_fileNumber" name="search_by_fileNumber" class="form-control" placeholder="Search By File Number">
-                    </div>
-
-                    <div class="col-md-12" style="margin-top: 30px !important; padding-left:0px !important;">
-                        <input type="submit" id="search_by_app_id_input" class="btn btn-primary" value="Search">
-                    </div>
-                </form>
-            </div>
-
-
-            <div class="col-4 ">
-
-                <form method="post" action="{{route('admin.titleIdSearch')}}">
-                    @csrf
-                    <div class="col-md-12" style="padding-left: 0px;">
-                        <label for="name">Search By Date Range</label>
-                        <div class="searchByDateRange">
-                            <input type="date" id="search_by_date_range_from" name="search_by_date_range_from" class="form-control" required>
-                            <input type="date" id="search_by_date_range_to" name="search_by_date_range_to" class="form-control" required>
-                        </div>
-                    </div>
-
-                    <div class="col-md-12" style="margin-top: 30px !important; padding-left:0px !important;">
-                        <input type="submit" id="search_by_app_id" class="btn btn-primary" value="Search">
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<br /><br /><br />
+<br />
 @php 
     if(Auth::user()->hasRole('admin')){
         $users = $users->where('status', 'Active');
@@ -112,132 +69,46 @@
     }
     
 @endphp
-<div class="card shadow mb-4">
-    <div class="card-header py-3 d-flex">
-        <h6 class="m-0 font-weight-bold text-primary">
-            Active Users <span id="activeusers"> ({{ count($users) }}) </span>
-        </h6>
+
+    <div class="row">
+    @if(Auth::user()->hasRole('admin'))
+    <div class="col-md-3">
+      <div class="card-counter primary">
+        <i class="fa fa-code-fork"></i>
+        <span class="count-numbers">12</span>
+        <span class="count-name">Total WholeSale Customers</span>
+      </div>
     </div>
+    @endif
 
-
-    <div class="table-responsive">
-
-        <div class="row activeUser ">
-            @forelse($users as $user)
-
-            @if($user->hasRole('admin') == false)
-            @if($user->status == 'Active')
-            <div class="col-4">
-
-
-
-                <div class="col-2 imghead">
-                    @if($user->user_image)
-                    <img class="img-profile img-profile rounded-circle" src="{{ asset('storage/images/users/' . $user->user_image) }}" alt="{{ $user->full_name }}" width="60" height="60">
-                    @else
-                    <img class="img-profile img-profile rounded-circle" src="{{ asset('img/avatar.png') }}" alt="{{ $user->full_name }}" width="60" height="60">
-                    @endif
-                </div>
-
-                <div class="col-6 body">
-                    <h3 class="username"> {{ $user->first_name }} {{ $user->last_name }} </h3>
-                    <h4 class="userCreatedAt"> Created At: {{ $user->created_at }} </h4>
-
-                </div>
-
-
-                <div class="col-4 statusfoot">
-                    <div class="activeInactive">
-                        <label class="switch">
-                            @if($user->status == 'Active')
-                            <input type="checkbox" id="togBtn" checked class="update_status" data-id="{{$user->id}}">
-                            @else
-                            <input type="checkbox" id="togBtn" class="update_status" data-id="{{$user->id}}">
-                            @endif
-                            <div class="slider round"></div>
-                        </label>
-                    </div>
-                </div>
-
-
-
-
-            </div>
-            @endif
-
-            @endif
-
-
-
-
-            @empty
-
-            <div class="text-center" colspan="6">No Active Users found.</div>
-
-            @endforelse
-        </div>
-
+    <div class="col-md-3">
+      <div class="card-counter danger">
+        <i class="fa fa-ticket"></i>
+        <span class="count-numbers">20</span>
+        <span class="count-name">Total Orders</span>
+      </div>
     </div>
-</div>
+    @if(Auth::user()->hasRole('admin'))
+    <div class="col-md-3">
+      <div class="card-counter success">
+        <i class="fa fa-database"></i>
+        <span class="count-numbers">10</span>
+        <span class="count-name">Active Accounts</span>
+      </div>
+    </div>
+    @endif
+    @if(Auth::user()->hasRole('admin'))
+    <div class="col-md-3">
+      <div class="card-counter info">
+        <i class="fa fa-users"></i>
+        <span class="count-numbers">15</span>
+        <span class="count-name">Users</span>
+      </div>
+    </div>
+    @endif
+
+  </div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $(".update_status").change(function(e) {
-            e.preventDefault();
-            var status = '';
-            if ($(this).is(":checked")) {
-                status = 'Active';
-
-            } else {
-                status = 'Inactive';
-            }
-            var rowid = $(this).attr('data-id');
-
-            $.ajax({
-                type: 'POST',
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                    "userid": rowid,
-                    "status": status
-                },
-                url: "{{route('admin.updatestatus')}}",
-                success: function(data) {
-                    console.log(data.status);
-
-                    if (data.status == 200) {
-                        $('#activeusers').text(data.countusers);
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: data.msg,
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                        window.location.reload();
-                    } else if (data.status == 201) {
-                        $('#activeusers').text(data.countusers);
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'warning',
-                            title: data.msg,
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                        window.location.reload();
-                    } else {
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'danger',
-                            title: 'Failed to update status!',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                    }
-
-                }
-            });
-        });
-    });
-</script>

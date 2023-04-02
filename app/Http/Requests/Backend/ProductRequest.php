@@ -31,11 +31,8 @@ class ProductRequest extends FormRequest
                     'price' => ['required', 'numeric'],
                     'quantity' => ['required', 'numeric'],
                     'category_id' => ['required'],
-                    'tags.*' => ['required'],
-                    'featured' => ['required'],
                     'status' => ['required'],
                     'description' => ['required', 'max:1000'],
-                    'details' => ['required', 'max:10000'],
                     'images' => ['required'],
                     'images.*' => ['mimes:jpg,jpeg,png,gif', 'max:3000']
                 ];
@@ -49,10 +46,6 @@ class ProductRequest extends FormRequest
                     'price' => ['required', 'numeric'],
                     'quantity' => ['required', 'numeric'],
                     'category_id' => ['required'],
-                    'tags.*' => ['required'],
-                    'featured' => ['required'],
-                    'details' => ['required', 'max:10000'],
-                    'review_able' => ['nullable'],
                     'status' => ['required'],
                     'images' => ['nullable'],
                     'images.*' => ['mimes:jpg,jpeg,png,gif', 'max:3000']

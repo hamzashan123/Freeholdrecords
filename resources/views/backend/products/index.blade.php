@@ -4,8 +4,10 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex">
             <h6 class="m-0 font-weight-bold text-primary">
-                Products
+                Products   
             </h6>
+            <br>
+            <h3>  (Your Wholesale Discount is {{Auth::user()->discount}}%)</h3>
             <div class="ml-auto">
                 @can('create_category')
                     <a href="{{ route('admin.products.create') }}" class="btn btn-primary">
@@ -27,14 +29,17 @@
                     <th>ID</th>
                     <th>Image</th>
                     <th>Name</th>
-                    <th>Feature</th>
+                    <th>Description</th>
+                    <th>Code</th>
+                    <th>RRP</th>
+                    <th>Cost Price</th>
                     <th>Quantity</th>
-                    <th>Price</th>
-                    <th>Tags</th>
                     <th>Category</th>
+                    @if(Auth::user()->hasRole('admin'))
                     <th>Status</th>
                     <th>Created at</th>
                     <th class="text-center" style="width: 30px;">Action</th>
+                    @endif
                 </tr>
                 </thead>
                 <tbody>
@@ -50,11 +55,14 @@
                             @endif
                         </td>
                         <td><a href="{{ route('admin.products.show', $product->id) }}">{{ $product->name }}</a></td>
-                        <td>{{ $product->featured }}</td>
+                        <td>{{ $product->description }}</td>
+                        <td>ASD12312 </td>
+                        <td>RRP</td>
+                        <td>{{ $product->price }}</td>
                         <td>{{ $product->quantity }}</td>
-                        <td>SR {{ $product->price }}</td>
-                        <td class="text-danger">{{ $product->tags->pluck('name')->join(', ') }}</td>
+                        
                         <td>{{ $product->category ? $product->category->name : NULL }}</td>
+                        @if(Auth::user()->hasRole('admin'))
                         <td>{{ $product->status }}</td>
                         <td>{{ $product->created_at }}</td>
                         <td>
@@ -76,6 +84,7 @@
                                 @method('DELETE')
                             </form>
                         </td>
+                        @endif
                     </tr>
                 @empty
                     <tr>
@@ -94,5 +103,19 @@
                 </tfoot>
             </table>
         </div>
+
+
+        
     </div>
+
+    <div class="ml-auto">
+                
+                    <a href="{{ route('admin.products.create') }}" class="btn btn-primary">
+                    <span class="icon text-white-50">
+                        <i class="fa fa-plus"></i>
+                    </span>
+                        <span class="text">Submit Order</span>
+                    </a>
+               
+        </div>
 @endsection

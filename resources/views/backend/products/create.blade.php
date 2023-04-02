@@ -64,31 +64,6 @@
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <label for="tags">Tags</label>
-                            <select name="tags[]" id="tags" class="form-control select2" multiple="multiple">
-                                @forelse($tags as $tag)
-                                    <option value="{{ $tag->id }}">{{ $tag->name }}</option>
-                                @empty
-                                @endforelse
-                            </select>
-                            @error('tags')<span class="text-danger">{{ $message }}</span>@enderror
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label for="featured">Featured</label>
-                            <select name="featured" id="featured" class="form-control">
-                                <option value="">---</option>
-                                <option value="1" {{ old('featured') == "1" ? 'selected' : null }}>Yes</option>
-                                <option value="0" {{ old('featured') == "0" ? 'selected' : null }}>No</option>
-                            </select>
-                            @error('featured')<span class="text-danger">{{ $message }}</span>@enderror
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="form-group">
                             <label for="status">Status</label>
                             <select name="status" id="status" class="form-control">
                                 <option value="">---</option>
@@ -98,26 +73,20 @@
                             @error('status')<span class="text-danger">{{ $message }}</span>@enderror
                         </div>
                     </div>
+                   
                 </div>
+                
                 <div class="row">
                     <div class="col-12">
                         <div class="form-group">
                             <label for="description" class="text-small text-uppercase">{{ __('Description') }}</label>
-                            <textarea name="description" rows="3" class="form-control summernote">{!! old('description') !!}</textarea>
+                            <textarea name="description" rows="3" class="form-control ">{!! old('description') !!}</textarea>
                             @error('description')<span class="text-danger">{{ $message }}</span>@enderror
                         </div>
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label for="details" class="text-small text-uppercase">{{ __('Details') }}</label>
-                            <textarea name="details" rows="3" class="form-control summernote">{!! old('details') !!}</textarea>
-                            @error('details')<span class="text-danger">{{ $message }}</span>@enderror
-                        </div>
-                    </div>
-                </div>
+               
                 <div class="row">
                     <div class="col-12">
                         <label for="images">images</label>

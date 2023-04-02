@@ -26,7 +26,7 @@
                             @error('name')<span class="text-danger">{{ $message }}</span>@enderror
                         </div>
                     </div>
-                    <div class="col-3">
+                    <!-- <div class="col-3">
                         <div class="form-group">
                             <label for="parent_id">Parent</label>
                             <select name="parent_id" id="parent_id" class="form-control">
@@ -41,7 +41,7 @@
                             </select>
                             @error('parent_id')<span class="text-danger">{{ $message }}</span>@enderror
                         </div>
-                    </div>
+                    </div> -->
                     <div class="col-3">
                         <div class="form-group">
                             <label for="status">Status</label>

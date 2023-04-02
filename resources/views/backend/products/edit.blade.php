@@ -67,40 +67,7 @@
                             @error('category_id')<span class="text-danger">{{ $message }}</span>@enderror
                         </div>
                     </div>
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label for="tags">Tags</label>
-
-                            <select name="tags[]" id="tags" class="form-control select2" multiple="multiple">
-                                @forelse($tags as $tag)
-                                    <option value="{{ $tag->id }}"
-                                        {{ in_array($tag->id, $product->tags->pluck('id')->toArray()) ? 'selected' : null }}>
-                                        {{ $tag->name }}
-                                    </option>
-                                @empty
-                                @endforelse
-                            </select>
-                            @error('tags')<span class="text-danger">{{ $message }}</span>@enderror
-                        </div>
-                    </div>
-
-
-                </div>
-                <div class="row">
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label for="featured">Featured</label>
-                            <select name="featured" id="featured" class="form-control">
-                                <option
-                                    value="1" {{ old('featured', $product->featured) == "Yes" ? 'selected' : null }}>Yes
-                                </option>
-                                <option value="0" {{ old('featured', $product->featured) == "No" ? 'selected' : null }}>
-                                    No
-                                </option>
-                            </select>
-                            @error('featured')<span class="text-danger">{{ $message }}</span>@enderror
-                        </div>
-                    </div>
+                   
                     <div class="col-6">
                         <div class="form-group">
                             <label for="status">Status</label>
@@ -115,29 +82,21 @@
                             @error('status')<span class="text-danger">{{ $message }}</span>@enderror
                         </div>
                     </div>
+
                 </div>
+                
                 <div class="row">
                     <div class="col-12">
                         <div class="form-group">
                             <label for="description" class="text-small text-uppercase">{{ __('Description') }}</label>
-                            <textarea name="description" class="form-control summernote">
+                            <textarea name="description" class="form-control ">
                                 {!! old('description', $product->description) !!}
                             </textarea>
                             @error('description')<span class="text-danger">{{ $message }}</span>@enderror
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label for="details" class="text-small text-uppercase">{{ __('Details') }}</label>
-                            <textarea name="details" class="form-control summernote">
-                                {!! old('details', $product->description) !!}
-                            </textarea>
-                            @error('details')<span class="text-danger">{{ $message }}</span>@enderror
-                        </div>
-                    </div>
-                </div>
+                
                 <div class="row">
                     <div class="col-12">
                         <label for="images">images</label>

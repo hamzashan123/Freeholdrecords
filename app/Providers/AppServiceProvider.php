@@ -30,10 +30,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrap();
 
-        $searchesData = DB::table('searches')->orderBy('name')->get();
-        View::share ('searchdata', $searchesData );
         
-        $alluserslist = User::all();    
-        View::share('alluserslist', $alluserslist);
     }
 }

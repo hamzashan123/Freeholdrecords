@@ -82,7 +82,9 @@ class UserController extends Controller
             'status' => true,
             'receive_email' => true,
             'user_image' => $userImage ?? NULL,
-            'created_by' => Auth::user()->id
+            'company_name' => $request->company_name,
+            'company_contact' => $request->company_contact,
+            'discount' => $request->discount,
         ]);
         
         $user->markEmailAsVerified();
@@ -150,6 +152,9 @@ class UserController extends Controller
             'phone' => $request->phone,
             'receive_email' => true,
             'user_image' => $userImage ?? NULL,
+            'company_name' => $request->company_name,
+            'company_contact' => $request->company_contact,
+            'discount' => $request->discount,
         ]);
         
         return redirect()->route('admin.users.index')->with([

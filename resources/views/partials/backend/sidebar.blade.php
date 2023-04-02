@@ -4,7 +4,7 @@
         <div class="sidebar-brand-icon rotate-n-15"></div>
         <div class="sidebar-brand-text mx-3">
 
-            <h1> FREEHOLD RECORDS LLC </h1>
+            <h1> WholeSale Customer App </h1>
             <!-- <img src="/logo.png" style="height:100px;"> -->
 
         </div>
@@ -24,39 +24,39 @@
         Interface
     </div> -->
     <!-- Nav Item - Pages Collapse Menu -->
+    @if(Auth::user()->hasRole('admin'))
+    <li class="nav-item active ">
+                <a class="nav-link" href="{{route('admin.categories.index')}}">
+                <i class="fas fa-list-alt fa-2x text-gray-300"></i>
+                    <span>Category Management</span></a>
+    </li>
+    @endif
+    <hr class="sidebar-divider">
+   
+    <li class="nav-item active ">
+                <a class="nav-link" href="{{route('admin.products.index')}}">
+                <i class="fas fa-shopping-cart fa-2x text-gray-300"></i>
+                    <span>Products Management</span></a>
+    </li>
+  
 
-
+    <hr class="sidebar-divider">
+    @if(Auth::user()->hasRole('admin'))
     <li class="nav-item">
         <a class="nav-link" href="{{route('admin.users.index')}}">
             <i class="fas fa-users fa-2x text-gray-300"></i>
-            <span>Users </span></a>
+            <span>Customers</span></a>
     </li>
-
+    @endif
 
     <hr class="sidebar-divider">
 
     <li class="nav-item  ">
         <a class="nav-link" href="{{route('admin.systemorder.index')}}">
             <i class="fas fa-clock fa-2x text-gray-300"></i>
-            <span>Order</span></a>
+            <span>Orders Management</span></a>
     </li>
 
-    @if(Auth::user()->hasRole('user'))
-    <hr class="sidebar-divider">
-    <li class="nav-item">
-        <a class="nav-link">
-            <i class="fas fa-credit-card fa-2x text-gray-300"></i>
-            <span>Payment</span></a>
-    </li>
-    @endif
-    @if(Auth::user()->hasRole('admin'))
-    <hr class="sidebar-divider">
-    <li class="nav-item">
-        <a class="nav-link" href="{{route('admin.searches.index')}}">
-            <i class="fas fa-search fa-2x text-gray-300"></i>
-            <span>Searches</span></a>
-    </li>
-    @endif
 
 
     <hr class="sidebar-divider">
@@ -67,18 +67,7 @@
             <span>Profile </span></a>
     </li>
 
-
-
-
-
-
-    @if(Auth::user()->hasRole('admin'))
-    <!-- <li class="nav-item active ">
-                <a class="nav-link" href="{{route('admin.form360.index')}}">
-                <i class="fas fa-check fa-2x text-gray-300"></i>
-                    <span>Submitted Applications</span></a>
-    </li> -->
-    @endif
+    
     @forelse($admin_side_menu as $link)
     @can($link->permission_title)
     <!-- <li class="nav-item active ">
