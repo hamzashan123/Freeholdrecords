@@ -36,7 +36,7 @@
     <li class="nav-item active ">
                 <a class="nav-link" href="{{route('admin.products.index')}}">
                 <i class="fas fa-shopping-cart fa-2x text-gray-300"></i>
-                    <span>Products Management</span></a>
+                    <span>@if(Auth::user()->hasRole('admin')) Products Management @else  Products @endif</span></a>
     </li>
   
 
@@ -54,7 +54,7 @@
     <li class="nav-item  ">
         <a class="nav-link" href="{{route('admin.systemorder.index')}}">
             <i class="fas fa-clock fa-2x text-gray-300"></i>
-            <span>Orders Management</span></a>
+            <span>@if(Auth::user()->hasRole('admin')) Orders Management @else My Orders @endif </span></a>
     </li>
 
 

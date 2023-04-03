@@ -31,8 +31,8 @@
                     </div>
                     <div class="col-4">
                         <div class="form-group">
-                            <label for="price" class="text-small text-uppercase">{{ __('Price') }}</label>
-                            <input id="price" type="number" class="form-control form-control-lg" name="price"
+                            <label for="price" class="text-small text-uppercase">{{ __('Cost Price') }}</label>
+                            <input id="price" type="number" min=0 step=".01" pattern="^\d+(?:\.\d{1,2})?$"  class="form-control form-control-lg" name="price"
                                    value="{{ old('price') }}" >
                             @error('price')<span class="text-danger">{{ $message }}</span>@enderror
                         </div>
@@ -43,6 +43,24 @@
                             <input id="quantity" type="number" max="10000" class="form-control form-control-lg" name="quantity"
                                    value="{{ old('quantity') }}" >
                             @error('quantity')<span class="text-danger">{{ $message }}</span>@enderror
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="code" class="text-small text-uppercase">{{ __('Code') }}</label>
+                            <input id="code" type="text" max="10000" class="form-control form-control-lg" name="code"
+                                   value="{{ old('code') }}" >
+                            @error('code')<span class="text-danger">{{ $message }}</span>@enderror
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="rrp" class="text-small text-uppercase">{{ __('RRP') }}</label>
+                            <input id="rrp"  type="number"  min=0 step=".01" pattern="^\d+(?:\.\d{1,2})?$" class="form-control form-control-lg" name="rrp"
+                                   value="{{ old('rrp') }}" >
+                            @error('rrp')<span class="text-danger">{{ $message }}</span>@enderror
                         </div>
                     </div>
                 </div>

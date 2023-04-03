@@ -29,7 +29,7 @@ class ProductController extends Controller
                 $query->whereStatus(\request()->status);
             })
             ->orderBy(\request()->sortBy ?? 'id', \request()->orderBy ?? 'desc')
-            ->paginate(\request()->limitBy ?? 10);
+            ->paginate(\request()->limitBy ?? 10000);
 
         return view('backend.products.index', compact('products'));
     }

@@ -80,8 +80,11 @@ class RegisterController extends Controller
             'username' => $data['first_name'].$data['last_name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
-            'status' => true,
-            'password' => Hash::make($data['password'])
+            'status' => false,
+            'password' => Hash::make($data['password']),
+            'company_name' => $data['company_name'],
+            'company_contact' => $data['company_contact'],
+            
         ]);
     
         $user->markEmailAsVerified();

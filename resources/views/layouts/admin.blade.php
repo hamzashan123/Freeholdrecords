@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
     <link rel="stylesheet" href="{{ asset('backend/vendor/select2/css/select2.min.css') }}">
+   
+    
 
 
     <livewire:styles />
@@ -66,7 +68,8 @@
     <!-- summernote -->
     <script src="{{ asset('backend/vendor/summernote/summernote-bs4.min.js') }}"></script>
     <script src="{{asset('countrycode.js')}}"></script>
-
+    
+    
     <script>
         jQuery(document).ready(function() {
             jQuery('#logoutsession').on('click', function() {

@@ -1,13 +1,17 @@
 @extends('layouts.admin')
 
+
+
 @section('content')
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex">
             <h6 class="m-0 font-weight-bold text-primary">
                 Products   
             </h6>
             <br>
-            <h3>  @if(Auth::user()->hasRole('user')) (Your Wholesale Discount is {{Auth::user()->discount}}%) @endif</h3>
+            <h3>  @if(Auth::user()->hasRole('user')) (Your Wholesale Discount is @if(Auth::user()->discount) {{Auth::user()->discount}} @else 0  @endif %) @endif</h3>
             <div class="ml-auto">
                 @can('create_category')
                     <a href="{{ route('admin.products.create') }}" class="btn btn-primary">
@@ -20,10 +24,10 @@
             </div>
         </div>
 
-        @include('partials.backend.filter', ['model' => route('admin.products.index')])
+      
 
         <div class="table-responsive">
-            <table class="table table-hover">
+            <table class="table table-hover" id="producttable">
                 <thead>
                 <tr>
                     <th>ID</th>
@@ -33,6 +37,7 @@
                     <th>Code</th>
                     <th>RRP</th>
                     <th>Cost Price</th>
+                    <th>Your Price</th>
                     <th>Quantity</th>
                     <th>Category</th>
                     @if(Auth::user()->hasRole('admin'))
@@ -56,12 +61,13 @@
                         </td>
                         <td><a href="{{ route('admin.products.show', $product->id) }}">{{ $product->name }}</a></td>
                         <td>{{ $product->description }}</td>
-                        <td>ASD12312 </td>
-                        <td>RRP</td>
-                        <td>{{ $product->price }}</td>
+                        <td>{{ $product->code }} </td>
+                        <td>£{{ $product->rrp }}</td>
+                        <td>£{{ $product->price }}</td>
+                        <td>£{{ number_format( $product->price - (Auth::user()->discount / 100) * $product->price , 2 )}}</td>
                         <td>{{ $product->quantity }}</td>
                         
-                        <td>{{ $product->category ? $product->category->name : NULL }}</td>
+                        <td> <b> {{ $product->category ? $product->category->name : NULL }} </b></td>
                         @if(Auth::user()->hasRole('admin'))
                         <td>{{ $product->status }}</td>
                         <td>{{ $product->created_at }}</td>
@@ -118,4 +124,8 @@
                     </a>
                
         </div>
+
+        <script>
+            let table = new DataTable('#producttable');
+        </script>
 @endsection

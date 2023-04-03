@@ -1,6 +1,8 @@
 @extends('layouts.admin')
 
 @section('content')
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex">
             <h6 class="m-0 font-weight-bold text-primary">
@@ -11,15 +13,15 @@
             </div>
         </div>
 
-        @include('backend.orders.filter')
+        <!-- @include('backend.orders.filter') -->
 
         <div class="table-responsive">
-            <table class="table table-hover">
+            <table class="table table-hover" id="orderstable">
                 <thead>
                 <tr>
-                    <th>Ref ID</th>
+                    <th>#</th>
                     <th>User</th>
-                    <th>Payment method</th>
+                    <th>OrderId</th>
                     <th>Amount</th>
                     <th>Status</th>
                     <th>Create date</th>
@@ -33,11 +35,11 @@
                                 {{ $order->ref_id }}
                             </a>
                         </td>
-                        <td>{{ $order->user->full_name }}</td>
-                        <td>{{ $order->paymentMethod->name }}</td>
-                        <td>{{ $order->currency() . $order->total }}</td>
-                        <td>{!! $order->statusWithBadge() !!}</td>
-                        <td>{{ $order->created_at->format('Y-m-d h:i a') }}</td>
+                        <td>sada</td>
+                        <td>asdas</td>
+                        <td>dasd</td>
+                      
+                        <td>adsd</td>
                         <td>
                             <a href="javascript:void(0);"
                                onclick="if (confirm('Are you sure to delete this record?'))
@@ -54,9 +56,7 @@
                         </td>
                     </tr>
                 @empty
-                    <tr>
-                        <td class="text-center" colspan="6">No orders found.</td>
-                    </tr>
+                    
                 @endforelse
                 </tbody>
                 <tfoot>
@@ -71,4 +71,9 @@
             </table>
         </div>
     </div>
+
+
+    <script>
+            let table = new DataTable('#orderstable');
+        </script>
 @endsection

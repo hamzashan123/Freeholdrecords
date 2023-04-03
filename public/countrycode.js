@@ -7,9 +7,9 @@
 // const phoneInputField3 = document.querySelector(
 //     "#workexpintracompany_contact_details_work_period_phone"
 // );
-const company_contact = document.querySelector(
-    "#company_contact"
-);
+// const company_contact = document.querySelector(
+//     "#company_contact"
+// );
 // const phoneInputField4 = document.querySelector('#edu_info_apprenticeship_referee_phone');
 // const phoneInputField5 = document.querySelector('#work_notin_referee_phone');
 // const phoneInputField6 = document.querySelector('#work_referee_phone');
@@ -29,11 +29,11 @@ const company_contact = document.querySelector(
 //     utilsScript:
 //         "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
 // });
-const phoneInput4 = window.intlTelInput(company_contact, {
-    initialCountry: "us",
-    utilsScript:
-        "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-});
+// const phoneInput4 = window.intlTelInput(company_contact, {
+//     initialCountry: "us",
+//     utilsScript:
+//         "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+// });
 // const phoneInput4 = window.intlTelInput(phoneInputField4, {
 //     initialCountry: 'au',
 //     utilsScript:

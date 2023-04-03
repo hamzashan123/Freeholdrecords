@@ -1,6 +1,8 @@
 @extends('layouts.admin')
 
 @section('content')
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex">
             <h6 class="m-0 font-weight-bold text-primary">
@@ -17,9 +19,9 @@
                 @endcan
             </div>
         </div>
-        @include('partials.backend.filter', ['model' => route('admin.categories.index')])
+        <!-- @include('partials.backend.filter', ['model' => route('admin.categories.index')]) -->
         <div class="table-responsive">
-            <table class="table table-hover">
+            <table class="table table-hover" id="categorytable">
                 <thead>
                 <tr>
                     <th>ID</th>
@@ -90,4 +92,8 @@
             </table>
         </div>
     </div>
+
+    <script>
+            let table = new DataTable('#categorytable');
+        </script>
 @endsection
