@@ -154,4 +154,14 @@ class ProductController extends Controller
 
         return true;
     }
+
+    public function getSingleProduct(Request $request){
+
+        $product = Product::findOrFail($request->product_id);
+
+        return response()->json([
+            'data' => $product,
+            'status' => true
+        ]);
+    }
 }

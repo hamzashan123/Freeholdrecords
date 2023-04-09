@@ -72,6 +72,12 @@ Route::group(['middleware' => ['roles']], function () {
     Route::get('/viewuser/{id}', [ConsultantController::class, 'viewUsers'])->name('consultant.user.list');
     Route::get('/deleteuser/{userid}/{consultantid}', [ConsultantController::class, 'deleteConsultantUser'])->name('consultant.user.delete');
 
+    Route::post('/getProduct', [ProductController::class, 'getSingleProduct'])->name('singleproduct');
+    Route::post('/submitorder', [OrderController::class, 'submitOrder'])->name('submitOrder');
+
+
+
+
     Route::get('/getformdetails/{userid}/{form_id}', [FormController::class, 'getFormDetails'])->name('userform.details');
     
     Route::get('/forms', [FormController::class, 'index'])->name('forms.index');

@@ -3,6 +3,9 @@
 @section('content')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
 <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script> 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex">
             <h6 class="m-0 font-weight-bold text-primary">
@@ -19,12 +22,12 @@
             <table class="table table-hover" id="orderstable">
                 <thead>
                 <tr>
-                    <th>#</th>
-                    <th>User</th>
-                    <th>OrderId</th>
+                    <th>#orderId</th>
+                    <th>Customer Name</th>
                     <th>Amount</th>
                     <th>Status</th>
                     <th>Create date</th>
+                    <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -32,14 +35,13 @@
                     <tr>
                         <td>
                             <a href="{{ route('admin.orders.show', $order) }}">
-                                {{ $order->ref_id }}
+                                {{ $order->id }}
                             </a>
                         </td>
-                        <td>sada</td>
-                        <td>asdas</td>
-                        <td>dasd</td>
-                      
-                        <td>adsd</td>
+                        <td>{{ $order->user->username}}</td>
+                        <td>{{ $order->amount }}</td>
+                        <td>{{ $order->status}}</td>
+                        <td>{{ $order->created_at}}</td>
                         <td>
                             <a href="javascript:void(0);"
                                onclick="if (confirm('Are you sure to delete this record?'))
@@ -59,21 +61,21 @@
                     
                 @endforelse
                 </tbody>
-                <tfoot>
-                <tr>
-                    <td colspan="6">
-                        <div class="float-right">
-                            
-                        </div>
-                    </td>
-                </tr>
-                </tfoot>
+               
             </table>
         </div>
     </div>
 
 
     <script>
-            let table = new DataTable('#orderstable');
+       
+            $('#orderstable').DataTable( {
+                dom: 'Bfrtip',
+                buttons: [
+                     'csv' , 'pdf'
+                ]
+            } );
+       
+            
         </script>
 @endsection

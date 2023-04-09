@@ -11,7 +11,7 @@ class OrderProduct extends Model
 
     protected $guarded = [];
 
-    protected $table = 'order_product';
+    protected $table = 'order_products';
 
     public $timestamps = false;
     public $incrementing = false;

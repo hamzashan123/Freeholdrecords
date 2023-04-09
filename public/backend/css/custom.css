@@ -486,3 +486,10 @@ button.close span {
 }
 
 .table thead th, .table tr {white-space: nowrap;text-align: center;vertical-align: middle;}
+
+a.dt-button.buttons-csv.buttons-html5 {
+    background: #eae6e6;
+    padding: 18px !important;
+    color: black;
+    text-align: right;
+}

@@ -71,7 +71,7 @@
 @endphp
 
     <div class="row">
-    @if(Auth::user()->hasRole('admin'))
+    <!-- @if(Auth::user()->hasRole('admin'))
     <div class="col-md-3">
       <div class="card-counter primary">
         <i class="fa fa-code-fork"></i>
@@ -79,20 +79,23 @@
         <span class="count-name">Total WholeSale Customers</span>
       </div>
     </div>
-    @endif
+    @endif -->
 
+    @if(Auth::user()->hasRole('user'))
     <div class="col-md-3">
       <div class="card-counter danger">
         <i class="fa fa-ticket"></i>
-        <span class="count-numbers">20</span>
-        <span class="count-name">Total Orders</span>
+        <span class="count-numbers">{{ count($orders) }}</span>
+        <span class="count-name">My Orders</span>
       </div>
     </div>
+    @endif
+
     @if(Auth::user()->hasRole('admin'))
     <div class="col-md-3">
       <div class="card-counter success">
         <i class="fa fa-database"></i>
-        <span class="count-numbers">10</span>
+        <span class="count-numbers"> {{ count($users)}}</span>
         <span class="count-name">Active Accounts</span>
       </div>
     </div>
@@ -101,7 +104,7 @@
     <div class="col-md-3">
       <div class="card-counter info">
         <i class="fa fa-users"></i>
-        <span class="count-numbers">15</span>
+        <span class="count-numbers"> {{count($users) }}</span>
         <span class="count-name">Users</span>
       </div>
     </div>

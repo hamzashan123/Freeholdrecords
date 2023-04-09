@@ -17,10 +17,13 @@ class DashboardStatisticsComponent extends Component
     public $currentMonthOrderFinished = 0;
 
     public $users;
+    public $orders;
 
     public function mount()
     {
         $this->users = User::where('id','!=', Auth::user()->id)->get();
+        $this->orders = Order::where('user_id','=', Auth::user()->id)->get();
+        
     }
 
     public function render()

@@ -60,7 +60,7 @@
                             </form>
                             <hr>
                             <div class="text-center" id="registerDiv">
-                                <a class="small" href="{{ route('register') }}">Register/Don’t have an account? </a>
+                                <a class="small" href="{{ route('register') }}">Request for and account? </a>
                             </div>
                             <div class="" id="forgetPassword">
                                 <a class="small" href="{{ route('admin.forgot_password') }}">Forgot Password?</a>

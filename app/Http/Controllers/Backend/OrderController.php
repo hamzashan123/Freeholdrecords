@@ -29,12 +29,78 @@ class OrderController extends Controller
             $orders = Order::orderBy('created_at','desc')
             ->get();
         }else{
-            $orders = Order::where('user_id',Auth::user()->id)
+            $orders = Order::with('user')->with('orderProduct')->where('user_id',Auth::user()->id)
             ->orderBy('created_at','desc')
             ->get();
         }
 
+        // dd($orders[0]->orderProduct->sum('price'));
         return view('backend.orders.index', compact('orders'));
+    }
+
+    public function submitOrder(Request $request){
+        //dd($request);
+        
+        $orderId = DB::table('orders')->insertGetId([
+            'user_id' => Auth::user()->id,
+            'amount' => $request->amount,
+            'status' => 'pending',
+            'created_at' => Carbon::now()->format('Y-m-d')
+        ]);
+        
+       
+
+        if(!empty($request->product_ids)){
+            foreach($request->product_ids as $key => $product_id){
+                $order = DB::table('order_products')->insertGetId([
+                    'order_id' => $orderId,
+                    'product_id' => $product_id,
+                    'quantity' => $request->product_quantities[$key]
+                ]);
+    
+                $selectedQuantity = $request->product_quantities[$key];
+                $product = DB::table('products')->where('id',$product_id)->first();
+                $updateQuantity = $product->quantity - $selectedQuantity;
+                DB::table('products')->where('id',$product_id)->update([
+                    'quantity' => $updateQuantity
+                ]);
+            }
+    
+            $adminData = [
+                'orderid' => $orderId,
+                'user' => Auth::user(),
+                'orderHtml' => $request->orderHtml,
+                'msg' => 'New order recieved.',
+                'amount' => $request->amount,
+                'admin' => true
+            ];
+           
+            $admin = User::role('admin')->first();
+    
+            Mail::to($admin->email)->send(new OrderEmail($adminData));
+            
+            $userData = [
+                'orderid' => $orderId,
+                'user' => Auth::user(),
+                'orderHtml' => $request->orderHtml,
+                'amount' => $request->amount,
+                'msg' => 'Your order has been placed. Thank you',
+                'admin' => false
+            ];
+
+            Mail::to(Auth::user()->email)->send(new OrderEmail($userData));
+
+            return response()->json([
+                'status' => 'success',
+                'msg' => 'Order Placed Successfully' 
+            ]);
+        }else{
+            return response()->json([
+                'status' => 'failure',
+                'msg' => 'Something went wrong!' 
+            ]);
+        }
+        
     }
 
     public function searchOrder(Request $request){
@@ -452,15 +518,15 @@ class OrderController extends Controller
     //     }
     // }
 
-    // public function destroy(Order $order): RedirectResponse
-    // {
-    //     $this->authorize('delete_order');
+    public function destroy(Order $order): RedirectResponse
+    {
+        $this->authorize('delete_order');
 
-    //     $order->delete();
+        $order->delete();
 
-    //     return redirect()->route('admin.orders.index')->with([
-    //         'message' => 'Deleted successfully',
-    //         'alert-type' => 'success'
-    //     ]);
-    // }
+        return redirect()->route('admin.orders.index')->with([
+            'message' => 'Deleted successfully',
+            'alert-type' => 'success'
+        ]);
+    }
 }

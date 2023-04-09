@@ -12,9 +12,10 @@ class OrderEmail extends Mailable
     use Queueable, SerializesModels;
 
     protected $orderid;
-    protected $titleid;
+    protected $amount;
     protected $user;
     protected $msg;
+    protected $orderHtml;
     protected $isAdmin;
 
     /**
@@ -25,7 +26,8 @@ class OrderEmail extends Mailable
     public function __construct($data)
     {
         $this->orderid = $data['orderid'];
-        $this->titleid = $data['titleid'];
+        $this->orderHtml = $data['orderHtml'];
+        $this->amount = $data['amount'];
         $this->user = $data['user'];
         $this->msg = $data['msg'];
         $this->isAdmin = $data['admin'];
@@ -42,7 +44,8 @@ class OrderEmail extends Mailable
         ->subject('Order Recieved!')
             ->with([
                     'orderid' => $this->orderid,
-                    'titleid' => $this->titleid,
+                    'orderHtml' => $this->orderHtml,
+                    'amount' => $this->amount,
                     'user' => $this->user,
                     'msg' => $this->msg,
                     'admin' => $this->isAdmin,

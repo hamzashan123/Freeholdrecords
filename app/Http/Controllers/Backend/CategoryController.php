@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\CategoryRequest;
 use App\Models\Category;
+use App\Models\Product;
 use App\Traits\ImageUploadTrait;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -110,12 +111,23 @@ class CategoryController extends Controller
 
     public function destroy(Category $category): RedirectResponse
     {
+
         $this->authorize('delete_category');
 
         if ($category->cover) {
             if (File::exists('storage/assets/images/categories/'. $category->cover)) {
                 unlink('storage/assets/images/categories/'. $category->cover);
             }
+        }
+
+        $productExist = Product::where('category_id',$category->id)->exists();
+        
+        if($productExist == true){
+
+            return redirect()->route('admin.categories.index')->with([
+                'message' => 'Category is already assigned with products you must need to delete the products first.',
+                'alert-type' => 'danger'
+            ]);
         }
 
         $category->delete();
