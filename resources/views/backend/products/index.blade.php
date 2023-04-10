@@ -199,24 +199,28 @@ div#yourorder {
                 $html = $(emailTemplate);
                 $html.find('thead th:last-child').remove();
                 $html.find('tbody tr td:last-child').remove();
+
+                var formatTemplate = '';
+
                 $html.each(function(index, element) {
                     console.log($(element).html());
+                    formatTemplate += $(element).html();
                 });
-                // $.post('{{route("admin.submitOrder")}}',
-                // {
-                //             "_token": "{{ csrf_token() }}",
-                //             product_ids : productIds,
-                //             product_quantities: productquantities,
-                //             amount: $('#grandTotal').text(),
-                //             orderHtml: $('#yourorder').html()
-                // },
-                // function(data, status){
-                //         console.log(data.data);
-                //         console.log(data.status);
-                //         if(data.status == 'success'){
-                //             window.location.reload()
-                //         }
-                // });
+                $.post('{{route("admin.submitOrder")}}',
+                {
+                            "_token": "{{ csrf_token() }}",
+                            product_ids : productIds,
+                            product_quantities: productquantities,
+                            amount: $('#grandTotal').text(),
+                            orderHtml: formatTemplate
+                },
+                function(data, status){
+                        console.log(data.data);
+                        console.log(data.status);
+                        if(data.status == 'success'){
+                            window.location.reload()
+                        }
+                });
             });
 
 
