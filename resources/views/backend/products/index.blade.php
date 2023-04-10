@@ -193,22 +193,30 @@ div#yourorder {
 
                 console.log('productIds', productIds);
                 console.log('productquantities', productquantities);
+                var orderHtml = $('#yourorder').html();
 
-                $.post('{{route("admin.submitOrder")}}',
-                {
-                            "_token": "{{ csrf_token() }}",
-                            product_ids : productIds,
-                            product_quantities: productquantities,
-                            amount: $('#grandTotal').text(),
-                            orderHtml: $('#yourorder').html()
-                },
-                function(data, status){
-                        console.log(data.data);
-                        console.log(data.status);
-                        if(data.status == 'success'){
-                            window.location.reload()
-                        }
+                var emailTemplate = jQuery('div#yourorder').html();
+                $html = $(emailTemplate);
+                $html.find('thead th:last-child').remove();
+                $html.find('tbody tr td:last-child').remove();
+                $html.each(function(index, element) {
+                    console.log($(element).html());
                 });
+                // $.post('{{route("admin.submitOrder")}}',
+                // {
+                //             "_token": "{{ csrf_token() }}",
+                //             product_ids : productIds,
+                //             product_quantities: productquantities,
+                //             amount: $('#grandTotal').text(),
+                //             orderHtml: $('#yourorder').html()
+                // },
+                // function(data, status){
+                //         console.log(data.data);
+                //         console.log(data.status);
+                //         if(data.status == 'success'){
+                //             window.location.reload()
+                //         }
+                // });
             });
 
 
