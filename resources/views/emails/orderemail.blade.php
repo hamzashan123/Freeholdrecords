@@ -5,9 +5,11 @@
 <p>{!!$msg!!}</p>
 
 <p>Order Details :</p>
-{!! $orderHtml !!}
+
 <p>Your OrderId : {!!$orderid!!}</p>
-<p>Order Total : {!!$amount!!}</p>
+{!! $orderHtml !!}
+
+
 
 
 Thanks,<br>
@@ -18,11 +20,15 @@ Thanks,<br>
 
 <p>{!!$msg!!}</p>
 
+
+
 <p>Order Details :</p>
-<p>Order ID : {!!$orderid!!}</p>
 <p>Username : {!!$user->username!!}</p>
 <p>Email : {!!$user->email!!}</p>
-<p>Order Total : {!!$amount!!}</p>
+
+<p>Order ID : {!!$orderid!!}</p>
+{!! $orderHtml !!}
+
 
 
 Thanks,<br>
