@@ -206,6 +206,9 @@ div#yourorder {
                     console.log($(element).html());
                     formatTemplate += $(element).html();
                 });
+
+                $html.find('table').attr('border');
+                
                 $.post('{{route("admin.submitOrder")}}',
                 {
                             "_token": "{{ csrf_token() }}",
