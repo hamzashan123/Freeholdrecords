@@ -493,3 +493,9 @@ a.dt-button.buttons-csv.buttons-html5 {
     color: black;
     text-align: right;
 }
+
+
+
+a#alertsDropdown {
+    display: none;
+}
