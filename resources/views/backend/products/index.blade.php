@@ -200,7 +200,7 @@ div#yourorder {
                 // $html.find('thead th:last-child').remove();
                 // $html.find('tbody tr td:last-child').remove();
 
-                // var formatTemplate = '';
+                var formatTemplate = '';
 
                 // $html.each(function(index, element) {
                 //     console.log($(element).html());
