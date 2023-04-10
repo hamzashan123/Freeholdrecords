@@ -20,9 +20,9 @@
 
 
         <!-- Nav Item - Alerts -->
-        <li class="nav-item dropdown no-arrow mx-1">
+        <!-- <li class="nav-item dropdown no-arrow mx-1">
             <livewire:backend.notification-component />
-        </li>
+        </li> -->
 
         <!-- Nav Item - Messages -->
 
@@ -42,14 +42,14 @@
         @endcan -->
 
 
-        @can('access_setting')
+        <!-- @can('access_setting')
         <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.settings.index') }}">
                 <span>Settings</span></a>
         </li>
-        @endcan
+        @endcan -->
 
-        <div class="topbar-divider d-none d-sm-block"></div>
+        <!-- <div class="topbar-divider d-none d-sm-block"></div> -->
 
         <!-- Nav Item - User Information -->
         <li class="nav-item dropdown no-arrow">
