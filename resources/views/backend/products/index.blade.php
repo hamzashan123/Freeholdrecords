@@ -195,20 +195,20 @@ div#yourorder {
                 console.log('productquantities', productquantities);
                 var orderHtml = $('#yourorder').html();
 
-                var emailTemplate = jQuery('div#yourorder').html();
-                $html = $(emailTemplate);
-                $html.find('thead th:last-child').remove();
-                $html.find('tbody tr td:last-child').remove();
+                // var emailTemplate = jQuery('div#yourorder').html();
+                // $html = $(emailTemplate);
+                // $html.find('thead th:last-child').remove();
+                // $html.find('tbody tr td:last-child').remove();
 
-                var formatTemplate = '';
+                // var formatTemplate = '';
 
-                $html.each(function(index, element) {
-                    console.log($(element).html());
-                    formatTemplate += $(element).html();
-                });
+                // $html.each(function(index, element) {
+                //     console.log($(element).html());
+                //     formatTemplate += $(element).html();
+                // });
 
-                $html.find('table').attr('border');
-                
+                // $html.find('table').attr('border');
+
                 $.post('{{route("admin.submitOrder")}}',
                 {
                             "_token": "{{ csrf_token() }}",
