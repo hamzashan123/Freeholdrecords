@@ -120,6 +120,26 @@
     </div>
     @endif
 
+    @if(Auth::user()->hasRole('admin'))
+    <div class="col-md-3">
+      <div class="card-counter info">
+        <i class="fa fa-users"></i>
+        <span class="count-numbers"> {{count($categories) }}</span>
+        <span class="count-name">Total categories</span>
+      </div>
+    </div>
+    @endif
+
+    @if(Auth::user()->hasRole('admin'))
+    <div class="col-md-3">
+      <div class="card-counter success">
+        <i class="fa fa-users"></i>
+        <span class="count-numbers"> {{count($products) }}</span>
+        <span class="count-name">Total Products</span>
+      </div>
+    </div>
+    @endif
+
   </div>
 
 
