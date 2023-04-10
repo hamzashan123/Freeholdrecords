@@ -20,9 +20,9 @@
 
 
         <!-- Nav Item - Alerts -->
-        <!-- <li class="nav-item dropdown no-arrow mx-1">
+        <li class="nav-item dropdown no-arrow mx-1">
             <livewire:backend.notification-component />
-        </li> -->
+        </li>
 
         <!-- Nav Item - Messages -->
 

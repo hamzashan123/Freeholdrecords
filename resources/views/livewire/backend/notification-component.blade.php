@@ -35,6 +35,6 @@
         @empty
             <div class="dropdown-item text-center">No notifications found!</div>
         @endforelse
-{{--        <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>--}}
-    </div>
+<!-- {{--        <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>--}}
+    </div> -->
 </div>
