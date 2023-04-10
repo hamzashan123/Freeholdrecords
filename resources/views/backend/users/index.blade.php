@@ -108,15 +108,7 @@
                 </tr>
                 @endforelse
             </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="6">
-                        <div class="float-right">
-                            {!! $users->appends(request()->all())->links() !!}
-                        </div>
-                    </td>
-                </tr>
-            </tfoot>
+            
         </table>
     </div>
 </div>
