@@ -4,7 +4,7 @@
 
 <p> Name Of the User : {{$username}} </p>
 <p> Email Of the User : {{$email}} </p>
-
+<p> Please add discount percentage and Activate/Reject wholesale customer request.</p>
 
 @else
 <p> Your account is successfully created.</p>
