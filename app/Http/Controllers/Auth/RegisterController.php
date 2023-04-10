@@ -90,6 +90,8 @@ class RegisterController extends Controller
         $user->markEmailAsVerified();
         $user->assignRole('user');
 
+        $admin = User::role('admin')->first();
+
         $adminData = [
             'admin' => true,
             'username' => $data['first_name'].$data['last_name'],
@@ -100,7 +102,7 @@ class RegisterController extends Controller
            
         ];
         
-        Mail::to('hamzashan123@gmail.com')->send(new RegisterUser($adminData));
+        Mail::to($admin->email)->send(new RegisterUser($adminData));
 
         return redirect()->route('register')->with([
             'message' => 'Registered successfully',
