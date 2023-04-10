@@ -103,9 +103,7 @@
                     </td>
                 </tr>
                 @empty
-                <tr>
-                    <td class="text-center" colspan="6">No users found.</td>
-                </tr>
+                
                 @endforelse
             </tbody>
             
