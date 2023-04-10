@@ -38,7 +38,7 @@
                                 {{ $order->id }}
                             </a>
                         </td>
-                        <td>{{ $order->user->username}}</td>
+                        <td>@if(!empty($order->user->username)) {{ $order->user->username}} @endif</td>
                         <td>{{ $order->amount }}</td>
                         <td>{{ $order->status}}</td>
                         <td>{{ $order->created_at}}</td>
