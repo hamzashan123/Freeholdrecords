@@ -93,6 +93,16 @@
 
     @if(Auth::user()->hasRole('admin'))
     <div class="col-md-3">
+      <div class="card-counter danger">
+        <i class="fa fa-database"></i>
+        <span class="count-numbers"> {{ count($totalorders)}}</span>
+        <span class="count-name">Total Orders</span>
+      </div>
+    </div>
+    @endif
+
+    @if(Auth::user()->hasRole('admin'))
+    <div class="col-md-3">
       <div class="card-counter success">
         <i class="fa fa-database"></i>
         <span class="count-numbers"> {{ count($users)}}</span>
