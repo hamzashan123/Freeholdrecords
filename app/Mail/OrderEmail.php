@@ -17,6 +17,8 @@ class OrderEmail extends Mailable
     protected $msg;
     protected $orderHtml;
     protected $isAdmin;
+    protected $purchasedProducts;
+    protected $productquantities;
 
     /**
      * Create a new message instance.
@@ -31,6 +33,8 @@ class OrderEmail extends Mailable
         $this->user = $data['user'];
         $this->msg = $data['msg'];
         $this->isAdmin = $data['admin'];
+        $this->purchasedProducts = $data['purchasedProducts'];
+        $this->productquantities = $data['productquantities'];
     }
 
     /**
@@ -49,6 +53,8 @@ class OrderEmail extends Mailable
                     'user' => $this->user,
                     'msg' => $this->msg,
                     'admin' => $this->isAdmin,
+                    'purchasedProducts' => $this->purchasedProducts,
+                    'productquantities' => $this->productquantities
                     
                 ]);
     }

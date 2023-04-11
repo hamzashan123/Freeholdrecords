@@ -1,42 +1,41 @@
 ﻿
 @if($admin == false)
-<h1>Hello {!! ucfirst($user->username) !!}</h1>
+<h1>Hello {!! ucfirst($user->first_name) !!},</h1>
 
 <p>{!!$msg!!}</p>
 
 <p>Order Details :</p>
 
 <p>Your OrderId : {!!$orderid!!}</p>
-<table border = "1">
+<table border = "1" cellpadding="10">
          <thead>
             <th>ID</th>
             <th>Item</th>
-            <th>Price</th>
-            <th>Quantity</th>
+            <th>Purchased Quantity</th>
+            <!-- <th>Total Price</th> -->
+            <th>Total Price </th>
          </thead>
          <tbody>
-         <tr>
-            <td>1</td>
-            <td>Laptop</td>
-            <td>200</td>
-            <td>2</td>
-         </tr>
-         
-         <tr>
-            <td>2</td>
-            <td>Juice</td>
-            <td>200</td>
-            <td>2</td>
-         </tr>
-         <tr>
-            <td>3</td>
-            <td>Mobile</td>
-            <td>650</td>
-            <td>2</td>
-         </tr>
+
+            @foreach($purchasedProducts as $key => $product)
+                @php 
+                    $productPrice = number_format( $product->price - (Auth::user()->discount / 100) * $product->price , 2 );
+                @endphp
+            <tr>
+                <td>{{  $product->id }}</td>
+                <td>{{  $product->name }}</td>
+                <td>{{  $productquantities[$key] }}</td>
+                <!-- <td> £{{ number_format( $product->price - (Auth::user()->discount / 100) * $product->price , 2 ) }}</td> -->
+                <td> £{{ $productPrice * $productquantities[$key] }}</td>
+            </tr>
+            @endforeach
+
+
          </tbody>
          
       </table>
+
+      <h5>Grand Total : {!!$amount!!}</h5>
 <!-- {!! $orderHtml !!} -->
 
 
@@ -57,36 +56,35 @@ Thanks,<br>
 <p>Email : {!!$user->email!!}</p>
 
 <p>Order ID : {!!$orderid!!}</p>
-<table border = "1">
-         <thead>
+<table border = "1" cellpadding="10">
+<thead>
             <th>ID</th>
             <th>Item</th>
-            <th>Price</th>
-            <th>Quantity</th>
+            <th>Purchased Quantity</th>
+            <!-- <th>Total Price</th> -->
+            <th>Total Price </th>
          </thead>
          <tbody>
-         <tr>
-            <td>1</td>
-            <td>Laptop</td>
-            <td>200</td>
-            <td>2</td>
-         </tr>
-         
-         <tr>
-            <td>2</td>
-            <td>Juice</td>
-            <td>200</td>
-            <td>2</td>
-         </tr>
-         <tr>
-            <td>3</td>
-            <td>Mobile</td>
-            <td>650</td>
-            <td>2</td>
-         </tr>
+
+            @foreach($purchasedProducts as $key => $product)
+                @php 
+                    $productPrice = number_format( $product->price - (Auth::user()->discount / 100) * $product->price , 2 );
+                @endphp
+            <tr>
+                <td>{{  $product->id }}</td>
+                <td>{{  $product->name }}</td>
+                <td>{{  $productquantities[$key] }}</td>
+                <!-- <td> £{{ number_format( $product->price - (Auth::user()->discount / 100) * $product->price , 2 ) }}</td> -->
+                <td> £{{ $productPrice * $productquantities[$key] }}</td>
+            </tr>
+            @endforeach
+
+
          </tbody>
          
       </table>
+
+      <h5>Grand Total : {!!$amount!!}</h5>
 <!-- {!! $orderHtml !!} -->
 
 

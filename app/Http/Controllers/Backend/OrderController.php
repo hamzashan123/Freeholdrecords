@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Mail\OrderEmail;
 use App\Mail\DocumentUploadEmail;
+use App\Models\Product;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
@@ -39,7 +40,8 @@ class OrderController extends Controller
     }
 
     public function submitOrder(Request $request){
-        //dd($request);
+        
+       
         
         $orderId = DB::table('orders')->insertGetId([
             'user_id' => Auth::user()->id,
@@ -64,15 +66,23 @@ class OrderController extends Controller
                 DB::table('products')->where('id',$product_id)->update([
                     'quantity' => $updateQuantity
                 ]);
+
             }
-    
+            
+            
+            
+           $purchasedProducts = Product::whereIn('id',$request->product_ids)->orderBy('id','desc')->get();
+            
+
             $adminData = [
                 'orderid' => $orderId,
                 'user' => Auth::user(),
                 'orderHtml' => $request->orderHtml,
                 'msg' => 'New order recieved.',
                 'amount' => $request->amount,
-                'admin' => true
+                'admin' => true,
+                'purchasedProducts' => $purchasedProducts,
+                'productquantities' => $request->product_quantities
             ];
            
             $admin = User::role('admin')->first();
@@ -85,7 +95,9 @@ class OrderController extends Controller
                 'orderHtml' => $request->orderHtml,
                 'amount' => $request->amount,
                 'msg' => 'Your order has been placed. Thank you',
-                'admin' => false
+                'admin' => false,
+                'purchasedProducts' => $purchasedProducts,
+                'productquantities' => $request->product_quantities
             ];
 
             Mail::to(Auth::user()->email)->send(new OrderEmail($userData));

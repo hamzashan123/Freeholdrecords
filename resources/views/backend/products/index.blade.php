@@ -11,11 +11,18 @@ div#yourorder {
 </style>
 @section('content')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
+<link href="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
+" rel="stylesheet"> 
 <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script> 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>
-    <div class="card shadow mb-4">
+<script src="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
+"></script>
+   
+<div class="card shadow mb-4">
         <div class="card-header py-3 d-flex">
             <h6 class="m-0 font-weight-bold text-primary">
                 Products   
@@ -169,7 +176,7 @@ div#yourorder {
     @if(Auth::user()->hasRole('user'))
         <div class="ml-auto" style="text-align:right">
                     
-                        <a class="btn btn-primary" id="submitOrder"><span class="icon text-white-50"> <i class="fa fa-plus"></i> </span>
+                        <a class="btn btn-primary" style="display:none;" id="submitOrder"><span class="icon text-white-50"> <i class="fa fa-plus"></i> </span>
                             Submit Order
                         </a>
                 
@@ -182,6 +189,8 @@ div#yourorder {
             // place order 
 
             $('#submitOrder').on('click', function(){
+                
+                $('#submitOrder').text('Please wait...');
                 alert('Submit order now');
                 var productIds = [];
                 var productquantities = [];
@@ -194,20 +203,7 @@ div#yourorder {
                 console.log('productIds', productIds);
                 console.log('productquantities', productquantities);
                 var orderHtml = $('#yourorder').html();
-
-                // var emailTemplate = jQuery('div#yourorder').html();
-                // $html = $(emailTemplate);
-                // $html.find('thead th:last-child').remove();
-                // $html.find('tbody tr td:last-child').remove();
-
                 var formatTemplate = '';
-
-                // $html.each(function(index, element) {
-                //     console.log($(element).html());
-                //     formatTemplate += $(element).html();
-                // });
-
-                // $html.find('table').attr('border');
 
                 $.post('{{route("admin.submitOrder")}}',
                 {
@@ -218,10 +214,19 @@ div#yourorder {
                             orderHtml: formatTemplate
                 },
                 function(data, status){
+                    $('#submitOrder').text('Submit Order');
                         console.log(data.data);
                         console.log(data.status);
                         if(data.status == 'success'){
-                            window.location.reload()
+                            
+                            Swal.fire(
+                            'Order Successfull!',
+                            'Thank you for your order!',
+                            'success'
+                            ).then((result) => {
+                                window.location.reload()
+                            })
+                            
                         }
                 });
             });
@@ -254,24 +259,46 @@ div#yourorder {
                             // }    
                         }else{
                             var html = '';
-                            html += '<tr id="itemRow'+data.data.id+'" ><td class="productId">'+data.data.id+'</td><td class="productName">'+data.data.name+'</td><td class="productPrice">'+  (data.data.price - ( userdiscount * data.data.price )).toFixed(2)  +'</td><td><input type="number" class="productquantity" data-quanitySelected="'+data.data.quantity+'"  /> </div></td> <td class="TotalItemPrice">'+ (data.data.price - ( userdiscount * data.data.price )).toFixed(2) +' </td>   <td><div class="btn-group removeitemRow" data-rowid="'+data.data.id+'"><a  class="btn btn-sm btn-danger" > Remove</a></div></td></tr>';
+                            html += '<tr id="itemRow'+data.data.id+'" ><td class="productId">'+data.data.id+'</td><td class="productName">'+data.data.name+'</td><td class="productPrice">'+  (data.data.price - ( userdiscount * data.data.price )).toFixed(2)  +'</td><td><input type="number" class="productquantity" value="'+1+'" data-quanitySelected="'+data.data.quantity+'"  /> </div></td> <td class="TotalItemPrice">'+ (data.data.price - ( userdiscount * data.data.price )).toFixed(2) +' </td>   <td><div class="btn-group removeitemRow" data-rowid="'+data.data.id+'"><a  class="btn btn-sm btn-danger" > Remove</a></div></td></tr>';
                             
                             $('#productdata').append(html);
+
+                            var TotalItemPrice = 0;
+                            $('#productdata tr').each(function(){
+                                TotalItemPrice = parseFloat($(this).find('.TotalItemPrice').text()) + TotalItemPrice;  
+                            });
+
+                            $('#grandTotal').text("0");
+                            $('#grandTotal').text(TotalItemPrice.toFixed(2));
+
+                            if(parseInt($('#grandTotal').text()) > 0){
+                                $('#submitOrder').show();
+                            }else{
+                                $('#submitOrder').hide();
+                            }
                         }
 
                 });
             });
 
             
-            $(document).on('keyup','.productquantity' , function(){
+            $(document).on('keyup change','.productquantity' , function(){
                
                 var quantity = $(this).attr('data-quanitySelected');
-            
-                if($(this).val() > quantity){
+                
+                
+
+                if(parseInt($(this).val()) <= 0){
+                    $(this).val(1);
+                    alert("Quantity must be greater than 0 ");
+                }
+
+                if(parseInt($(this).val()) > parseInt(quantity)){
                     $(this).val(quantity);
                     
                     alert("Quantity Limit exceed!");
                 }
+                
                 var price = $(this).closest('td').siblings('.productPrice').text();
                 $(this).closest('td').siblings('.TotalItemPrice').text("");
                 $(this).closest('td').siblings('.TotalItemPrice').text($(this).val() * price);
