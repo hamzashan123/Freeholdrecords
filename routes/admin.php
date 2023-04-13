@@ -62,7 +62,10 @@ Route::group(['middleware' => ['roles']], function () {
     Route::resource('user_addresses', UserAddressController::class);
     Route::resource('shipping_companies', ShippingCompanyController::class);
     Route::resource('payment_methods', PaymentMethodController::class);
-    Route::resource('orders', OrderController::class)->except('create', 'edit');
+    Route::resource('orders', OrderController::class)->except('create');
+    Route::get('order-edit/{id}',  [OrderController::class, 'editOrder'])->name('orders.edit');
+    Route::post('order-update',  [OrderController::class, 'updateOrder'])->name('orders.update');
+    Route::get('order-details/{id?}',[OrderController::class, 'getOrderdetails'])->name('getorderDetails');
     Route::resource('settings', SettingController::class)->only('index', 'update');
     Route::resource('contacts', ContactController::class)->except('create', 'edit', 'update');
     Route::resource('links', LinkController::class)->except('show');

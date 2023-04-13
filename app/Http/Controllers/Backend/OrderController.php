@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Mail\OrderEmail;
 use App\Mail\DocumentUploadEmail;
+use App\Models\OrderProduct;
 use App\Models\Product;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
@@ -346,6 +347,35 @@ class OrderController extends Controller
         return redirect()->route('admin.systemorder.index')->with('success','Order Created Successfully!');
     }
 
+    public function editOrder(int $id){
+
+        $order = Order::where('id',$id)->first();
+        return view('backend.orders.edit',compact('order'));
+    }
+
+    public function updateOrder(Request $request){
+
+        Order::where('id',$request->order_id)->update([
+            'status' => $request->status
+        ]);
+        
+        return redirect()->back()->with([
+            'message' => 'Order updated successfully',
+            'alert-type' => 'success'
+        ]);
+    }
+
+    public function getOrderdetails(int $id){
+
+        $orders = OrderProduct::with('orderproducts')->where('order_id',$id)->get()->toArray();
+        $orderUser = Order::with('user')->where('id',$id)->first();
+        return response()->json([
+            'data' => $orders,
+            'orderUser' => $orderUser,
+            'msg' => 'items list found',
+            'status' => 'success'
+        ]);
+    }
     public function orderImage( Request $request){
         // dd($request);
         if($request->hasFile('titlefile')){
@@ -451,90 +481,17 @@ class OrderController extends Controller
         }
        
     }
-    // public function show(Order $order): View
-    // {
-    //     $this->authorize('show_order');
-
-    //     $orderStatusArray = [
-    //         '0' => 'New order',
-    //         '1' => 'Paid',
-    //         '2' => 'Under process',
-    //         '3' => 'Finished',
-    //         '4' => 'Rejected',
-    //         '5' => 'Canceled',
-    //         '6' => 'Refund requested',
-    //         '7' => 'Returned order',
-    //         '8' => 'Refunded',
-    //     ];
-
-    //     $key = array_search($order->order_status, array_keys($orderStatusArray));
-    //     foreach ($orderStatusArray as $k => $v) {
-    //         if ($k <= $key) {
-    //             unset($orderStatusArray[$k]);
-    //         }
-    //     }
-
-    //     return view('backend.orders.show', compact('order', 'orderStatusArray'));
-    // }
-
-    // public function update(Request $request, Order $order): RedirectResponse
-    // {
-    //     $this->authorize('edit_order');
-
-    //     $user = User::find($order->user_id);
-
-    //     if ($request->order_status == Order::REFUNDED){
-    //         $omniPay = new OmnipayService('PayPal_Express');
-    //         $response = $omniPay->refund([
-    //             'amount' => $order->total,
-    //             'transactionReference' => $order->transactions()->where('transaction_status', OrderTransaction::PAID)
-    //                 ->first()->transaction_number,
-    //             'cancelUrl' => $omniPay->getCancelUrl($order->id),
-    //             'returnUrl' => $omniPay->getReturnUrl($order->id),
-    //             'notifyUrl' => $omniPay->getNotifyUrl($order->id),
-    //         ]);
-
-    //         if ($response->isSuccessful()) {
-    //             $order->update(['order_status' => Order::REFUNDED]);
-    //             $order->transactions()->create([
-    //                 'transaction_status' => OrderTransaction::REFUNDED,
-    //                 'transaction_number' => $response->getTransactionReference(), // coming from PayPal
-    //                 'payment_result' => 'success'
-    //             ]);
-
-    //             $user->notify(new OrderStatusNotification($order));
-
-    //             return back()->with([
-    //                 'message' => 'Refunded successfully',
-    //                 'alert-type' => 'success',
-    //             ]);
-    //         }
-
-    //     } else {
-
-    //         $order->update(['order_status'=> $request->order_status]);
-
-    //         $order->transactions()->create([
-    //             'transaction_status' => $request->order_status,
-    //             'transaction_number'=> null,
-    //             'payment_result'=> null,
-    //         ]);
-
-    //         $user->notify(new OrderStatusNotification($order));
-
-    //         return back()->with([
-    //             'message' => 'updated successfully',
-    //             'alert-type' => 'success',
-    //         ]);
-
-    //     }
-    // }
-
+    
     public function destroy(Order $order): RedirectResponse
     {
         $this->authorize('delete_order');
 
         $order->delete();
+
+        if(!empty($order->id)){
+            OrderProduct::where('order_id',$order->id)->delete();
+        }
+        
 
         return redirect()->route('admin.orders.index')->with([
             'message' => 'Deleted successfully',

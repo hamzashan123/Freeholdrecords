@@ -15,4 +15,11 @@ class OrderProduct extends Model
 
     public $timestamps = false;
     public $incrementing = false;
+
+    
+    public function orderproducts()
+    {
+        return $this->belongsTo(Product::class,'product_id');
+    }
+    
 }

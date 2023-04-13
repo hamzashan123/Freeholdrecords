@@ -67,7 +67,10 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
                 <tbody id="productbody">
                 @forelse($products as $product)
                     <tr id="{{$product->id}}"  >
-                        <td>@if($product->quantity > 0 )<input type="checkbox" name="productid" data-itemid="{{$product->id}}" class="productcheck"/> @endif</td>
+                        <td>@if(Auth::user()->hasRole('user')) 
+                                @if($product->quantity > 0 )<input type="checkbox" name="productid" data-itemid="{{$product->id}}" class="productcheck"/> @endif
+                            @endif
+                        </td>
                         <td >
                             @if($product->firstMedia)
                             <img src="{{ asset('storage/images/products/' . $product->firstMedia->file_name) }}"
