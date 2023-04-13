@@ -14,6 +14,7 @@ use Illuminate\Http\RedirectResponse;
 use App\Mail\UserActivatedByAdmin;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\RegisterUser;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -172,7 +173,17 @@ class UserController extends Controller
             $this->imageService->unlinkImage($user->user_image, 'users');
         }
 
-        $user->delete();
+        $existOrders = Order::where('user_id',$user->id)->exists();
+        if($existOrders == true){
+
+            return redirect()->route('admin.users.index')->with([
+                'message' => 'Please Delete All Orders Of User First',
+                'alert-type' => 'warning'
+            ]);
+        }else{
+            $user->delete();
+        }
+       
 
         return redirect()->route('admin.users.index')->with([
             'message' => 'Deleted successfully',
