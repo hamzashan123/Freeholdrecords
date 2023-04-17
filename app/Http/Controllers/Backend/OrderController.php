@@ -23,6 +23,8 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Mail;
 use App\Models\SubOrder;
 use Illuminate\Support\Str;
+use Response;
+
 class OrderController extends Controller
 {
     public function index(): View
@@ -63,10 +65,10 @@ class OrderController extends Controller
     
                 $selectedQuantity = $request->product_quantities[$key];
                 $product = DB::table('products')->where('id',$product_id)->first();
-                $updateQuantity = $product->quantity - $selectedQuantity;
-                DB::table('products')->where('id',$product_id)->update([
-                    'quantity' => $updateQuantity
-                ]);
+                // $updateQuantity = $product->quantity - $selectedQuantity;
+                // DB::table('products')->where('id',$product_id)->update([
+                //     'quantity' => $updateQuantity
+                // ]);
 
             }
             
@@ -369,6 +371,8 @@ class OrderController extends Controller
 
         $orders = OrderProduct::with('orderproducts')->where('order_id',$id)->get()->toArray();
         $orderUser = Order::with('user')->where('id',$id)->first();
+
+        // dd($orderUser->user->discount);
         return response()->json([
             'data' => $orders,
             'orderUser' => $orderUser,
@@ -376,6 +380,67 @@ class OrderController extends Controller
             'status' => 'success'
         ]);
     }
+
+    public function getOrderCsv(int $id){
+
+        $orders = OrderProduct::with('orderproducts')->where('order_id',$id)->get()->toArray();
+        $orderUser = Order::with('user')->where('id',$id)->first();
+
+
+        $users = User::get();
+
+        // these are the headers for the csv file. Not required but good to have one incase of system didn't recongize it properly
+        $headers = array(
+          'Content-Type' => 'text/csv'
+        );
+
+
+        //I am storing the csv file in public >> files folder. So that why I am creating files folder
+        if (!File::exists(public_path()."/files")) {
+            File::makeDirectory(public_path() . "/files");
+        }
+
+        //creating the download file
+        $filename =  public_path("files/order.csv");
+        $handle = fopen($filename, 'w');
+
+        //adding the first row
+        fputcsv($handle, [
+            "Sku",
+            "Item Name",
+            "Price",
+            "Your Price",
+            "Quantity",
+            "Total"
+        ]);
+
+        //adding the data from the array
+        foreach ($orders as $order) {
+           
+            $orderUser = Order::with('user')->where('id',$order['order_id'])->first();
+           
+            $yourPrice = number_format( $order['orderproducts']['price'] - ($orderUser->user->discount / 100) * $order['orderproducts']['price'] , 2 );
+                
+            // dd($order->quantity);
+            fputcsv($handle, [
+                $order['orderproducts']['sku'],
+                $order['orderproducts']['name'],
+                $order['orderproducts']['price'],
+                $yourPrice,
+                $order['quantity'],
+                $yourPrice * $order['quantity'],
+            ]);
+
+        }
+        fclose($handle);
+
+        //download command
+        return Response::download($filename, "order.csv", $headers);
+    
+       
+    }
+
+    
     public function orderImage( Request $request){
         // dd($request);
         if($request->hasFile('titlefile')){

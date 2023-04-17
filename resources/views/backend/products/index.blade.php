@@ -47,15 +47,17 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
             <table class="table table-hover" id="producttable">
                 <thead>
                 <tr>
-                    <th>#</th>
+                    <th></th>
+                    <th>Sku</th>
                     <th>Image</th>
                     <th>Name</th>
+                    
                     <th>Description</th>
                     <th>Code</th>
                     <th>RRP</th>
                     <th>Cost Price</th>
                     <th>Your Price</th>
-                    <th>Quantity</th>
+                    
                     <th>Category</th>
                     @if(Auth::user()->hasRole('admin'))
                     <th>Status</th>
@@ -67,9 +69,14 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
                 <tbody id="productbody">
                 @forelse($products as $product)
                     <tr id="{{$product->id}}"  >
-                        <td>@if(Auth::user()->hasRole('user')) 
-                                @if($product->quantity > 0 )<input type="checkbox" name="productid" data-itemid="{{$product->id}}" class="productcheck"/> @endif
+
+                        <td>
+                            @if(Auth::user()->hasRole('user')) 
+                                <input type="checkbox" name="productid" data-itemid="{{$product->id}}" class="productcheck"/> 
                             @endif
+                        </td>
+                        <td>
+                            {{$product->sku}}
                         </td>
                         <td >
                             @if($product->firstMedia)
@@ -85,7 +92,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
                         <td>£{{ $product->rrp }}</td>
                         <td>£{{ $product->price }}</td>
                         <td>£{{ number_format( $product->price - (Auth::user()->discount / 100) * $product->price , 2 )}}</td>
-                        <td>@if($product->quantity > 0 ) {{ $product->quantity }} @else  <span style="color:red;">  Out Of Stock </span> @endif </td>
+                        
                         
                         <td> <b> {{ $product->category ? $product->category->name : NULL }} </b></td>
                         @if(Auth::user()->hasRole('admin'))
@@ -118,15 +125,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
                     </tr>
                 @endforelse
                 </tbody>
-                <tfoot>
-                <tr>
-                    <td colspan="10">
-                        <div class="float-right">
-                            {!! $products->appends(request()->all())->links() !!}
-                        </div>
-                    </td>
-                </tr>
-                </tfoot>
+                
             </table>
         </div>
 
@@ -151,6 +150,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
                     <thead>
                     <tr>
                         <th>#</th>
+                        <th>Sku</th>
                         <th>Item</th>
                         <th>Price</th>
                         <th>Quantity</th>
@@ -262,7 +262,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
                             // }    
                         }else{
                             var html = '';
-                            html += '<tr id="itemRow'+data.data.id+'" ><td class="productId">'+data.data.id+'</td><td class="productName">'+data.data.name+'</td><td class="productPrice">'+  (data.data.price - ( userdiscount * data.data.price )).toFixed(2)  +'</td><td><input type="number" class="productquantity" value="'+1+'" data-quanitySelected="'+data.data.quantity+'"  /> </div></td> <td class="TotalItemPrice">'+ (data.data.price - ( userdiscount * data.data.price )).toFixed(2) +' </td>   <td><div class="btn-group removeitemRow" data-rowid="'+data.data.id+'"><a  class="btn btn-sm btn-danger" > Remove</a></div></td></tr>';
+                            html += '<tr id="itemRow'+data.data.id+'" ><td class="productId">'+data.data.id+'</td><td class="productId">'+data.data.sku+'</td><td class="productName">'+data.data.name+'</td><td class="productPrice">'+  (data.data.price - ( userdiscount * data.data.price )).toFixed(2)  +'</td><td><input type="number" class="productquantity" value="'+1+'" data-quanitySelected="'+data.data.quantity+'"  /> </div></td> <td class="TotalItemPrice">'+ (data.data.price - ( userdiscount * data.data.price )).toFixed(2) +' </td>   <td><div class="btn-group removeitemRow" data-rowid="'+data.data.id+'"><a  class="btn btn-sm btn-danger" > Remove</a></div></td></tr>';
                             
                             $('#productdata').append(html);
 
@@ -296,11 +296,11 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
                     alert("Quantity must be greater than 0 ");
                 }
 
-                if(parseInt($(this).val()) > parseInt(quantity)){
-                    $(this).val(quantity);
+                // if(parseInt($(this).val()) > parseInt(quantity)){
+                //     $(this).val(quantity);
                     
-                    alert("Quantity Limit exceed!");
-                }
+                //     alert("Quantity Limit exceed!");
+                // }
                 
                 var price = $(this).closest('td').siblings('.productPrice').text();
                 $(this).closest('td').siblings('.TotalItemPrice').text("");

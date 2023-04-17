@@ -9,7 +9,8 @@
 <p>Your OrderId : {!!$orderid!!}</p>
 <table border = "1" cellpadding="10">
          <thead>
-            <th>ID</th>
+            <!-- <th>ID</th> -->
+            <th>Sku</th>
             <th>Item</th>
             <th>Purchased Quantity</th>
             <!-- <th>Total Price</th> -->
@@ -22,7 +23,8 @@
                     $productPrice = number_format( $product->price - (Auth::user()->discount / 100) * $product->price , 2 );
                 @endphp
             <tr>
-                <td>{{  $product->id }}</td>
+                <!-- <td>{{  $product->id }}</td> -->
+                <td>{{  $product->sku }}</td>
                 <td>{{  $product->name }}</td>
                 <td>{{  $productquantities[$key] }}</td>
                 <!-- <td> £{{ number_format( $product->price - (Auth::user()->discount / 100) * $product->price , 2 ) }}</td> -->
@@ -58,7 +60,8 @@ Thanks,<br>
 <p>Order ID : {!!$orderid!!}</p>
 <table border = "1" cellpadding="10">
 <thead>
-            <th>ID</th>
+            <!-- <th>ID</th> -->
+            <th>Sku</th>
             <th>Item</th>
             <th>Purchased Quantity</th>
             <!-- <th>Total Price</th> -->
@@ -71,7 +74,8 @@ Thanks,<br>
                     $productPrice = number_format( $product->price - (Auth::user()->discount / 100) * $product->price , 2 );
                 @endphp
             <tr>
-                <td>{{  $product->id }}</td>
+                <!-- <td>{{  $product->id }}</td> -->
+                <td>{{  $product->sku }}</td>
                 <td>{{  $product->name }}</td>
                 <td>{{  $productquantities[$key] }}</td>
                 <!-- <td> £{{ number_format( $product->price - (Auth::user()->discount / 100) * $product->price , 2 ) }}</td> -->

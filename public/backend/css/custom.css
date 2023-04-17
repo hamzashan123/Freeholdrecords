@@ -373,7 +373,7 @@ div#exampleModal .modal-dialog,
 div#orderCreateModal .modal-dialog ,
 div#subOrderCreateModal .modal-dialog,
 div#allSearch .modal-dialog {
-    min-width: 80%;
+    min-width: 100%;
 }
 
 div#exampleModal .modal-dialog,

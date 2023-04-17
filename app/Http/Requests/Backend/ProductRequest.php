@@ -29,7 +29,7 @@ class ProductRequest extends FormRequest
                 return [
                     'name' => ['required', 'max:255'],
                     'price' => ['required', 'numeric'],
-                    'quantity' => ['required', 'numeric'],
+                    //'quantity' => ['required', 'numeric'],
                     'category_id' => ['required'],
                     'status' => ['required'],
                     'description' => ['required', 'max:1000'],
@@ -44,7 +44,7 @@ class ProductRequest extends FormRequest
                     'name' => ['required', 'max:255'],
                     'description' => ['required', 'max:1000'],
                     'price' => ['required', 'numeric'],
-                    'quantity' => ['required', 'numeric'],
+                    //'quantity' => ['required', 'numeric'],
                     'category_id' => ['required'],
                     'status' => ['required'],
                     // 'images' => ['nullable'],

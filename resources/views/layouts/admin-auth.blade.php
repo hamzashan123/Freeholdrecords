@@ -19,8 +19,10 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="{{ asset('backend/css/sb-admin-2.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.1.3/css/intlTelInput.css" integrity="sha512-Ky9SFgkYYIAWfFbsz+Tvrs+kpW7mgyQu+glUEnVV60+nxDPe64w0CrYRSMKsmTwJtN2jXNmU5SBgcyzKOwsn3w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.1.3/js/intlTelInput.min.js" integrity="sha512-8XuX34GV5xacR9b/Co1BXl4mwi6G/8Ro0iRE8lP1OL2wloXCnFQ4gEBk7lv3qTRVGKoT+pT9X1GH/LRp/Vqg5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     @yield('styles')
 </head>
 
@@ -40,8 +42,9 @@
     <script>
         const phonereg = document.querySelector('#phonereg');
         const phoneInput2 = window.intlTelInput(phonereg, {
+                
             initialCountry: 'us',
-            utilsScript: 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js',
+            utilsScript: 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.1.3/js/intlTelInput.min.js',
         })
     </script>
     @yield('scripts')

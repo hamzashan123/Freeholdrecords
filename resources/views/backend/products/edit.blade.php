@@ -42,13 +42,21 @@
                     </div>
                     <div class="col-4">
                         <div class="form-group">
+                            <label for="sku" class="text-small text-uppercase">{{ __('SKU') }}</label>
+                            <input id="sku" type="text" class="form-control form-control-lg" name="sku"
+                                   value="{{ old('sku') }}">
+                            @error('sku')<span class="text-danger">{{ $message }}</span>@enderror
+                        </div>
+                    </div>
+                    <!-- <div class="col-4">
+                        <div class="form-group">
                             <label for="quantity" class="text-small text-uppercase">{{ __('quantity') }}</label>
                             <input id="quantity" type="number" max="10000" class="form-control form-control-lg"
                                    name="quantity"
                                    value="{{ old('quantity', $product->quantity) }}">
                             @error('quantity')<span class="text-danger">{{ $message }}</span>@enderror
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="row">
                     <div class="col-6">

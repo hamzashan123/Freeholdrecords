@@ -46,6 +46,9 @@
                             
                             <div class="btn-group btn-group-sm">
 
+                            <a data-orderid="{{$order->id}}" data-grandtotal="{{$order->amount}}" href="{{route('admin.getorderCsv',['id' => $order->id])}}" class="btn btn-sm btn-primary downloadOrderCsv">
+                                    <i class="fa fa-download"></i>
+                            </a>
                             <a data-orderid="{{$order->id}}" data-grandtotal="{{$order->amount}}" class="btn btn-sm btn-primary viewOrderItems">
                                     <i class="fa fa-eye"></i>
                             </a>
@@ -94,6 +97,7 @@
                             <th scope="col">#</th>
                             <th scope="col">ItemName</th>
                             <th scope="col">Price</th>
+                            <th scope="col">Your Price</th>
                             <th scope="col">Quantity</th>
                             <th scope="col">Total</th>
                             </tr>
@@ -142,10 +146,11 @@
                             var i=1;
                             $.each(resultData,function(index,row){
                                 var userdiscount = (data.orderUser.user.discount / 100);
+                                
                                 var totalPrice =  row.orderproducts.price - (userdiscount * row.orderproducts.price).toFixed(2);
                             
                                 bodyData+="<tr>"
-                                bodyData+="<td>"+ i++ +"</td><td>"+row.orderproducts.name+"</td><td>£"+row.orderproducts.price+"</td><td>"+row.quantity+"</td><td>£"+ (totalPrice * row.quantity)+"</td>"
+                                bodyData+="<td>"+ i++ +"</td><td>"+row.orderproducts.name+"</td><td>£"+row.orderproducts.price+"</td><td>£"+ (row.orderproducts.price - ((userdiscount) * row.orderproducts.price)).toFixed(2) +"</td><td>"+row.quantity+"</td><td>£"+ (totalPrice * row.quantity)+"</td>"
                                 ;
                                 bodyData+="</tr>";
                                 
@@ -164,5 +169,44 @@
           
             });
             
+            // $('.downloadOrderCsv').on('click', function () {
+            //     $.ajaxSetup({
+            //         headers: {
+            //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            //         }
+            //     });
+
+            //     var order_id = $(this).data('orderid');
+            //     var grandTotal = $(this).data('grandtotal');
+            
+            //     $.get('{{route("admin.getorderDetails")}}' + '/'+order_id, function (data) {
+            //             console.log(data);
+            //             if(data.status == "success"){
+            //                 var resultData = data.data;
+            //                 var bodyData = '';
+            //                 var i=1;
+            //                 // $.each(resultData,function(index,row){
+            //                 //     var userdiscount = (data.orderUser.user.discount / 100);
+            //                 //     var totalPrice =  row.orderproducts.price - (userdiscount * row.orderproducts.price).toFixed(2);
+                            
+            //                 //     bodyData+="<tr>"
+            //                 //     bodyData+="<td>"+ i++ +"</td><td>"+row.orderproducts.name+"</td><td>£"+row.orderproducts.price+"</td><td>£"+row.orderproducts.price+"</td><td>"+row.quantity+"</td><td>£"+ (totalPrice * row.quantity)+"</td>"
+            //                 //     ;
+            //                 //     bodyData+="</tr>";
+                                
+            //                 // })
+            //                 // $('.orderid').text('Order ID : '+ order_id);
+            //                 // $('#ordergrandtotal').text(grandTotal);
+                            
+            //                 // $("#bodyData").html('');
+            //                 // $("#bodyData").append(bodyData);
+            //             }
+                       
+            //     })
+            //    // $('#viewdetail').modal('show');
+            //     // var resultData = dataResult.data;
+              
+          
+            // });
         </script>
 @endsection

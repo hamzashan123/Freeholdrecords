@@ -24,7 +24,7 @@
             <div class="card-body p-0">
                 <!-- Nested Row within Card Body -->
                 <div class="row">
-                    <div class="col-lg-6 d-none d-lg-block bg-login-image" style="background-size: cover !important; background-image: url('/wholesale/img/bg-01.jpg') !important;"></div>
+                    <div class="col-lg-6 d-none d-lg-block bg-login-image" style="background-size: cover !important; background-image: url('https://www.vagabondcosmetictoiletbags.co.uk/wp-content/uploads/2021/01/LogoStrapline.svg') !important;"></div>
                     <div class="col-lg-6">
                         <div class="p-5">
                             <div class="text-center">
@@ -60,7 +60,7 @@
                             </form>
                             <hr>
                             <div class="text-center" id="registerDiv">
-                                <a class="small" href="{{ route('register') }}">Request for and account? </a>
+                                <a class="small" href="{{ route('register') }}">Request wholesale account? </a>
                             </div>
                             <div class="" id="forgetPassword">
                                 <a class="small" href="{{ route('admin.forgot_password') }}">Forgot Password?</a>
