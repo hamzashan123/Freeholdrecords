@@ -388,6 +388,7 @@ div#allSearch .modal-dialog {
 
 .modal-content {
     height: 100%;
+    width: 800px;
 }
 
 div#orderDocuments .modal-content, div#titleFileUpload .modal-content {
