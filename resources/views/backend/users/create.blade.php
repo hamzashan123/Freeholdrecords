@@ -49,7 +49,7 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label for="company_contact" class="text-small text-uppercase">{{ __('Company Contact') }}</label>
-                        <input id="company_contact" type="tel" class="form-control form-control" name="company_contact" value="{{ old('company_contact') }}" placeholder="Company Contact">
+                        <input id="company_contact" type="number" placeholder="eg. +4470000000" class="form-control form-control" name="company_contact" value="{{ old('company_contact') }}" placeholder="Company Contact">
                         @error('company_contact')<span class="text-danger">{{ $message }}</span>@enderror
                     </div>
 
@@ -66,7 +66,7 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label for="phone" class="text-small text-uppercase">{{ __('Phone') }}</label>
-                        <input id="phone" type="tel" class="form-control form-control" name="phone" value="{{ old('phone') }}" placeholder="Phone Number">
+                        <input id="phone" type="number"  placeholder="eg. +4470000000" class="form-control form-control" name="phone" value="{{ old('phone') }}" placeholder="Phone Number">
                         @error('phone')<span class="text-danger">{{ $message }}</span>@enderror
                     </div>
                 </div>

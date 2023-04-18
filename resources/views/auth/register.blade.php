@@ -90,7 +90,7 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="phone" class="text-small text-uppercase">{{ __('Phone') }}</label>
-                                            <input id="phonereg" type="number" class="form-control form-control-lg" name="phone" value="{{ old('phone') }}">
+                                            <input id="phonereg" type="number" placeholder="eg. +4470000000" class="form-control form-control-lg" name="phone" value="{{ old('phone') }}">
                                             @error('phone')<span class="text-danger" role="alert"><strong>{{ $message }}</strong></span>@enderror
                                         </div>
                                     </div>

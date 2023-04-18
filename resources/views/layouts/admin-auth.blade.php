@@ -39,14 +39,14 @@
 
     <!-- Laravel Javascript Validation -->
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
-    <script>
+    <!-- <script>
         const phonereg = document.querySelector('#phonereg');
         const phoneInput2 = window.intlTelInput(phonereg, {
                 
             initialCountry: 'uk',
             utilsScript: 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.1.3/js/intlTelInput.min.js',
         })
-    </script>
+    </script> -->
     @yield('scripts')
 </body>
 
