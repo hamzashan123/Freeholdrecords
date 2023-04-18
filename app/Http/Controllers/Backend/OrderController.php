@@ -408,6 +408,7 @@ class OrderController extends Controller
         fputcsv($handle, [
             "Sku",
             "Item Name",
+            "Code",
             "Price",
             "Your Price",
             "Quantity",
@@ -425,6 +426,7 @@ class OrderController extends Controller
             fputcsv($handle, [
                 $order['orderproducts']['sku'],
                 $order['orderproducts']['name'],
+                $order['orderproducts']['code'],
                 $order['orderproducts']['price'],
                 $yourPrice,
                 $order['quantity'],

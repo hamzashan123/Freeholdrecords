@@ -45,7 +45,7 @@ class OrderEmail extends Mailable
     public function build()
     {
         return $this->view('emails.orderemail')
-        ->subject('Order Recieved!')
+        ->subject('Order Received')
             ->with([
                     'orderid' => $this->orderid,
                     'orderHtml' => $this->orderHtml,
