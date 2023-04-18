@@ -12,6 +12,7 @@
             <!-- <th>ID</th> -->
             <th>Sku</th>
             <th>Item</th>
+            <th>Code</th>
             <th>Purchased Quantity</th>
             <!-- <th>Total Price</th> -->
             <th>Total Price </th>
@@ -26,6 +27,7 @@
                 <!-- <td>{{  $product->id }}</td> -->
                 <td>{{  $product->sku }}</td>
                 <td>{{  $product->name }}</td>
+                <td>{{  $product->code }}</td>
                 <td>{{  $productquantities[$key] }}</td>
                 <!-- <td> £{{ number_format( $product->price - (Auth::user()->discount / 100) * $product->price , 2 ) }}</td> -->
                 <td> £{{ $productPrice * $productquantities[$key] }}</td>
@@ -63,6 +65,7 @@ Thanks,<br>
             <!-- <th>ID</th> -->
             <th>Sku</th>
             <th>Item</th>
+            <th>Code</th>
             <th>Purchased Quantity</th>
             <!-- <th>Total Price</th> -->
             <th>Total Price </th>
@@ -77,6 +80,7 @@ Thanks,<br>
                 <!-- <td>{{  $product->id }}</td> -->
                 <td>{{  $product->sku }}</td>
                 <td>{{  $product->name }}</td>
+                <td>{{  $product->code }}</td>
                 <td>{{  $productquantities[$key] }}</td>
                 <!-- <td> £{{ number_format( $product->price - (Auth::user()->discount / 100) * $product->price , 2 ) }}</td> -->
                 <td> £{{ $productPrice * $productquantities[$key] }}</td>
