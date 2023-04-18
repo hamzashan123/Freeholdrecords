@@ -43,7 +43,7 @@
         const phonereg = document.querySelector('#phonereg');
         const phoneInput2 = window.intlTelInput(phonereg, {
                 
-            initialCountry: 'us',
+            initialCountry: 'uk',
             utilsScript: 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.1.3/js/intlTelInput.min.js',
         })
     </script>
