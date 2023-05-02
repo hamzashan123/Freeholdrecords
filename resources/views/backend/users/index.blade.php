@@ -28,7 +28,8 @@
                 <tr>
                     <!-- <th>Avatar</th> -->
                     <th>Name</th>
-                    <th>Email</th>
+                    <th>Sales Email</th>
+                    <th>Account Email</th>
                     <th>Phone</th>
                     <th>Company Name</th>
                     <th>Company Contact</th>
@@ -54,6 +55,9 @@
                     </td>
                     <td>
                         {{ $user->email }}
+                    </td>
+                    <td>
+                        {{ $user->accountemail }}
                     </td>
                     <td>
                         {{ $user->phone }}

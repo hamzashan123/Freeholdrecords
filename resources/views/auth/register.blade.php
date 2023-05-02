@@ -80,14 +80,21 @@
                                             @error('username')<span class="text-danger" role="alert"><strong>{{ $message }}</strong></span>@enderror
                                         </div>
                                     </div> -->
-                                    <div class="col-6">
+                                    <div class="col-12">
                                         <div class="form-group">
-                                            <label for="email" class="text-small text-uppercase">{{ __('E-Mail Address') }}</label>
-                                            <input id="email" type="email" class="form-control form-control-lg" value="{{ old('email') }}" name="email" placeholder="Enter your Email">
+                                            <label for="email" class="text-small text-uppercase">{{ __('Sales E-Mail Address') }}</label>
+                                            <input id="email" type="email" class="form-control form-control-lg" value="{{ old('email') }}" name="email" placeholder="Enter your sales Email">
                                             @error('email')<span class="text-danger" role="alert"><strong>{{ $message }}</strong></span>@enderror
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="accountemail" class="text-small text-uppercase">{{ __('Account E-Mail Address') }}</label>
+                                            <input id="accountemail" type="accountemail" class="form-control form-control-lg" value="{{ old('accountemail') }}" name="accountemail" placeholder="Enter your account Email">
+                                            @error('accountemail')<span class="text-danger" role="alert"><strong>{{ $message }}</strong></span>@enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
                                         <div class="form-group">
                                             <label for="phone" class="text-small text-uppercase">{{ __('Phone') }}</label>
                                             <input id="phonereg" type="number" placeholder="eg. +4470000000" class="form-control form-control-lg" name="phone" value="{{ old('phone') }}">
@@ -109,26 +116,7 @@
                                         </div>
                                     </div>
 
-                                    <!-- <div class="col-12">
-                                           <label for="register-as" class="text-small text-uppercase"> Register As </label>
-                                            <div class="userType">
-                                            
-                                                <div class="userTypee">
-                                                
-                                                <input id="usertype" type="radio" class=" " name="usertype" value="user" placeholder="Client"  checked>
-                                                <label for="register-as" class="text-small text-uppercase"> Client </label>
-                                                
-                                                </div>
-                                                <div class="userTypee">
-                                                <input id="usertype" type="radio"  class="" name="usertype" value="consultant" placeholder="Consultant" >
-                                                <label for="register-as" class="text-small text-uppercase"> Consultant </label>
-                                               
-
-                                                </div>
-                                               
-                                            </div>
-                                            
-                                        </div> -->
+                                  
                                 </div>
 
 

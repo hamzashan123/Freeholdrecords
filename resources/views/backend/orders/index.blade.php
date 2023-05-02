@@ -97,7 +97,7 @@
                             <th scope="col">#</th>
                             <th scope="col">Sku</th>
                             <th scope="col">ItemName</th>
-                            <th scope="col">Code</th>
+                            <!-- <th scope="col">Code</th> -->
                             <th scope="col">Price</th>
                             <th scope="col">Your Price</th>
                             <th scope="col">Quantity</th>
@@ -152,7 +152,7 @@
                                 var totalPrice =  row.orderproducts.price - (userdiscount * row.orderproducts.price).toFixed(2);
                             
                                 bodyData+="<tr>"
-                                bodyData+="<td>"+ i++ +"</td><td>"+row.orderproducts.sku+"</td><td>"+row.orderproducts.name+"</td><td>"+row.orderproducts.code+"</td><td>£"+row.orderproducts.price+"</td><td>£"+ (row.orderproducts.price - ((userdiscount) * row.orderproducts.price)).toFixed(2) +"</td><td>"+row.quantity+"</td><td>£"+ (totalPrice * row.quantity)+"</td>"
+                                bodyData+="<td>"+ i++ +"</td><td>"+row.orderproducts.sku+"</td><td>"+row.orderproducts.name+"</td><td>£"+row.orderproducts.price+"</td><td>£"+ (row.orderproducts.price - ((userdiscount) * row.orderproducts.price)).toFixed(2) +"</td><td>"+row.quantity+"</td><td>£"+ (totalPrice * row.quantity)+"</td>"
                                 ;
                                 bodyData+="</tr>";
                                 

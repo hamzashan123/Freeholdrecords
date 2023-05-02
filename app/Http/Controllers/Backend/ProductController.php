@@ -28,7 +28,7 @@ class ProductController extends Controller
             ->when(\request()->status != null, function ($query) {
                 $query->whereStatus(\request()->status);
             })
-            ->orderBy(\request()->sortBy ?? 'id', \request()->orderBy ?? 'desc')
+            ->orderBy(\request()->sortBy ?? 'name', \request()->orderBy ?? 'asc')
             ->paginate(\request()->limitBy ?? 10000);
 
         return view('backend.products.index', compact('products'));
@@ -47,7 +47,9 @@ class ProductController extends Controller
     public function store(ProductRequest $request): RedirectResponse
     {
         $this->authorize('create_product');
-
+        $productCode = 'C-'.rand(1,9).rand(200,900);
+        $request->merge(['code' => $productCode]);
+       
         if ($request->validated()){
             $product = Product::create($request->except('images', '_token'));
             // $product->tags()->attach($request->tags);

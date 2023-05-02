@@ -48,9 +48,17 @@
             <div class="row">
                 <div class="col-4">
                     <div class="form-group">
-                        <label for="email">Email</label>
+                        <label for="email">Sales Email</label>
                         <input class="form-control" id="email" type="email" name="email" value="{{ old('email', $user->email) }}">
                         @error('email')<span class="text-danger">{{ $message }}</span>@enderror
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="form-group">
+                        <label for="email">Account Email</label>
+                        <input class="form-control" id="accountemail" type="accountemail" name="accountemail" value="{{ old('accountemail', $user->accountemail) }}">
+                        @error('accountemail')<span class="text-danger">{{ $message }}</span>@enderror
                     </div>
                 </div>
 

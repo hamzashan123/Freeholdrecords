@@ -148,6 +148,7 @@ class UserController extends Controller
             'last_name' => $request->last_name,
             'username' => $request->username,
             'email' => $request->email,
+            'accountemail' => $request->accountemail,
             'email_verified_at' => now(),
             'status' => $request->status,
             'password' => bcrypt($request->password),

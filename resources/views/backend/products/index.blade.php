@@ -51,7 +51,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
                     <th>Sku</th>
                     <th>Image</th>
                     <th>Name</th>
-                    
+                    <th>Size</th>
                     <th>Description</th>
                     <th>Code</th>
                     <th>RRP</th>
@@ -87,6 +87,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
                             @endif
                         </td>
                         <td><a href="{{ route('admin.products.show', $product->id) }}">{{ $product->name }}</a></td>
+                        <td >{{ $product->size }}</td>
                         <td >{{ $product->description }}</td>
                         <td>{{ $product->code }} </td>
                         <td>£{{ $product->rrp }}</td>
@@ -262,7 +263,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
                             // }    
                         }else{
                             var html = '';
-                            html += '<tr id="itemRow'+data.data.id+'" ><td class="productId">'+data.data.id+'</td><td class="productId">'+data.data.sku+'</td><td class="productName">'+data.data.name+'</td><td class="productPrice">'+  (data.data.price - ( userdiscount * data.data.price )).toFixed(2)  +'</td><td><input type="number" class="productquantity" value="'+1+'" data-quanitySelected="'+data.data.quantity+'"  /> </div></td> <td class="TotalItemPrice">'+ (data.data.price - ( userdiscount * data.data.price )).toFixed(2) +' </td>   <td><div class="btn-group removeitemRow" data-rowid="'+data.data.id+'"><a  class="btn btn-sm btn-danger" > Remove</a></div></td></tr>';
+                            html += '<tr id="itemRow'+data.data.id+'" ><td class="productId">'+data.data.id+'</td><td class="productId">'+data.data.sku+'</td><td class="productName">'+data.data.name+'</td><td class="productPrice">'+  (data.data.price - ( userdiscount * data.data.price )).toFixed(2)  +'</td><td><input type="number" class="productquantity" value="'+1+'" data-quanitySelected="'+data.data.quantity+'"  /> </div></td> <td class="TotalItemPrice">'+ parseFloat((data.data.price - ( userdiscount * data.data.price ))).toFixed(2) +' </td>   <td><div class="btn-group removeitemRow" data-rowid="'+data.data.id+'"><a  class="btn btn-sm btn-danger" > Remove</a></div></td></tr>';
                             
                             $('#productdata').append(html);
 
@@ -304,7 +305,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
                 
                 var price = $(this).closest('td').siblings('.productPrice').text();
                 $(this).closest('td').siblings('.TotalItemPrice').text("");
-                $(this).closest('td').siblings('.TotalItemPrice').text($(this).val() * price);
+                $(this).closest('td').siblings('.TotalItemPrice').text(parseFloat($(this).val() * price).toFixed(2));
 
                 var TotalItemPrice = 0;
                 $('#productdata tr').each(function(){
