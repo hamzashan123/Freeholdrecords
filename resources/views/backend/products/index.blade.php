@@ -86,7 +86,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
                                 <img src="{{ asset('img/no-img.png') }}" width="60" height="60" alt="{{ $product->name }}">
                             @endif
                         </td>
-                        <td><a href="{{ route('admin.products.show', $product->id) }}">{{ $product->name }}</a></td>
+                        <td>{{ $product->name }}</td>
                         <td >{{ $product->size }}</td>
                         <td >{{ $product->description }}</td>
                         <td>{{ $product->code }} </td>
