@@ -49,6 +49,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
                 <tr>
                     <th></th>
                     <th>Sku</th>
+                    <th>Sorting</th>
                     <th>Image</th>
                     <th>Name</th>
                     <th>Size</th>
@@ -77,6 +78,9 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
                         </td>
                         <td>
                             {{$product->sku}}
+                        </td>
+                        <td>
+                            {{$product->sorting}}
                         </td>
                         <td >
                             @if($product->firstMedia)
@@ -347,6 +351,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
     </script>
     <script>
             $('#producttable').DataTable( {
+                order: [[11, 'asc'], [2, 'asc']],
                 dom: 'Bfrtip',
                 buttons: [
                      'csv' , 'pdf'

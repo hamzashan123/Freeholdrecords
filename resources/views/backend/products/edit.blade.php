@@ -77,6 +77,14 @@
                     </div> -->
                     <div class="col-6">
                         <div class="form-group">
+                            <label for="sorting" class="text-small text-uppercase">{{ __('Sorting') }}</label>
+                            <input id="sorting"  type="number"  min=0 step=".01" pattern="^\d+(?:\.\d{1,2})?$" class="form-control form-control-lg" name="sorting"
+                            value="{{ old('sorting', $product->sorting) }}" >
+                            @error('sorting')<span class="text-danger">{{ $message }}</span>@enderror
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
                             <label for="rrp" class="text-small text-uppercase">{{ __('RRP') }}</label>
                             <input id="rrp"  type="number"  min=0 step=".01" pattern="^\d+(?:\.\d{1,2})?$" class="form-control form-control-lg" name="rrp"
                             value="{{ old('rrp', $product->rrp) }}" >

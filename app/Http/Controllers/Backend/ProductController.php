@@ -28,9 +28,9 @@ class ProductController extends Controller
             ->when(\request()->status != null, function ($query) {
                 $query->whereStatus(\request()->status);
             })
-            ->orderBy(\request()->sortBy ?? 'name', \request()->orderBy ?? 'asc')
+            
             ->paginate(\request()->limitBy ?? 10000);
-
+        
         return view('backend.products.index', compact('products'));
     }
 
