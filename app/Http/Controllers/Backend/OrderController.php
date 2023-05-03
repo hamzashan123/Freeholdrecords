@@ -372,7 +372,7 @@ class OrderController extends Controller
         $orders = OrderProduct::with('orderproducts')->where('order_id',$id)->get()->toArray();
         $orderUser = Order::with('user')->where('id',$id)->first();
 
-        // dd($orderUser->user->discount);
+
         return response()->json([
             'data' => $orders,
             'orderUser' => $orderUser,
@@ -419,20 +419,22 @@ class OrderController extends Controller
         foreach ($orders as $order) {
            
             $orderUser = Order::with('user')->where('id',$order['order_id'])->first();
-           
-            $yourPrice = number_format( $order['orderproducts']['price'] - ($orderUser->user->discount / 100) * $order['orderproducts']['price'] , 2 );
+            //dd($orders);
+            if(!empty($order['orderproducts'])){
+                $yourPrice = number_format( $order['orderproducts']['price'] - ($orderUser->user->discount / 100) * $order['orderproducts']['price'] , 2 );
                 
-            // dd($order->quantity);
-            fputcsv($handle, [
-                $order['orderproducts']['sku'],
-                $order['orderproducts']['name'],
-                $order['orderproducts']['code'],
-                $order['orderproducts']['price'],
-                $yourPrice,
-                $order['quantity'],
-                $yourPrice * $order['quantity'],
-            ]);
-
+                // dd($order->quantity);
+                fputcsv($handle, [
+                    $order['orderproducts']['sku'],
+                    $order['orderproducts']['name'],
+                    $order['orderproducts']['code'],
+                    $order['orderproducts']['price'],
+                    $yourPrice,
+                    $order['quantity'],
+                    $yourPrice * $order['quantity'],
+                ]);
+            }
+            
         }
         fclose($handle);
 
