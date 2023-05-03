@@ -200,6 +200,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
                 var productquantities = [];
 
                 $('#productdata tr').each(function(){
+                     console.log($(this).find('.productId').text());
                      productIds.push($(this).find('.productId').text());  
                      productquantities.push($(this).find('.productquantity').val());  
                 });
@@ -263,7 +264,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
                             // }    
                         }else{
                             var html = '';
-                            html += '<tr id="itemRow'+data.data.id+'" ><td class="productId">'+data.data.id+'</td><td class="productId">'+data.data.sku+'</td><td class="productName">'+data.data.name+'</td><td class="productPrice">'+  (data.data.price - ( userdiscount * data.data.price )).toFixed(2)  +'</td><td><input type="number" class="productquantity" value="'+1+'" data-quanitySelected="'+data.data.quantity+'"  /> </div></td> <td class="TotalItemPrice">'+ parseFloat((data.data.price - ( userdiscount * data.data.price ))).toFixed(2) +' </td>   <td><div class="btn-group removeitemRow" data-rowid="'+data.data.id+'"><a  class="btn btn-sm btn-danger" > Remove</a></div></td></tr>';
+                            html += '<tr id="itemRow'+data.data.id+'" ><td class="productId">'+data.data.id+'</td><td >'+data.data.sku+'</td><td class="productName">'+data.data.name+'</td><td class="productPrice">'+  (data.data.price - ( userdiscount * data.data.price )).toFixed(2)  +'</td><td><input type="number" class="productquantity" value="'+1+'" data-quanitySelected="'+data.data.quantity+'"  /> </div></td> <td class="TotalItemPrice">'+ parseFloat((data.data.price - ( userdiscount * data.data.price ))).toFixed(2) +' </td>   <td><div class="btn-group removeitemRow" data-rowid="'+data.data.id+'"><a  class="btn btn-sm btn-danger" > Remove</a></div></td></tr>';
                             
                             $('#productdata').append(html);
 
