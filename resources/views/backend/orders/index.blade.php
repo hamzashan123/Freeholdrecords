@@ -147,15 +147,18 @@
                             var bodyData = '';
                             var i=1;
                             $.each(resultData,function(index,row){
-                                var userdiscount = (data.orderUser.user.discount / 100);
+                                console.log(row.orderproducts);
+                                if(row.orderproducts != null){
+                                    var userdiscount = (data.orderUser.user.discount / 100);
+                                    
+                                    var totalPrice =  row.orderproducts.price - (userdiscount * row.orderproducts.price).toFixed(2);
                                 
-                                var totalPrice =  row.orderproducts.price - (userdiscount * row.orderproducts.price).toFixed(2);
-                            
-                                bodyData+="<tr>"
-                                bodyData+="<td>"+ i++ +"</td><td>"+row.orderproducts.sku+"</td><td>"+row.orderproducts.name+"</td><td>£"+row.orderproducts.price+"</td><td>£"+ (row.orderproducts.price - ((userdiscount) * row.orderproducts.price)).toFixed(2) +"</td><td>"+row.quantity+"</td><td>£"+ (totalPrice * row.quantity)+"</td>"
-                                ;
-                                bodyData+="</tr>";
-                                
+                                    bodyData+="<tr>"
+                                    bodyData+="<td>"+ i++ +"</td><td>"+row.orderproducts.sku+"</td><td>"+row.orderproducts.name+"</td><td>£"+row.orderproducts.price+"</td><td>£"+ (row.orderproducts.price - ((userdiscount) * row.orderproducts.price)).toFixed(2) +"</td><td>"+row.quantity+"</td><td>£"+ (totalPrice * row.quantity).toFixed(2)+"</td>"
+                                    ;
+                                    bodyData+="</tr>";
+                                }
+
                             })
                             $('.orderid').text('Order ID : '+ order_id);
                             $('#ordergrandtotal').text(grandTotal);
