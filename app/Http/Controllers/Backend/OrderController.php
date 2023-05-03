@@ -74,9 +74,11 @@ class OrderController extends Controller
             
             
             
-           $purchasedProducts = Product::whereIn('id',$request->product_ids)->orderBy('id','desc')->get();
+           $purchasedProducts = Product::whereIn('id',$request->product_ids)->get();
             
-
+           $orders = OrderProduct::with('orderproducts')->where('order_id',$orderId)->get()->toArray();
+        //    $orderUser = Order::with('user')->where('id',$id)->first();
+            
             $adminData = [
                 'orderid' => $orderId,
                 'user' => Auth::user(),
@@ -84,7 +86,7 @@ class OrderController extends Controller
                 'msg' => 'New order recieved.',
                 'amount' => $request->amount,
                 'admin' => true,
-                'purchasedProducts' => $purchasedProducts,
+                'purchasedProducts' => $orders,
                 'productquantities' => $request->product_quantities
             ];
            
@@ -99,7 +101,7 @@ class OrderController extends Controller
                 'amount' => $request->amount,
                 'msg' => 'Your order has been placed. Thank you',
                 'admin' => false,
-                'purchasedProducts' => $purchasedProducts,
+                'purchasedProducts' => $orders,
                 'productquantities' => $request->product_quantities
             ];
 
@@ -434,7 +436,7 @@ class OrderController extends Controller
                     $yourPrice * $order['quantity'],
                 ]);
             }
-            
+
         }
         fclose($handle);
 

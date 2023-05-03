@@ -21,23 +21,23 @@
 
             @foreach($purchasedProducts as $key => $product)
                 @php 
-                    $productPrice = number_format( $product->price - (Auth::user()->discount / 100) * $product->price , 2 );
+                    $productPrice = number_format( $product['orderproducts']['price'] - (Auth::user()->discount / 100) * $product['orderproducts']['price'] , 2 );
                 @endphp
             <tr>
-                <!-- <td>{{  $product->id }}</td> -->
-                <td>{{  $product->sku }}</td>
-                <td>{{  $product->name }}</td>
-                <td>{{  $product->code }}</td>
-                <td>{{  $productquantities[$key] }}</td>
-                <!-- <td> £{{ number_format( $product->price - (Auth::user()->discount / 100) * $product->price , 2 ) }}</td> -->
-                <td> £{{ $productPrice * $productquantities[$key] }}</td>
+                
+                <td>{{  $product['orderproducts']['sku'] }}</td>
+                <td>{{  $product['orderproducts']['name'] }}</td>
+                <td>{{  $product['orderproducts']['code'] }}</td>
+                <td>{{  $product['quantity'] }}</td>
+             
+                <td> £{{ $productPrice * $product['quantity'] }}</td>
             </tr>
             @endforeach
 
 
          </tbody>
          
-      </table>
+</table>
 
       <h5>Grand Total : {!!$amount!!}</h5>
 <!-- {!! $orderHtml !!} -->
@@ -74,16 +74,16 @@ Thanks,<br>
 
             @foreach($purchasedProducts as $key => $product)
                 @php 
-                    $productPrice = number_format( $product->price - (Auth::user()->discount / 100) * $product->price , 2 );
+                    $productPrice = number_format( $product['orderproducts']['price'] - (Auth::user()->discount / 100) * $product['orderproducts']['price'] , 2 );
                 @endphp
             <tr>
-                <!-- <td>{{  $product->id }}</td> -->
-                <td>{{  $product->sku }}</td>
-                <td>{{  $product->name }}</td>
-                <td>{{  $product->code }}</td>
-                <td>{{  $productquantities[$key] }}</td>
-                <!-- <td> £{{ number_format( $product->price - (Auth::user()->discount / 100) * $product->price , 2 ) }}</td> -->
-                <td> £{{ $productPrice * $productquantities[$key] }}</td>
+               
+                <td>{{  $product['orderproducts']['sku'] }}</td>
+                <td>{{  $product['orderproducts']['name'] }}</td>
+                <td>{{  $product['orderproducts']['code'] }}</td>
+                <td>{{  $product['quantity'] }}</td>
+               
+                <td> £{{ $productPrice * $product['quantity'] }}</td>
             </tr>
             @endforeach
 
