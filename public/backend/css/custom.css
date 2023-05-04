@@ -516,3 +516,8 @@ a#alertsDropdown {
     width: 100% !important;
     height: 100% !important;
 }
+
+.hidecolumns {
+    width: 0 !important;
+    font-size: 0 !important;
+}

@@ -49,12 +49,16 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
                 <tr>
                     <th></th>
                     <th>Sku</th>
-                    <th>Sorting</th>
+                    
+                    <th @if(Auth::user()->hasRole('user')) class="hidecolumns" @endif >Sorting</th>
+                    
                     <th>Image</th>
                     <th>Name</th>
                     <th>Size</th>
                     <th>Description</th>
-                    <th>Code</th>
+                   
+                    <th @if(Auth::user()->hasRole('user')) class="hidecolumns" @endif>Code</th>
+                   
                     <th>RRP</th>
                     <th>Cost Price</th>
                     <th>Your Price</th>
@@ -79,9 +83,11 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
                         <td>
                             {{$product->sku}}
                         </td>
-                        <td>
+                       
+                        <td @if(Auth::user()->hasRole('user')) class="hidecolumns" @endif>
                             {{$product->sorting}}
                         </td>
+                        
                         <td >
                             @if($product->firstMedia)
                             <img src="{{ asset('storage/images/products/' . $product->firstMedia->file_name) }}"
@@ -93,7 +99,9 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
                         <td>{{ $product->name }}</td>
                         <td >{{ $product->size }}</td>
                         <td >{{ $product->description }}</td>
-                        <td>{{ $product->code }} </td>
+                        
+                        <td @if(Auth::user()->hasRole('user')) class="hidecolumns" @endif>{{ $product->code }} </td>
+                       
                         <td>£{{ $product->rrp }}</td>
                         <td>£{{ $product->price }}</td>
                         <td>£{{ number_format( $product->price - (Auth::user()->discount / 100) * $product->price , 2 )}}</td>
@@ -349,6 +357,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
 
         });
     </script>
+   
     <script>
             $('#producttable').DataTable( {
                 order: [[11, 'asc'], [2, 'asc']],
@@ -359,6 +368,8 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
             } );
             
     </script>
-
+    
+   
+    
    
 @endsection
