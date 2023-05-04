@@ -57,7 +57,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
                     <th>Size</th>
                     <th>Description</th>
                    
-                    <th @if(Auth::user()->hasRole('user')) class="hidecolumns" @endif>Code</th>
+                    <th  class="hidecolumns" >Code</th>
                    
                     <th>RRP</th>
                     <th>Cost Price</th>
@@ -66,7 +66,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
                     <th>Category</th>
                     @if(Auth::user()->hasRole('admin'))
                     <th>Status</th>
-                    <th>Created at</th>
+                    <!-- <th>Created at</th> -->
                     <th class="text-center" style="width: 30px;">Action</th>
                     @endif
                 </tr>
@@ -100,7 +100,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
                         <td >{{ $product->size }}</td>
                         <td >{{ $product->description }}</td>
                         
-                        <td @if(Auth::user()->hasRole('user')) class="hidecolumns" @endif>{{ $product->code }} </td>
+                        <td class="hidecolumns" >{{ $product->code }} </td>
                        
                         <td>£{{ $product->rrp }}</td>
                         <td>£{{ $product->price }}</td>
@@ -110,7 +110,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
                         <td> <b> {{ $product->category ? $product->category->name : NULL }} </b></td>
                         @if(Auth::user()->hasRole('admin'))
                         <td>{{ $product->status }}</td>
-                        <td>{{ $product->created_at }}</td>
+                        <!-- <td>{{ $product->created_at }}</td> -->
                         <td>
                             <div class="btn-group btn-group-sm">
                                 <a href="{{ route('admin.products.edit', $product) }}" class="btn btn-sm btn-primary">
