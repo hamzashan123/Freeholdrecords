@@ -29,7 +29,9 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
             </h6>
             <br>
             <h3>  
-            @if(Auth::user()->hasRole('user')) (Your Wholesale Discount is @if(Auth::user()->discount) {{Auth::user()->discount}} @else 0  @endif %) 
+            @if(Auth::user()->hasRole('user')) 
+            
+            @if(Auth::user()->discount > 0) (Your Wholesale Discount is  {{Auth::user()->discount}} %) @else   @endif  
                 
             @endif
             </h3>
@@ -73,9 +75,9 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
                     <th  class="hidecolumns" >Code</th>
                    
                     <th>RRP</th>
-                    <th>Cost Price</th>
+                    <th >Cost Price</th>
                     
-                    <th>Your Price</th>
+                    <th @if(Auth::user()->hasRole('user')) class="hidecolumns" @endif >Your Price</th>
                     
                     <th>Category</th>
                     @if(Auth::user()->hasRole('admin'))
@@ -118,7 +120,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
                        
                         <td>£{{ number_format($product->rrp ,2 ) }}</td>
                         <td>£{{ number_format($product->price, 2) }}</td>
-                        <td>£{{ number_format( $product->price - (Auth::user()->discount / 100) * $product->price , 2 )}}</td>
+                        <td @if(Auth::user()->hasRole('user')) class="hidecolumns" @endif>£{{ number_format( $product->price - (Auth::user()->discount / 100) * $product->price , 2 )}}</td>
                         
                         
                         <td> <b> {{ $product->category ? $product->category->name : NULL }} </b></td>
@@ -182,6 +184,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
                         <th>Price</th>
                         <th>Quantity</th>
                         <th>Total</th>
+                        <th>RRP</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -193,6 +196,8 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
             </div>
 
             <div style="text-align:right;">
+                    <h2>Total Value : <span id="totalValue"> 0</span></h2>
+                    @if(Auth::user()->discount > 0)  <h2>Less Discount : <span id="lessDiscount"> 0</span></h2> @endif
                     <h2>Grand Total : <span id="grandTotal"> 0</span></h2>
             </div>
 
@@ -290,17 +295,41 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
                             // }    
                         }else{
                             var html = '';
-                            html += '<tr id="itemRow'+data.data.id+'" ><td class="productId">'+data.data.id+'</td><td >'+data.data.sku+'</td><td class="productName">'+data.data.name+'</td><td class="productPrice">'+  (data.data.price - ( userdiscount * data.data.price )).toFixed(2)  +'</td><td><input type="number" class="productquantity" value="'+1+'" data-quanitySelected="'+data.data.quantity+'"  /> </div></td> <td class="TotalItemPrice">'+ parseFloat((data.data.price - ( userdiscount * data.data.price ))).toFixed(2) +' </td>   <td><div class="btn-group removeitemRow" data-rowid="'+data.data.id+'"><a  class="btn btn-sm btn-danger" > Remove</a></div></td></tr>';
+                            html += '<tr id="itemRow'+data.data.id+'" ><td class="productId">'+data.data.id+'</td><td >'+data.data.sku+'</td><td class="productName">'+data.data.name+'</td><td class="productPrice">'+  (data.data.price - ( userdiscount * data.data.price )).toFixed(2)  +'</td><td><input type="number" class="productquantity" value="'+1+'" data-quanitySelected="'+data.data.quantity+'"  /> </div></td> <td class="TotalItemPrice">'+ parseFloat((data.data.price - ( userdiscount * data.data.price ))).toFixed(2) +' </td> <td class="totalrrp">'+ parseFloat(data.data.rrp).toFixed(2) +' </td>  <td><div class="btn-group removeitemRow" data-rowid="'+data.data.id+'"><a  class="btn btn-sm btn-danger" > Remove</a></div></td></tr>';
                             
                             $('#productdata').append(html);
 
                             var TotalItemPrice = 0;
+                            var totalValue = 0;
+                            var lessDiscount = 0;
+                            var grandTotal = 0;
+
+                            
                             $('#productdata tr').each(function(){
-                                TotalItemPrice = parseFloat($(this).find('.TotalItemPrice').text()) + TotalItemPrice;  
+                                //TotalItemPrice = parseFloat($(this).find('.TotalItemPrice').text()) + TotalItemPrice; 
+                                
+                                quanityValue = $(this).find('.productquantity').val();
+                                quanityValueUpadate = parseFloat($(this).find('.totalrrp').text()) * quanityValue;
+                                totalValue = quanityValueUpadate + totalValue;  
+                                console.log(userdiscount);
+                                lessDiscount =  userdiscount * totalValue;
+                              
                             });
 
-                            $('#grandTotal').text("0");
-                            $('#grandTotal').text(TotalItemPrice.toFixed(2));
+                            
+                            
+                            grandTotal =  totalValue - lessDiscount;
+                            $('#totalValue').text("0");
+                            $('#totalValue').text(totalValue.toFixed(2));
+
+                            $('#lessDiscount').text("0");
+                            $('#lessDiscount').text(lessDiscount.toFixed(2));
+
+                            // old correct
+                            // $('#grandTotal').text("0");
+                            // $('#grandTotal').text(TotalItemPrice.toFixed(2));
+                             $('#grandTotal').text("0");
+                            $('#grandTotal').text(grandTotal.toFixed(2));
 
                             if(parseInt($('#grandTotal').text()) > 0){
                                 $('#submitOrder').show();
@@ -316,7 +345,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
             $(document).on('keyup change','.productquantity' , function(){
                
                 var quantity = $(this).attr('data-quanitySelected');
-                
+                var userdiscount = '<?php echo (auth()->user()->discount / 100) ;?>'
                 
 
                 if(parseInt($(this).val()) <= 0){
@@ -334,18 +363,51 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
                 $(this).closest('td').siblings('.TotalItemPrice').text("");
                 $(this).closest('td').siblings('.TotalItemPrice').text(parseFloat($(this).val() * price).toFixed(2));
 
+                $('#totalValue').text("0");
+                var rrp = $(this).closest('td').siblings('.totalrrp').text();
+                var eachRrpValue = rrp * $(this).val();
+                var totalRRP = 0;   
+                var lessDiscount = 0; 
                 var TotalItemPrice = 0;
+                var grandTotal = 0 ;
+                
                 $('#productdata tr').each(function(){
-                     TotalItemPrice = parseFloat($(this).find('.TotalItemPrice').text()) + TotalItemPrice;  
+                    // Grand total
+                    TotalItemPrice = parseFloat($(this).find('.TotalItemPrice').text()) + TotalItemPrice; 
+                    //  Total Value 
+                    quanityValue = $(this).find('.productquantity').val();
+                    quanityValueUpadate = parseFloat($(this).find('.totalrrp').text()) * quanityValue;
+                    totalRRP = quanityValueUpadate + totalRRP;  
+
+                    lessDiscount =  userdiscount * totalRRP; 
                 });
 
+               
+
+                grandTotal =  totalRRP - lessDiscount;
+
+                console.log("totalValue" , totalRRP);
+                console.log("lessDiscount" ,lessDiscount);
+                console.log("grandTotal" , grandTotal);
+                
+                $('#totalValue').text("0");
+                $('#totalValue').text(totalRRP.toFixed(2));
+
+                $('#lessDiscount').text("0");
+                $('#lessDiscount').text(lessDiscount.toFixed(2));
+
                 $('#grandTotal').text("0");
-                $('#grandTotal').text(TotalItemPrice.toFixed(2));
+                 $('#grandTotal').text(grandTotal.toFixed(2));
+                // old correct
+                // $('#grandTotal').text("0");
+                // $('#grandTotal').text(TotalItemPrice.toFixed(2));
 
             });
 
             $(document).on('click','.removeitemRow' , function(){
-               
+                
+                var userdiscount = '<?php echo (auth()->user()->discount / 100) ;?>'
+
                 if($('#productdata tr').length < 2){
                     $('#yourorder').hide();
                 }
@@ -363,7 +425,38 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
                             //jQuery('input[type="checkbox"]').prop('checked', false);
                         }   
                         
-                    });
+                });
+
+                $('#totalValue').text("0");
+                var rrp = $(this).closest('td').siblings('.totalrrp').text();
+                var eachRrpValue = rrp * $(this).val();
+                var totalRRP = 0;   
+                var lessDiscount = 0; 
+                var grandTotal = 0;
+
+                var TotalItemPrice = 0;
+                
+                $('#productdata tr').each(function(){
+                    // Grand total
+                    TotalItemPrice = parseFloat($(this).find('.TotalItemPrice').text()) + TotalItemPrice; 
+                    //  Total Value 
+                    quanityValue = $(this).find('.productquantity').val();
+                    quanityValueUpadate = parseFloat($(this).find('.totalrrp').text()) * quanityValue;
+                    totalRRP = quanityValueUpadate + totalRRP;  
+
+                    lessDiscount =  userdiscount * totalRRP; 
+                });
+
+                grandTotal =  totalRRP - lessDiscount;
+
+                $('#totalValue').text("0");
+                $('#totalValue').text(totalRRP.toFixed(2));
+
+                $('#lessDiscount').text("0");
+                $('#lessDiscount').text(lessDiscount.toFixed(2));
+
+                $('#grandTotal').text("0");
+                 $('#grandTotal').text(grandTotal.toFixed(2));
 
                 $(this).closest('tr').remove();
             });

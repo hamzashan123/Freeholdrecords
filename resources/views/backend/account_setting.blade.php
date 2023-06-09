@@ -39,7 +39,23 @@
                     
                 </div>
 
-              
+                <div class="row">
+                <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="trading_address" class="text-small text-uppercase">{{ __('Trading address ') }}</label>
+                                            <input id="trading_address" type="text" class="form-control form-control-lg" name="trading_address" value="{{ old('trading_address', auth()->user()->trading_address) }}" placeholder="Trading address">
+                                            @error('trading_address')<span class="text-danger" role="alert"><strong>{{ $message }}</strong></span>@enderror
+                                        </div>
+                                    </div>
+                <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="delivery_address" class="text-small text-uppercase">{{ __('Delivery address ') }}</label>
+                                            <input id="delivery_address" type="text" class="form-control form-control-lg" name="delivery_address" value="{{ old('delivery_address', auth()->user()->delivery_address) }}" placeholder="Delivery address">
+                                            @error('delivery_address')<span class="text-danger" role="alert"><strong>{{ $message }}</strong></span>@enderror
+                                        </div>
+                </div>
+                </div>
+               
 
                 <div class="row">
                     <div class="col-4">

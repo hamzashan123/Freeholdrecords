@@ -51,6 +51,8 @@ class AdminAuthController extends Controller
             'email' => $request->email,
             'accountemail' => $request->accountemail,
             'phone' => $request->phone,
+            'trading_address' => $request->trading_address,
+            'delivery_address' => $request->delivery_address,
             'user_image' => $adminImage ?? auth()->user()->user_image,
             'password' => $password ?? auth()->user()->password
         ]);
