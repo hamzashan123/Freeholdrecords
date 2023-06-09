@@ -467,7 +467,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
    
     <script>
             $('#producttable').DataTable( {
-                order: [[11, 'asc'], [2, 'asc']],
+                // order: [[11, 'asc'], [2, 'asc']],
                 dom: 'Bfrtip',
                 buttons: [
                      'csv' , 'pdf'

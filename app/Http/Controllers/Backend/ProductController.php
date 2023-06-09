@@ -22,6 +22,7 @@ class ProductController extends Controller
         
 
         $products = Product::with('category', 'tags', 'firstMedia')
+            ->orderBy('sorting', 'ASC')
             ->when(\request()->keyword != null, function ($query) {
                 $query->search(\request()->keyword);
             })
@@ -30,7 +31,9 @@ class ProductController extends Controller
             })
             
             ->paginate(\request()->limitBy ?? 10000);
-        
+
+        // $products = $products->orderBy('id', 'DESC');
+        // dd($products);
         return view('backend.products.index', compact('products'));
     }
 
