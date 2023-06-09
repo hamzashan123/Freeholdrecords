@@ -27,21 +27,21 @@
                     <th>Amount</th>
                     <th>Status</th>
                     <th>Create date</th>
+                    <th>Delivery Required</th>
+                    <th>Order Notes</th>
                     <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
                 @forelse($orders as $order)
                     <tr>
-                        <td>
-                            
-                                {{ $order->id }}
-                           
-                        </td>
+                        <td>{{ $order->id }}</td>
                         <td>@if(!empty($order->user->username)) {{ $order->user->username}} @endif</td>
                         <td>£{{ $order->amount }}</td>
                         <td>{{ $order->status}} </td>
                         <td>{{ $order->created_at}}</td>
+                        <td>{{ $order->delivery_notes}}</td>
+                        <td>{{ $order->order_notes}}</td>
                         <td>
                             
                             <div class="btn-group btn-group-sm">
