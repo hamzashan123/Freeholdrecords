@@ -275,7 +275,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
 
 
             // product click to add in order
-            $('.productcheck').on('change', function(){
+            $(document).on('change','.productcheck' , function(){
                 var thisCheck = $(this).is(":checked");
                 
                 var userdiscount = '<?php echo (auth()->user()->discount / 100) ;?>'
