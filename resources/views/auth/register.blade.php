@@ -54,6 +54,21 @@
 
                                     <div class="col-6">
                                         <div class="form-group">
+                                            <label for="trading_address" class="text-small text-uppercase">{{ __('Trading address ') }}</label>
+                                            <input id="trading_address" type="text" class="form-control form-control-lg" name="trading_address" value="{{ old('trading_address') }}" placeholder="Trading address">
+                                            @error('trading_address')<span class="text-danger" role="alert"><strong>{{ $message }}</strong></span>@enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="delivery_address" class="text-small text-uppercase">{{ __('Delivery address ') }}</label>
+                                            <input id="delivery_address" type="text" class="form-control form-control-lg" name="delivery_address" value="{{ old('delivery_address') }}" placeholder="Delivery address">
+                                            @error('delivery_address')<span class="text-danger" role="alert"><strong>{{ $message }}</strong></span>@enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="form-group">
                                             <label for="first_name" class="text-small text-uppercase">{{ __('First Name') }}</label>
                                             <input id="first_name" type="text" class="form-control form-control-lg" name="first_name" value="{{ old('first_name') }}" placeholder="First Name">
                                             @error('first_name')<span class="text-danger" role="alert"><strong>{{ $message }}</strong></span>@enderror

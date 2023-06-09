@@ -25,7 +25,7 @@
                             <label for="status">Status</label>
                             <select name="status" id="status" class="form-control">
                                 <option value="Pending" {{ old('status', $order->status) == "Pending" ? 'selected' : null }}>Pending</option>
-                                <option value="Delivered" {{ old('status', $order->status) == "Delivered" ? 'selected' : null }}>Delivered</option>
+                                <option value="Processed" {{ old('status', $order->status) == "Processed" ? 'selected' : null }}>Processed</option>
                             </select>
                             @error('status')<span class="text-danger">{{ $message }}</span>@enderror
                         </div>

@@ -28,7 +28,15 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
                 Products   
             </h6>
             <br>
-            <h3>  @if(Auth::user()->hasRole('user')) (Your Wholesale Discount is @if(Auth::user()->discount) {{Auth::user()->discount}} @else 0  @endif %) @endif</h3>
+            <h3>  
+            @if(Auth::user()->hasRole('user')) (Your Wholesale Discount is @if(Auth::user()->discount) {{Auth::user()->discount}} @else 0  @endif %) 
+                
+            @endif
+            </h3>
+            <br>
+                
+            
+
             <div class="ml-auto">
                 @can('create_category')
                     <a href="{{ route('admin.products.create') }}" class="btn btn-primary">
@@ -40,6 +48,11 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
                 @endcan
             </div>
         </div>
+
+        @if(Auth::user()->hasRole('user')) <p class="discountheading"">To place an order click in the box next to the product and it will appear on the order form at the bottom of the page where you can edit the quantity.</p>  @endif  
+
+
+
 
       
 
@@ -61,6 +74,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
                    
                     <th>RRP</th>
                     <th>Cost Price</th>
+                    
                     <th>Your Price</th>
                     
                     <th>Category</th>
@@ -102,8 +116,8 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
                         
                         <td class="hidecolumns" >{{ $product->code }} </td>
                        
-                        <td>£{{ $product->rrp }}</td>
-                        <td>£{{ $product->price }}</td>
+                        <td>£{{ number_format($product->rrp ,2 ) }}</td>
+                        <td>£{{ number_format($product->price, 2) }}</td>
                         <td>£{{ number_format( $product->price - (Auth::user()->discount / 100) * $product->price , 2 )}}</td>
                         
                         

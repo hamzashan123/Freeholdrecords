@@ -157,6 +157,8 @@ class UserController extends Controller
             'user_image' => $userImage ?? NULL,
             'company_name' => $request->company_name,
             'company_contact' => $request->company_contact,
+            'trading_address' => $request->trading_address,
+            'delivery_address' => $request->delivery_address,
             'discount' => $request->discount,
         ]);
         

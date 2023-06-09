@@ -14,3 +14,7 @@
 
 <p> {!! $messagetype !!} </p>
 @endif
+
+
+Thank you <br>
+Vagabond Sales Department

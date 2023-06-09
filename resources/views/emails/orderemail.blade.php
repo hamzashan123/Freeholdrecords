@@ -97,6 +97,7 @@ Thanks,<br>
 
 
 
-Thanks,<br>
-{{ config('app.name') }}
+Thank you <br>
+Vagabond Sales Department
+
 @endif

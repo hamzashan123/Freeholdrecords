@@ -36,7 +36,7 @@
     <li class="nav-item active ">
                 <a class="nav-link" href="{{route('admin.products.index')}}">
                 <i class="fas fa-shopping-cart fa-2x text-gray-300"></i>
-                    <span>@if(Auth::user()->hasRole('admin')) Products Management @else  Products @endif</span></a>
+                    <span>@if(Auth::user()->hasRole('admin')) Products Management @else  Place an order @endif</span></a>
     </li>
   
 
