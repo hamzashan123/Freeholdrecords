@@ -50,6 +50,8 @@ class OrderController extends Controller
             'user_id' => Auth::user()->id,
             'amount' => $request->amount,
             'status' => 'pending',
+            'delivery_notes' => $request->delivery_notes,
+            'order_notes' => $request->order_notes,
             'created_at' => Carbon::now()->format('Y-m-d')
         ]);
         
@@ -83,6 +85,8 @@ class OrderController extends Controller
                 'orderid' => $orderId,
                 'user' => Auth::user(),
                 'orderHtml' => $request->orderHtml,
+                'delivery_notes' => $request->delivery_notes,
+                'order_notes' => $request->order_notes,
                 'msg' => 'New order recieved.',
                 'amount' => $request->amount,
                 'admin' => true,
@@ -97,6 +101,8 @@ class OrderController extends Controller
             $userData = [
                 'orderid' => $orderId,
                 'user' => Auth::user(),
+                'delivery_notes' => $request->delivery_notes,
+                'order_notes' => $request->order_notes,
                 'orderHtml' => $request->orderHtml,
                 'amount' => $request->amount,
                 'msg' => 'Your order has been placed. Thank you',

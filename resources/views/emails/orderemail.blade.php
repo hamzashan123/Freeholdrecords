@@ -38,8 +38,10 @@
          </tbody>
          
 </table>
-
-      <h5>Grand Total : {!!$amount!!}</h5>
+    
+      <h4> Delivery Required: {!!$delivery_notes!!} </h4> 
+      <h4> Order Notes: {!!$order_notes!!}</h4>  
+      <h3>Grand Total : {!!$amount!!}</h3>
 <!-- {!! $orderHtml !!} -->
 
 
@@ -92,7 +94,9 @@ Thanks,<br>
          
       </table>
 
-      <h5>Grand Total : {!!$amount!!}</h5>
+      <h4> Delivery Required: {!!$delivery_notes!!} </h4> 
+      <h4> Order Notes: {!!$order_notes!!}</h4>  
+      <h2>Grand Total : {!!$amount!!}</h2>
 <!-- {!! $orderHtml !!} -->
 
 

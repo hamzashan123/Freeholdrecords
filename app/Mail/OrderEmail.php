@@ -15,6 +15,8 @@ class OrderEmail extends Mailable
     protected $amount;
     protected $user;
     protected $msg;
+    protected $delivery_notes;
+    protected $order_notes;
     protected $orderHtml;
     protected $isAdmin;
     protected $purchasedProducts;
@@ -29,6 +31,8 @@ class OrderEmail extends Mailable
     {
         $this->orderid = $data['orderid'];
         $this->orderHtml = $data['orderHtml'];
+        $this->delivery_notes = $data['delivery_notes'];
+        $this->order_notes = $data['order_notes'];
         $this->amount = $data['amount'];
         $this->user = $data['user'];
         $this->msg = $data['msg'];
@@ -49,6 +53,8 @@ class OrderEmail extends Mailable
             ->with([
                     'orderid' => $this->orderid,
                     'orderHtml' => $this->orderHtml,
+                    'delivery_notes' => $this->delivery_notes,
+                    'order_notes' => $this->order_notes,
                     'amount' => $this->amount,
                     'user' => $this->user,
                     'msg' => $this->msg,

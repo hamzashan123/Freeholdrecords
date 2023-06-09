@@ -194,7 +194,11 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
                     
                 </table>
             </div>
-
+            <div class="ordernotice" style="text-align:right;">
+                <h4>Delivery Required : <span > <input type="date" name="" id="delivery_required" ></span></h4> <br>
+                <h4>Order Notes : <span > <textarea id="order_notes" placeholder="Order Notes!"></textarea></span></h4>
+            </div>
+            <br>
             <div style="text-align:right;">
                     <h2>Total Value : <span id="totalValue"> 0</span></h2>
                     @if(Auth::user()->discount > 0)  <h2>Less Discount : <span id="lessDiscount"> 0</span></h2> @endif
@@ -247,6 +251,8 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
                             product_ids : productIds,
                             product_quantities: productquantities,
                             amount: $('#grandTotal').text(),
+                            delivery_notes : $('#delivery_required').val(),
+                            order_notes : $('#order_notes').val(),
                             orderHtml: formatTemplate
                 },
                 function(data, status){
