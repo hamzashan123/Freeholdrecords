@@ -12,7 +12,7 @@
             <!-- <th>ID</th> -->
             <th>Sku</th>
             <th>Item</th>
-            <th>Code</th>
+            <!-- <th>Code</th> -->
             <th>Purchased Quantity</th>
             <!-- <th>Total Price</th> -->
             <th>Total Price </th>
@@ -27,10 +27,10 @@
                 
                 <td>{{  $product['orderproducts']['sku'] }}</td>
                 <td>{{  $product['orderproducts']['name'] }}</td>
-                <td>{{  $product['orderproducts']['code'] }}</td>
+                <!-- <td>{{  $product['orderproducts']['code'] }}</td> -->
                 <td>{{  $product['quantity'] }}</td>
              
-                <td> £{{ $productPrice * $product['quantity'] }}</td>
+                <td> £{{ number_format($productPrice * $product['quantity'] , 2) }}</td>
             </tr>
             @endforeach
 
@@ -39,7 +39,7 @@
          
 </table>
     
-      <h4> Delivery Required: {!!$delivery_notes!!} </h4> 
+        <h4> Delivery Required: {!! \Carbon\Carbon::parse($delivery_notes)->format('d-m-Y')  !!} </h4> 
       <h4> Order Notes: {!!$order_notes!!}</h4>  
       <h3>Grand Total : {!!$amount!!}</h3>
 <!-- {!! $orderHtml !!} -->
@@ -67,7 +67,7 @@ Thanks,<br>
             <!-- <th>ID</th> -->
             <th>Sku</th>
             <th>Item</th>
-            <th>Code</th>
+            <!-- <th>Code</th> -->
             <th>Purchased Quantity</th>
             <!-- <th>Total Price</th> -->
             <th>Total Price </th>
@@ -82,10 +82,10 @@ Thanks,<br>
                
                 <td>{{  $product['orderproducts']['sku'] }}</td>
                 <td>{{  $product['orderproducts']['name'] }}</td>
-                <td>{{  $product['orderproducts']['code'] }}</td>
+                <!-- <td>{{  $product['orderproducts']['code'] }}</td> -->
                 <td>{{  $product['quantity'] }}</td>
                
-                <td> £{{ $productPrice * $product['quantity'] }}</td>
+                <td> £{{ number_format($productPrice * $product['quantity'] , 2) }}</td>
             </tr>
             @endforeach
 
@@ -94,7 +94,7 @@ Thanks,<br>
          
       </table>
 
-      <h4> Delivery Required: {!!$delivery_notes!!} </h4> 
+      <h4> Delivery Required: {!! \Carbon\Carbon::parse($delivery_notes)->format('d-m-Y')  !!} </h4> 
       <h4> Order Notes: {!!$order_notes!!}</h4>  
       <h2>Grand Total : {!!$amount!!}</h2>
 <!-- {!! $orderHtml !!} -->

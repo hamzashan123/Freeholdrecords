@@ -196,7 +196,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
             </div>
             <div class="ordernotice" style="text-align:right;">
                 <h4>Delivery Required : <span > <input type="date" name="" id="delivery_required" ></span></h4> <br>
-                <h4>Order Notes : <span > <textarea id="order_notes" placeholder="Order Notes!"></textarea></span></h4>
+                <h4>Order Notes : <span > <textarea id="order_notes" ></textarea></span></h4>
             </div>
             <br>
             <div style="text-align:right;">
