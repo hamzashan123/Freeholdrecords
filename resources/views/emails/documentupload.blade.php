@@ -8,6 +8,6 @@
 <p>TITLE ID : {!!$titleid!!}</p>
 <p>Document Link :<a href="{{asset('/storage/titlefiles/'.$orderid.'/'.$link)}}"> click here</a> </p>
 
-Thanks,<br>
-{{ config('app.name') }}
+Thank you <br>
+Vagabond Sales Department
 @endif
