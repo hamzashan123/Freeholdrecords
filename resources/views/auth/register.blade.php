@@ -29,7 +29,7 @@
                     <div class="col-lg-6">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4" style="font-weight:bold !important; text-align:left !important;">WholeSale Customer Request</h1>
+                                <h1 class="h4 text-gray-900 mb-4" style="font-weight:bold !important; text-align:left !important;">Trade Customer Request</h1>
                                 <p style="text-align:left;"> This is a secure system and you will need to provide your registration details to access the site once approved by admin.</p>
                             </div>
                             <form method="POST" action="{{ route('register') }}">

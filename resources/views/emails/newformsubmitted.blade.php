@@ -14,4 +14,4 @@
 
 
 Thanks,<br>
-{{ config('app.name') }}
+Vagabond Sales Department

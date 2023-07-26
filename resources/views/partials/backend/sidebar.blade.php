@@ -4,7 +4,7 @@
         <div class="sidebar-brand-icon rotate-n-15"></div>
         <div class="sidebar-brand-text mx-3">
 
-            <h1> WholeSale Customer App </h1>
+            <h1> Trade Customer App </h1>
             <!-- <img src="/logo.png" style="height:100px;"> -->
 
         </div>

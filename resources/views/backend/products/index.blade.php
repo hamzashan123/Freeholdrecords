@@ -31,7 +31,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
             <h3>  
             @if(Auth::user()->hasRole('user')) 
             
-            @if(Auth::user()->discount > 0) (Your Wholesale Discount is  {{Auth::user()->discount}} %) @else   @endif  
+            @if(Auth::user()->discount > 0) (Your Trade Discount is  {{Auth::user()->discount}} %) @else   @endif  
                 
             @endif
             </h3>
